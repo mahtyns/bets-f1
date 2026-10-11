@@ -1,0 +1,28 @@
+.button {
+    border: none;
+    font-size: $font-sm;
+    padding: $space-xs $space-md;
+    cursor: pointer;
+    font-family: $font-label;
+
+    &--primary {
+        background-color: $primary-200;
+        color: $primary-900;
+    }
+
+    &--secondary {
+        background-color: $background-500;
+        color: $primary-200;
+    }
+
+    &--inverted {
+        background-color: $text-secondary;
+        color: $background-800;
+    }
+
+    &--outlined {
+        background-color: transparent;
+        color: $primary-200;
+        border: solid $space-min $primary-200;
+    }
+}

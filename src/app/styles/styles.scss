@@ -1,0 +1,11 @@
+@import './variables-main';
+@import './components/styles.scss';
+
+* {
+    font-family: $font-primary;
+    color: $text-main;
+}
+
+body {
+    background-color: $background-800;
+}
