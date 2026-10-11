@@ -1,0 +1,9 @@
+.header {
+    background-color: $background-900;
+    width: 100%;
+    padding: $space-md;
+
+    &__logo img {
+        max-width: $img-md;
+    }
+}

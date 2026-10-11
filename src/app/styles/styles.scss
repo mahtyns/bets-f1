@@ -1,11 +1,37 @@
 @import './variables-main';
+@import './mixins';
 @import './components/styles.scss';
+@import './layouts/styles.scss';
 
 * {
     font-family: $font-primary;
     color: $text-main;
+    margin: 0;
+    box-sizing: border-box;
 }
 
 body {
     background-color: $background-800;
+    min-height: 90vh;
+}
+
+main {
+    padding: 0 $space-lg;
+}
+
+section {
+    padding: $space-md;
+    border-radius: $border-radius-lg;
+
+    @include breakpoint-md {
+        min-width: 900px;
+    }
+
+    @include breakpoint-lg {
+        min-width: 1200px;
+    }
+
+    @include breakpoint-xl {
+        min-width: 1480px;
+    }
 }

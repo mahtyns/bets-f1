@@ -1,0 +1,30 @@
+//Breakpoints
+$breakpoint-md: 768px;
+$breakpoint-xmd: 1024px;
+$breakpoint-lg: 1280px;
+$breakpoint-xl: 1440px;
+
+@mixin breakpoint-md {
+    @media (min-width: #{$breakpoint-md}) {
+        @content
+    }
+}
+
+;
+
+
+
+
+@mixin breakpoint-lg {
+    @media (min-width: #{$breakpoint-lg}) {
+        @content;
+    }
+}
+
+;
+
+@mixin breakpoint-xl {
+    @media (min-width: #{$breakpoint-xl}) {
+        @content;
+    }
+}

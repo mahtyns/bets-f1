@@ -1,11 +1,11 @@
-import Image from "next/image";
+import GeneralStandings from "./components/layouts/GeneralStandings";
 import styles from "./page.module.css";
-import Button from "./components/atoms/Button";
 
 export default function Home() {
   return (
     <div className={styles.page}>
       <main>
+        <GeneralStandings />
       </main>
     </div>
   );

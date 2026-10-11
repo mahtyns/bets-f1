@@ -1,0 +1,14 @@
+.footer {
+    background-color: $background-900;
+    padding: $space-md;
+
+    &__logo {
+        img {
+            max-width: $img-sm;
+        }
+
+        span {
+            color: $primary-200;
+        }
+    }
+}

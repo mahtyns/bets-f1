@@ -1,0 +1,23 @@
+.title-h1 {
+    font-size: $font-lg;
+    text-transform: uppercase;
+    font-family: $font-accent;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+
+    @include breakpoint-md {
+        font-size: $font-xl;
+    }
+}
+
+.title-h2 {
+    font-size: $font-sm;
+    text-transform: uppercase;
+    font-family: $font-accent;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+
+    @include breakpoint-md {
+        font-size: $font-md;
+    }
+}
