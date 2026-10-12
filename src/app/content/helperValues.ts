@@ -15,3 +15,6 @@ export const avatarTeams: Record<number, string> = {
     5: "alpine",
     6: "aston-martin",
 };
+
+export const CHAMPIONSHIP_YEAR = 2026;
+export const CHAMPIONSHIP_NAME = "FIA FORMULA 1 WORLD CHAMPIONSHIP"

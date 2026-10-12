@@ -9,30 +9,27 @@
     flex-direction: column;
     gap: $space-md;
 
-    &::before {
-        content: '';
-        width: $img-lg;
-        height: $img-lg;
-        position: absolute;
-        bottom: -$space-lg;
-        left: -$space-lg;
-        background-color: rgba($color: $yellow-700, $alpha: 0.4);
-        z-index: -1;
-        border-radius: 50%;
-        filter: blur(100);
-    }
-
+    &::before,
     &::after {
         content: '';
         width: $img-lg;
         height: $img-lg;
         position: absolute;
-        top: -$space-lg;
-        right: -$space-lg;
-        background-color: rgba($color: $primary-800, $alpha: 0.3);
         z-index: -1;
         border-radius: 50%;
         filter: blur(100);
+    }
+
+    &::before {
+        bottom: -$space-lg;
+        left: -$space-lg;
+        background-color: rgba($color: $yellow-700, $alpha: 0.4);
+    }
+
+    &::after {
+        top: -$space-lg;
+        right: -$space-lg;
+        background-color: rgba($color: $primary-800, $alpha: 0.3);
     }
 
     &__topbar {

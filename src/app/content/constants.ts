@@ -1,3 +1,5 @@
+const year = new Date().getFullYear();
+
 export const constants = {
     siteName: "Rosario Bets",
     logo: "/_logo.png",
@@ -10,10 +12,22 @@ export const constants = {
     },
     footer: {
         links: [
-
+            {
+                name: "Upcoming races",
+                link: "/upcoming"
+            },
+            {
+                name: "Scoring rules",
+                link: "/rules"
+            },
+            {
+                name: "Pit crew support",
+                link: "mailto:martyna.smolarek19@gmail.com"
+            }
         ],
-        copyright: "",
-        text: "F1 Social Prediction League"
+        copyright: " © Rosario Racing F1 Bets. Page created by Rosario. All rights reserved.",
+        text: "F1 Social Prediction League",
+        year: year
     },
     buttons: {
         open: {

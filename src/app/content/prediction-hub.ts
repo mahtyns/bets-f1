@@ -1,3 +1,4 @@
 export const predictionHubContent = {
-    mainClass: "prediction-hub"
+    mainClass: "prediction-hub",
+    mainTitle: "Prediction Hub"
 }

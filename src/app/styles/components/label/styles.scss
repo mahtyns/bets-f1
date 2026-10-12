@@ -1,0 +1,10 @@
+.label {
+    width: fit-content;
+    padding: 0 $space-xs;
+    border-radius: $border-radius-sm;
+
+    &--primary {
+        background-color: $primary-800;
+        color: $primary-300;
+    }
+}

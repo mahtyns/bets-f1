@@ -1,0 +1,13 @@
+.text {
+    &--primary {
+        color: $primary-200;
+    }
+
+    &--white {
+        color: $text-main;
+    }
+
+    &--muted {
+        color: $background-50;
+    }
+}

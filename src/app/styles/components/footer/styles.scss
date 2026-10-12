@@ -1,14 +1,41 @@
 .footer {
     background-color: $background-900;
     padding: $space-md;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: $space-md;
 
     &__logo {
+        display: flex;
+        align-items: center;
+        gap: $space-sm;
+
         img {
-            max-width: $img-sm;
+            max-width: $img-xs;
         }
 
         span {
             color: $primary-200;
         }
+    }
+
+    &__links {
+        display: flex;
+        gap: $space-md;
+
+        .link {
+            text-decoration: none;
+            transition: all ease-in-out 1s;
+
+            &:hover {
+                color: $yellow-200;
+            }
+        }
+    }
+
+    &__copyright {
+        color: $background-50;
+        font-size: $font-xs;
     }
 }
