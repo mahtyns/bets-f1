@@ -82,7 +82,7 @@ export const mockStandings: Standing[] = [
         userId: "user-6",
         rank: 6,
         trend: "same",
-        name: "Claptrap",
+        name: "Dirtyyy",
         team: "Borderlands F1",
         avatarId: 6,
         totalPoints: 2510,

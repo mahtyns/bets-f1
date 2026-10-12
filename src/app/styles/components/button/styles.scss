@@ -4,6 +4,7 @@
     padding: $space-xs $space-md;
     cursor: pointer;
     font-family: $font-label;
+    height: fit-content;
 
     &--primary {
         background-color: $primary-200;

@@ -130,6 +130,7 @@
 
             p:last-of-type {
                 font-family: $font-label;
+                color: $tertiary-200;
             }
         }
     }
@@ -141,6 +142,20 @@
         display: flex;
         flex-direction: column;
         gap: $space-sm;
+
+        &--me {
+            border: $space-min solid $primary-500;
+        }
+
+        .badge {
+            margin-left: auto;
+            text-transform: uppercase;
+            border-radius: $border-radius-xs;
+            font-family: $font-label;
+            padding: $space-xxs;
+            color: $primary-300;
+            border: solid $space-min $primary-400;
+        }
 
         @include breakpoint-md {
             width: calc(100% / 3 - $space-md);

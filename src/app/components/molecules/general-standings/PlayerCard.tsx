@@ -23,7 +23,7 @@ const PlayerCard = (props: PlayerCardProps) => {
     const topbar = topbarByRank[standing.rank];
 
     return (
-        <div className={`${props.mainClass}__player-card`}>
+        <div className={`${props.mainClass}__player-card ${props.isMe ? `${props.mainClass}__player-card--me` : ""}`}>
             <div className={`${props.mainClass}__player-card__topbar`}>
                 {topbar.name} · {topbar.label}
             </div>

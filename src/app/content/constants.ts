@@ -8,6 +8,16 @@ export const constants = {
         ],
         copyright: "",
         text: "F1 Social Prediction League"
+    },
+    buttons: {
+        open: {
+            text: "Place bet",
+            variant: "Primary"
+        },
+        closed: {
+            text: "Bets closed",
+            variant: "Secondary"
+        }
     }
 }
 

@@ -1,0 +1,184 @@
+@import '../../teams-drivers-palettes/variables.scss';
+
+.driver-team-standings {
+    display: flex;
+    gap: $space-md;
+    flex-direction: column;
+    width: 100%;
+    margin-top: $space-md;
+    background-color: $background-900;
+
+    @include breakpoint-md {
+        flex-direction: row;
+    }
+
+
+    &__card {
+        padding: $space-sm;
+        background-color: $background-700;
+        border-radius: $border-radius-md;
+        width: 100%;
+    }
+
+    &__card-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: $space-sm;
+        margin-bottom: $space-sm;
+
+        .title-h2 {
+            margin: 0;
+        }
+
+        p {
+            margin: 0;
+            font-family: $font-label;
+            font-size: $font-xxs;
+            text-transform: uppercase;
+            color: $primary-300;
+        }
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: $space-xs;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    &__position {
+        min-width: $space-md;
+        font-family: $font-accent;
+        font-size: $font-sm;
+        font-weight: 700;
+        color: $text-secondary;
+    }
+
+    &__driver-row:first-child &__position,
+    &__team-row:first-child &__position {
+        color: $yellow-200;
+    }
+
+    &__driver-row {
+        display: flex;
+        align-items: center;
+        gap: $space-sm;
+        padding: $space-xs $space-sm;
+        background-color: $background-600;
+        border-radius: $border-radius-sm;
+    }
+
+    &__colour-bar {
+        align-self: stretch;
+        width: $space-xxs;
+        background-color: var(--team-colour);
+        border-radius: $border-radius-xs;
+    }
+
+    &__driver-info {
+        flex: 1;
+
+        p {
+            margin: 0;
+        }
+
+        p:nth-of-type(1) {
+            font-family: $font-accent;
+            font-size: $font-sm;
+            font-weight: 700;
+            color: $text-main;
+        }
+
+        p:nth-of-type(2) {
+            font-family: $font-label;
+            font-size: $font-xxs;
+            color: $primary-200;
+        }
+    }
+
+    &__driver-points {
+        text-align: right;
+
+        p {
+            margin: 0;
+        }
+
+        p:nth-of-type(1) {
+            font-family: $font-label;
+            font-size: $font-sm;
+            font-weight: 700;
+            color: $text-main;
+
+            span {
+                font-size: $font-xxs;
+                font-weight: 400;
+                color: $primary-200;
+            }
+        }
+
+        p:nth-of-type(2) {
+            font-family: $font-label;
+            font-size: $font-xxs;
+            color: $primary-400;
+        }
+    }
+
+    &__team-row {
+        padding: $space-xs $space-sm;
+        background-color: $background-600;
+        border-radius: $border-radius-sm;
+    }
+
+    &__team-head {
+        display: flex;
+        align-items: center;
+        gap: $space-xs;
+    }
+
+    &__colour-dot {
+        flex-shrink: 0;
+        width: $space-xs;
+        height: $space-xs;
+        background-color: var(--team-colour);
+        border-radius: 50%;
+    }
+
+    &__team-name {
+        flex: 1;
+        margin: 0;
+        font-family: $font-accent;
+        font-size: $font-sm;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: $text-main;
+    }
+
+    &__team-points {
+        margin: 0;
+        font-family: $font-accent;
+        font-size: $font-sm;
+        font-weight: 700;
+        color: $text-main;
+    }
+
+    &__team-row:first-child &__team-points {
+        color: $yellow-200;
+    }
+
+    &__progress {
+        height: $space-xxs;
+        margin-top: $space-xs;
+        overflow: hidden;
+        background-color: $background-500;
+        border-radius: $border-radius-xs;
+    }
+
+    &__progress-bar {
+        height: 100%;
+        background-color: var(--team-colour);
+        border-radius: inherit;
+    }
+}

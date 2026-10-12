@@ -1,7 +1,11 @@
-
-const Link = () => {
+interface LinkProps {
+    linkName: string,
+    linkUrl: string,
+    external: boolean
+}
+const Link = (props: LinkProps) => {
     return (
-        <div>Link</div>
+        <a className="link" href={props.linkUrl}>{props.linkName}</a>
     )
 }
 

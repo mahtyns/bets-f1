@@ -1,3 +1,4 @@
+import { DriverTeamStandings } from "./components/layouts/DriverTeamStandings";
 import GeneralStandings from "./components/layouts/GeneralStandings";
 import { StandingsDetailed } from "./components/layouts/StandingsDetailed";
 import styles from "./page.module.css";
@@ -8,6 +9,7 @@ export default function Home() {
       <main>
         <GeneralStandings />
         <StandingsDetailed />
+        <DriverTeamStandings />
       </main>
     </div>
   );
