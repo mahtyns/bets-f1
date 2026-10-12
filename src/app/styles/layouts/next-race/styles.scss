@@ -1,0 +1,125 @@
+.next-race-info {
+    background-color: $background-900;
+    width: 100%;
+    margin: $space-md 0;
+    display: flex;
+    flex-direction: column;
+    gap: $space-md;
+
+    .title-h2 {
+        @include breakpoint-md {
+            font-size: $font-lg;
+        }
+    }
+
+    &__header {
+        display: flex;
+        flex-direction: column;
+        gap: $space-sm;
+    }
+
+    &__meta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: $space-sm;
+    }
+
+    &__round__text {
+        font-family: $font-label;
+        font-weight: 700;
+        font-size: $font-xs;
+        text-transform: uppercase;
+        color: $yellow-200;
+    }
+
+    &__dates__text {
+        font-family: $font-label;
+        font-size: $font-xxs;
+        color: $primary-200;
+    }
+
+    &__heading {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: $space-sm;
+
+        .title-h2 {
+            font-family: $font-accent;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: $text-main;
+        }
+    }
+
+    &__flag {
+        height: $badge-lg;
+        width: auto;
+        border-radius: $border-radius-xs;
+    }
+
+    &__subtitle__text {
+        font-size: $font-xs;
+        color: $primary-200;
+    }
+
+    &__layout {
+        background-color: $background-800;
+        border-radius: $border-radius-md;
+        padding: $space-sm;
+        display: flex;
+        flex-direction: column;
+        gap: $space-sm;
+
+        @include breakpoint-md {
+            padding: $space-md;
+            max-width: 33%;
+        }
+    }
+}
+
+.track-layout {
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: $space-xs;
+        font-family: $font-label;
+        font-size: $font-xxs;
+        text-transform: uppercase;
+    }
+
+    &__title__text {
+        color: $primary-200;
+    }
+
+    &__type__text {
+        color: $yellow-200;
+        font-weight: 700;
+    }
+
+    &__image-wrapper {
+        position: relative;
+        isolation: isolate;
+        background-color: $background-900;
+        padding: $space-sm;
+
+        &::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: $yellow-200;
+            mix-blend-mode: multiply;
+            border-radius: inherit;
+            pointer-events: none;
+        }
+    }
+
+    &__image {
+        display: block;
+        width: 100%;
+        max-height: $img-lg;
+        object-fit: contain;
+    }
+}

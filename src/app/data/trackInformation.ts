@@ -8,6 +8,9 @@ interface ApiTrackInformation {
     circuit_type: string;
     circuit_short_name: string;
     country_flag: string;
+    country_name: string;
+    date_start: string;
+    date_end: string;
     meeting_official_name: string;
     meeting_name: string
 }
@@ -17,6 +20,9 @@ export interface TrackInformation {
     type: string;
     name: string;
     flag: string;
+    country: string;
+    start: string;
+    end: string;
     meetingName: string;
     meetingShort: string
 }
@@ -42,6 +48,9 @@ export const getTrackInformation = async (
             type: meeting.circuit_type,
             name: meeting.circuit_short_name,
             flag: meeting.country_flag,
+            country: meeting.country_name,
+            start: meeting.date_start,
+            end: meeting.date_end,
             meetingName: meeting.meeting_official_name,
             meetingShort: meeting.meeting_name
         };

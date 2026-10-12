@@ -4,7 +4,7 @@
     padding: $space-md;
     display: flex;
     align-items: center;
-    gap: $space-md;
+    justify-content: space-between;
 
     @include breakpoint-md {
         gap: $space-lg;
