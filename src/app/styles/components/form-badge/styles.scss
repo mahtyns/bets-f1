@@ -1,0 +1,24 @@
+.form-badge {
+    width: $badge-md;
+    height: $badge-md;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: $border-radius-xs;
+    font-family: $font-label;
+
+    &--winner {
+        background-color: $yellow-100;
+        color: $secondary-900;
+    }
+
+    &--podium {
+        background-color: $tertiary-100;
+        color: $secondary-900;
+    }
+
+    &--lost {
+        background-color: $primary-600;
+        color: $primary-100;
+    }
+}

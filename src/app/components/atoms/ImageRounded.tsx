@@ -1,13 +1,18 @@
+import Image from "next/image";
+
 interface ImageRoundedProps {
     src: string;
     alt: string;
+    width: number;
+    height: number;
     mainClass: string
 }
 
 
 const ImageRounded = (props: ImageRoundedProps) => {
     return (
-        <img src={props.src} alt={props.alt} className={`${props.mainClass}__rounded-image`} />
+        <Image src={props.src} alt={props.alt} width={props.width} height={props.height}
+            className={`${props.mainClass}__rounded-image`} />
     )
 }
 

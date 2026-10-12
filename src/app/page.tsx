@@ -1,4 +1,5 @@
 import GeneralStandings from "./components/layouts/GeneralStandings";
+import { StandingsDetailed } from "./components/layouts/StandingsDetailed";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -6,6 +7,7 @@ export default function Home() {
     <div className={styles.page}>
       <main>
         <GeneralStandings />
+        <StandingsDetailed />
       </main>
     </div>
   );

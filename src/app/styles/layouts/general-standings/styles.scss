@@ -88,7 +88,7 @@
                 color: $yellow-100;
                 font-family: $font-accent;
                 font-weight: 700;
-                font-size: $font-sm;
+                font-size: $font-md;
             }
         }
     }
@@ -109,24 +109,7 @@
         }
     }
 
-    &__player-card {
-        background-color: $background-700;
-        padding: $space-sm;
-        border-radius: $border-radius-md;
-        display: flex;
-        flex-direction: column;
-        gap: $space-sm;
-
-        @include breakpoint-md {
-            width: calc(100% / 3 - $space-md);
-        }
-
-        &__topbar {
-            color: $primary-200;
-            font-family: $font-label;
-            font-size: $font-xs;
-        }
-
+    &__player-cell {
         &__info {
             display: flex;
             gap: $space-sm;
@@ -149,6 +132,26 @@
                 font-family: $font-label;
             }
         }
+    }
+
+    &__player-card {
+        background-color: $background-700;
+        padding: $space-sm;
+        border-radius: $border-radius-md;
+        display: flex;
+        flex-direction: column;
+        gap: $space-sm;
+
+        @include breakpoint-md {
+            width: calc(100% / 3 - $space-md);
+        }
+
+        &__topbar {
+            color: $primary-200;
+            font-family: $font-label;
+            font-size: $font-xs;
+        }
+
 
         &__points {
             display: flex;
