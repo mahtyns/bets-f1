@@ -7,4 +7,14 @@
         background-color: $primary-800;
         color: $primary-300;
     }
+
+    &--secondary {
+        background-color: $yellow-200;
+        color: $yellow-800;
+    }
+
+    &--tertiary {
+        background-color: $secondary-700;
+        color: $secondary-100;
+    }
 }

@@ -5,6 +5,22 @@
     display: flex;
     flex-direction: column;
     gap: $space-md;
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        width: calc(2 * $img-xl);
+        height: calc(2 * $img-xl);
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(100);
+        bottom: calc($space-xxl * (-2));
+        right: calc($space-xxl * (-2));
+        background-color: rgba($color: $secondary-600, $alpha: 0.05);
+        z-index: -1;
+    }
 
     .title-h2 {
         @include breakpoint-md {
