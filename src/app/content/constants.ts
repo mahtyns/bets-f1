@@ -2,6 +2,12 @@ export const constants = {
     siteName: "Rosario Bets",
     logo: "/_logo.png",
     season: "Season 2027",
+    header: {
+        nextRace: {
+            text: "Next race: ",
+            opens: "Bets open in"
+        }
+    },
     footer: {
         links: [
 
@@ -12,11 +18,11 @@ export const constants = {
     buttons: {
         open: {
             text: "Place bet",
-            variant: "Primary"
+            variant: "primary" as const
         },
         closed: {
             text: "Bets closed",
-            variant: "Secondary"
+            variant: "secondary" as const
         }
     }
 }

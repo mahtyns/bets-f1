@@ -1,6 +1,7 @@
 import { constants } from "./constants";
 
 export const mainPageContent = {
+    mainClass: "main-page",
     navbar: {
         logo: constants.logo,
         links: [
