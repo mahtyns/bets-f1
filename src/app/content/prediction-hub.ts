@@ -1,4 +1,56 @@
 export const predictionHubContent = {
     mainClass: "prediction-hub",
-    mainTitle: "Prediction Hub"
-}
+    mainTitle: "Prediction Hub",
+    description: "Your strategy, your picks. Choose your podium, back your drivers, and climb the league table, one race at a time.",
+    qualifying: {
+        title: "Qualifying Q3 Prediction",
+        subtitle: "P1 – P10 grid",
+        hint: "Clear a slot to pick from remaining drivers, then drag to reorder",
+    },
+    race: {
+        title: "Sunday Race Prediction",
+        subtitle: "P1 – P10 finishers",
+        hint: "Clear a slot to pick from remaining drivers, then drag to reorder",
+    },
+    sprint: {
+        title: "Sprint Race Prediction",
+        subtitle: "P1 – P10 finishers",
+        hint: "Clear a slot to pick from remaining drivers, then drag to reorder",
+    },
+    selectPlaceholder: "Select driver",
+    clearDriver: "Remove driver",
+    specials: {
+        title: "Weekend Specials",
+        subtitle: "Extra weekend calls",
+        fastestLap: {
+            title: "Fastest lap winner",
+            description: "Driver clocking the fastest official race lap",
+        },
+        driverOfTheRace: {
+            title: "Driver of the race",
+            description: "Official global fan voted Driver of the Day",
+        },
+        safetyCar: {
+            title: "Safety car appearances",
+            description: "Total full Safety Car deployments during the race",
+            options: [
+                { value: "0" as const, label: "0" },
+                { value: "1-2" as const, label: "1–2" },
+                { value: "3+" as const, label: "3+" },
+            ],
+        },
+        selected: "Selected",
+    },
+    slip: {
+        title: "Prediction slip",
+        qualifying: "Qualifying Q3 (P1–P10)",
+        race: "Race finishers (P1–P10)",
+        sprint: "Sprint finishers (P1–P10)",
+        fastestLap: "Fastest lap",
+        driverOfTheRace: "Driver of the race",
+        safetyCar: "Safety car",
+        empty: "Not selected",
+        picked: "picked",
+    },
+    empty: "Driver line-up is not available yet.",
+};

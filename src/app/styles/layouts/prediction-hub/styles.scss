@@ -1,0 +1,365 @@
+.prediction-hub {
+    width: 100%;
+    margin: $space-md 0;
+    display: grid;
+    gap: $space-md;
+    background-color: $background-900;
+
+    @include breakpoint-md {
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 340px);
+        align-items: start;
+    }
+
+    &__modules {
+        display: flex;
+        flex-direction: column;
+        gap: $space-md;
+        min-width: 0;
+    }
+
+    &__module {
+        padding: $space-sm;
+        background-color: $background-700;
+        border-radius: $border-radius-md;
+        display: flex;
+        flex-direction: column;
+        gap: $space-sm;
+    }
+
+    &__module-header {
+        display: flex;
+        flex-direction: column;
+        gap: $space-xxs;
+
+        @include breakpoint-md {
+            flex-direction: row;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: $space-sm;
+        }
+    }
+
+    &__module-heading {
+        display: flex;
+        flex-direction: column;
+        gap: $space-xxs;
+
+        .title-h2 {
+            margin: 0;
+        }
+    }
+
+    &__module-subtitle__text {
+        margin: 0;
+        font-family: $font-label;
+        font-size: $font-xxs;
+        text-transform: uppercase;
+        color: $primary-300;
+    }
+
+    &__module-hint__text {
+        margin: 0;
+        font-family: $font-label;
+        font-size: $font-xxs;
+        text-transform: uppercase;
+    }
+
+    &__driver-list {
+        display: grid;
+        gap: $space-xs;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    &__driver-list--grid {
+        grid-template-columns: 1fr;
+
+        @include breakpoint-md {
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: repeat(5, auto);
+            grid-auto-flow: column;
+        }
+    }
+
+    &__driver-list--race {
+        grid-template-columns: 1fr;
+
+        @include breakpoint-md {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    &__driver-card {
+        display: flex;
+        align-items: center;
+        gap: $space-sm;
+        padding: $space-xs $space-sm;
+        background-color: $background-600;
+        border-radius: $border-radius-sm;
+        border: $space-min solid transparent;
+        cursor: grab;
+        user-select: none;
+
+        &:active {
+            cursor: grabbing;
+        }
+
+        &:focus-visible {
+            outline: $space-min solid $yellow-200;
+            outline-offset: $space-min;
+        }
+
+        &--empty {
+            cursor: default;
+
+            &:active {
+                cursor: default;
+            }
+        }
+
+        &--dragging {
+            opacity: 0.55;
+        }
+
+        &--over {
+            border-color: $yellow-300;
+            background-color: $background-500;
+        }
+    }
+
+    &__position {
+        min-width: $space-md;
+        font-family: $font-accent;
+        font-size: $font-sm;
+        font-weight: 700;
+        color: $text-secondary;
+
+        &--p1 {
+            color: $yellow-200;
+        }
+
+        &--p2 {
+            color: $background-50;
+        }
+
+        &--p3 {
+            color: $primary-300;
+        }
+    }
+
+    &__colour-bar {
+        align-self: stretch;
+        width: $space-xxs;
+        background-color: var(--team-colour);
+        border-radius: $border-radius-xs;
+    }
+
+    &__driver-info {
+        flex: 1;
+        min-width: 0;
+
+        p {
+            margin: 0;
+        }
+
+        p:nth-of-type(1) {
+            font-family: $font-accent;
+            font-size: $font-sm;
+            font-weight: 700;
+            color: $text-main;
+            text-transform: uppercase;
+        }
+
+        p:nth-of-type(2) {
+            font-family: $font-label;
+            font-size: $font-xxs;
+            color: $primary-200;
+        }
+    }
+
+    &__select {
+        flex: 1;
+        min-width: 0;
+        width: 100%;
+        padding: $space-xxs $space-xs;
+        background-color: $background-700;
+        border: $space-min solid $background-400;
+        border-radius: $border-radius-sm;
+        color: $text-main;
+        font-family: $font-label;
+        font-size: $font-xxs;
+        cursor: pointer;
+    }
+
+    &__clear {
+        margin-left: auto;
+        flex-shrink: 0;
+        border: none;
+        background: transparent;
+        color: $primary-300;
+        font-family: $font-accent;
+        font-size: $font-md;
+        line-height: 1;
+        padding: $space-xxs;
+        cursor: pointer;
+    }
+
+    &__specials {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: $space-sm;
+
+        @include breakpoint-md {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    &__special-card {
+        display: flex;
+        flex-direction: column;
+        gap: $space-xs;
+        padding: $space-sm;
+        background-color: $background-600;
+        border-radius: $border-radius-sm;
+
+        .title-h2 {
+            margin: 0;
+            font-size: $font-sm;
+        }
+    }
+
+    &__special-copy__text {
+        margin: 0;
+        font-size: $font-xxs;
+    }
+
+    &__special-selected {
+        margin: 0;
+        font-family: $font-label;
+        font-size: $font-xxs;
+        text-transform: uppercase;
+        color: $yellow-200;
+    }
+
+    &__driver-options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: $space-xxs;
+        max-height: $img-lg;
+        overflow-y: auto;
+    }
+
+    &__driver-option,
+    &__safety-option {
+        border: $space-min solid $background-400;
+        background-color: $background-700;
+        color: $text-secondary;
+        font-family: $font-label;
+        font-size: $font-xxs;
+        padding: $space-xxs $space-xs;
+        border-radius: $border-radius-sm;
+        cursor: pointer;
+
+        &--selected {
+            border-color: $yellow-300;
+            background-color: $yellow-800;
+            color: $yellow-200;
+        }
+    }
+
+    &__safety-options {
+        display: flex;
+        gap: $space-xs;
+    }
+
+    &__safety-option {
+        flex: 1;
+        font-size: $font-sm;
+        font-family: $font-accent;
+        font-weight: 700;
+        padding: $space-xs $space-sm;
+    }
+
+    &__slip {
+        display: flex;
+        flex-direction: column;
+        gap: $space-sm;
+        padding: $space-sm;
+        background-color: $background-700;
+        border-radius: $border-radius-md;
+
+        @include breakpoint-md {
+            position: sticky;
+            top: $space-md;
+        }
+    }
+
+    &__slip-header {
+        .title-h2 {
+            margin: 0;
+        }
+    }
+
+    &__slip-group {
+        display: flex;
+        flex-direction: column;
+        gap: $space-xxs;
+        padding-top: $space-xs;
+        border-top: $space-min solid $background-500;
+    }
+
+    &__slip-group-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: $space-xs;
+
+        p {
+            margin: 0;
+            font-family: $font-accent;
+            font-size: $font-xs;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: $text-main;
+        }
+    }
+
+    &__slip-count__text {
+        margin: 0;
+        font-size: $font-xxs;
+        text-transform: uppercase;
+    }
+
+    &__slip-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: $space-xxs;
+    }
+
+    &__slip-row {
+        display: flex;
+        justify-content: space-between;
+        gap: $space-xs;
+        font-family: $font-label;
+        font-size: $font-xxs;
+
+        span:first-child {
+            color: $primary-200;
+            text-transform: uppercase;
+            flex-shrink: 0;
+        }
+
+        span:last-child {
+            text-align: right;
+            color: $text-main;
+        }
+
+        &--empty span:last-child {
+            color: $background-50;
+        }
+    }
+}
