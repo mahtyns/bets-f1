@@ -6,6 +6,7 @@
     width: fit-content;
     padding: $space-xs;
     border-radius: $border-radius-sm;
+    box-shadow: 0 0 $space-xs rgba($color: $primary-600, $alpha: 0.2);
 
     p {
         display: inline;

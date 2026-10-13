@@ -1,0 +1,23 @@
+.entries {
+    padding: $space-xs $space-sm $space-xs $space-md;
+    border-radius: $border-radius-sm;
+    text-transform: uppercase;
+    font-family: $font-label;
+    background-color: $background-600;
+    color: $tertiary-100;
+    position: relative;
+
+    &::before {
+        content: "";
+        background: url(/icons/users.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        width: $space-sm;
+        height: $space-sm;
+        position: absolute;
+        left: $space-xs;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}

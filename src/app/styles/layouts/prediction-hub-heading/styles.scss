@@ -1,0 +1,11 @@
+.prediction-hub-heading {
+    &__topbar {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__status-bar {
+        display: flex;
+        gap: $space-md;
+    }
+}

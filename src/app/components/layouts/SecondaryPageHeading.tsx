@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Title from "../atoms/Title";
 import { PredictionHeadingInfo } from "../molecules/prediction-heading-info/PredictionHeadingInfo";
+import { PredictionHubTopbar } from "../molecules/prediction-hub-topbar/PredictionHubTopbar";
 
 interface SecondaryPageHeadingProps {
     titleText: string,
@@ -11,11 +11,11 @@ interface SecondaryPageHeadingProps {
 }
 
 export const SecondaryPageHeading = (props: SecondaryPageHeadingProps) => {
-    const mainClass = "heading"
+    const mainClass = "prediction-hub-heading"
 
     return (
         <section id="heading" className={mainClass}>
-            <PredictionHeadingInfo round={props.roundNumber} circuitName={props.trackName} circuitType={props.trackType} />
+            <PredictionHubTopbar round={props.roundNumber} circuitName={props.trackName} circuitType={props.trackType} mainClass={mainClass} />
             <Title isH1={true} title={props.titleText} />
         </section>
     )

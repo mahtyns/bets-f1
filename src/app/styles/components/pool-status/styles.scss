@@ -1,0 +1,71 @@
+.pool-status {
+    padding: $space-xs $space-sm $space-xs $space-md;
+    border-radius: $border-radius-sm;
+    text-transform: uppercase;
+    font-family: $font-label;
+    background-color: $background-600;
+
+    &--open {
+        color: $yellow-100;
+        position: relative;
+
+        &::before {
+            content: "";
+            flex-shrink: 0;
+            align-self: center;
+            width: $space-xs;
+            height: $space-xs;
+            background-color: $yellow-200;
+            border-radius: 50%;
+            animation: next-race-pulse 1.5s ease-out infinite;
+            position: absolute;
+            left: $space-sm;
+        }
+    }
+
+    &--closed {
+        color: $primary-200;
+        position: relative;
+
+        &::before {
+            content: "";
+            flex-shrink: 0;
+            align-self: center;
+            width: $space-xs;
+            height: $space-xs;
+            background-color: $primary-400;
+            border-radius: 50%;
+            animation: closed-pulse 1.5s ease-out infinite;
+            position: absolute;
+            left: $space-sm;
+        }
+    }
+}
+
+@keyframes next-race-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba($yellow-200, 0.6);
+    }
+
+    70% {
+        box-shadow: 0 0 0 $space-xs rgba($yellow-200, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba($yellow-200, 0);
+    }
+}
+
+@keyframes closed-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba($primary-200, 0.6);
+    }
+
+    70% {
+        box-shadow: 0 0 0 $space-xs rgba($primary-200, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba($primary-200, 0);
+    }
+}
