@@ -6,6 +6,7 @@ import { getNextRace } from "../data/nextRace";
 import { getPredictionDrivers } from "../data/predictionDrivers";
 import { getTrackInformation } from "../data/trackInformation";
 import styles from "./../page.module.css";
+import RaceWeekGate from "../components/layouts/RaceWeekGate";
 
 export default async function PredictionHubPage() {
     const [nextRace, drivers] = await Promise.all([
@@ -33,7 +34,11 @@ export default async function PredictionHubPage() {
                         <h1 className="title-h1">{predictionHubContent.mainTitle}</h1>
                     </section>
                 )}
-                <PredictionHub drivers={drivers} />
+                <RaceWeekGate
+                    open={<PredictionHub drivers={drivers} />}
+                    locked={<div>Pool Closed</div>}
+                    idle={<div>Idle</div>}
+                />
             </main>
         </div>
     );

@@ -1,3 +1,4 @@
+import { cacheLife } from "next/cache";
 import { CHAMPIONSHIP_YEAR } from "../content/helperValues";
 import { API_BASE } from "./api";
 
@@ -7,48 +8,58 @@ interface ApiMeeting {
     circuit_key: number;
     circuit_short_name: string;
     date_start: string;
+    date_end: string,
     is_cancelled: boolean;
-    meeting_name: string
+    meeting_name: string;
+    meeting_key: number
 }
 
 export interface NextRace {
     circuitKey: number;
     circuit: string;
     start: string;
+    end: string,
     round: number,
-    totalRounds: number
+    totalRounds: number,
+    meetingKey: number
 }
 
 
+const fetchNextRace = async (): Promise<NextRace | null> => {
+    "use cache"
+    cacheLife("hours")
+
+    const res = await fetch(`${API_BASE}meetings?year=${CHAMPIONSHIP_YEAR}`);
+    if (!res.ok) throw new Error(`OpenF1 meetings failed: ${res.status}`);
+
+    const meetings: ApiMeeting[] = await res.json();
+    const now = Date.now();
+
+    const races = meetings
+        .filter((m) => !m.is_cancelled && !/testing/i.test(m.meeting_name))
+        .sort(
+            (a, b) =>
+                new Date(a.date_start).getTime() - new Date(b.date_start).getTime()
+        );
+
+    const next = races.find((m) => new Date(m.date_end).getTime() > now);
+
+    if (!next) return null;
+
+    return {
+        circuitKey: next.circuit_key,
+        circuit: next.circuit_short_name,
+        start: next.date_start,
+        end: next.date_end,
+        round: races.indexOf(next) + 1,
+        totalRounds: races.length,
+        meetingKey: next.meeting_key
+    };
+};
+
 export const getNextRace = async (): Promise<NextRace | null> => {
     try {
-        const res = await fetch(`${API_BASE}meetings?year=${CHAMPIONSHIP_YEAR}`, {
-            next: { revalidate: REVALIDATE_SECONDS },
-        });
-
-        if (!res.ok) return null;
-
-        const meetings: ApiMeeting[] = await res.json();
-        const now = Date.now();
-
-        const races = meetings
-            .filter((m) => !m.is_cancelled && !/testing/i.test(m.meeting_name))
-            .sort(
-                (a, b) =>
-                    new Date(a.date_start).getTime() - new Date(b.date_start).getTime()
-            );
-
-        const next = races.find((m) => new Date(m.date_start).getTime() > now);
-
-        if (!next) return null;
-
-        return {
-            circuitKey: next.circuit_key,
-            circuit: next.circuit_short_name,
-            start: next.date_start,
-            round: races.indexOf(next) + 1,
-            totalRounds: races.length,
-        };
+        return await fetchNextRace();
     } catch (error) {
         console.error(error);
         return null;

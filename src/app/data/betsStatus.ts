@@ -1,4 +1,4 @@
-import { NextRace } from "./nextRace";
+import type { NextRace } from "./nextRace";
 
 const ONE_HOUR = 60 * 60 * 1000;
 
@@ -14,7 +14,7 @@ export const getBetsOpensAt = (race: NextRace): number => {
     );
 };
 
-export const getBetsOpen = (race: NextRace, now = Date.now()): boolean => {
+export const getBetsOpen = (race: NextRace, now: number): boolean => {
     const closesAt = new Date(race.start).getTime() - ONE_HOUR;
 
     return now >= getBetsOpensAt(race) && now < closesAt;

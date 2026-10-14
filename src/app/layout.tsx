@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { getNextRace } from "@/app/data/nextRace";
+import { getBetsOpensAt } from "@/app/data/betsStatus";
+import { NextRaceProvider } from "@/app/context/NextRaceContext";
 import {
   Barlow_Condensed,
   Hanken_Grotesk,
@@ -35,16 +38,27 @@ export const metadata: Metadata = {
   description: "Bet on your favourite driver.",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const nextRace = await getNextRace();
+
+  const value = {
+    nextRace,
+    betsOpensAt: nextRace ? new Date(getBetsOpensAt(nextRace)).toISOString() : null,
+    betsClosesAt: nextRace ? nextRace.start : null, // FP1 start
+  };
+
+
   return (
     <html
       lang="en"
       className={`${barlowCondensed.variable} ${hankenGrotesk.variable} ${jetBrainsMono.variable}`}
     >
       <body>
-        <Header />
-        {children}
-        <Footer />
+        <NextRaceProvider value={value}>
+          <Header />
+          {children}
+          <Footer />
+        </NextRaceProvider>
       </body>
     </html>
   );

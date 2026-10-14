@@ -9,6 +9,12 @@
     z-index: 0;
     overflow: hidden;
 
+    @include breakpoint-md {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 30%);
+        align-items: start;
+    }
+
     &::before {
         content: '';
         width: calc(2 * $img-xl);
@@ -22,9 +28,15 @@
         z-index: -1;
     }
 
-    .title-h2 {
-        @include breakpoint-md {
-            font-size: $font-lg;
+    &__content {
+
+        &--left,
+        &--right {
+            min-width: 0;
+        }
+
+        &--left {
+            justify-self: start;
         }
     }
 
@@ -66,6 +78,10 @@
             font-weight: 700;
             text-transform: uppercase;
             color: $text-main;
+
+            @include breakpoint-md {
+                font-size: $font-lg;
+            }
         }
     }
 
@@ -90,7 +106,67 @@
 
         @include breakpoint-md {
             padding: $space-md;
-            max-width: 33%;
+            max-width: 50%;
+        }
+    }
+
+    &__overview {
+        display: flex;
+        flex-direction: column;
+        gap: $space-md;
+
+        @include breakpoint-md {
+            flex-direction: row;
+            align-items: stretch;
+        }
+    }
+
+    &__cards {
+        flex: 1;
+        display: flex;
+        flex-wrap: wrap;
+        gap: $space-xs;
+        align-items: flex-start;
+        justify-content: flex-start;
+        height: fit-content;
+    }
+
+    &__card {
+        display: flex;
+        flex-direction: column;
+        gap: $space-xs;
+        background-color: $background-700;
+        border-radius: $border-radius-sm;
+        padding: $space-sm;
+        height: fit-content;
+        justify-content: center;
+        width: calc(50% - $space-xs);
+
+        &-label__text {
+            font-family: $font-label;
+            font-size: $font-xxs;
+            text-transform: uppercase;
+            color: $primary-200;
+        }
+
+        &-value__text {
+            font-family: $font-label;
+            font-size: $font-md;
+            font-weight: 700;
+            color: $text-main;
+
+            @include breakpoint-md {
+                font-size: $font-lg;
+            }
+        }
+
+        &-sub__text {
+            font-size: $font-xs;
+            color: $primary-200;
+        }
+
+        &--highlight &-value__text {
+            color: $yellow-200;
         }
     }
 }

@@ -1,27 +1,20 @@
-import { NextRace } from "@/app/data/nextRace";
-import { getBetsOpensAt } from "@/app/data/betsStatus";
+"use client";
+
+import { useNextRace } from "@/app/context/NextRaceContext";
 import Countdown from "../../atoms/Countdown";
 
-interface NextRaceProps {
-    text: string,
-    opens: string,
-    nextRace: NextRace | null
-}
+const HeaderNextRace = ({ text, opens }: { text: string; opens: string }) => {
+    const { nextRace, betsOpensAt } = useNextRace();
 
-const HeaderNextRace = (props: NextRaceProps) => {
-    const { nextRace } = props;
-
-    if (!nextRace) return null;
-
-    const betsOpenDate = new Date(getBetsOpensAt(nextRace)).toISOString();
+    if (!nextRace || !betsOpensAt) return null;
 
     return (
         <div className="next-race">
-            <p>{props.text}</p>
+            <p>{text}</p>
             <p className="next-race__name">{nextRace.circuit}</p>
-            <p>{props.opens} <span><Countdown targetDate={betsOpenDate} /></span></p>
+            <p>{opens} <span><Countdown targetDate={betsOpensAt} /></span></p>
         </div>
-    )
-}
+    );
+};
 
-export default HeaderNextRace
+export default HeaderNextRace;

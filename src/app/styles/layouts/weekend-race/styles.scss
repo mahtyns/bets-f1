@@ -1,0 +1,89 @@
+.weekend-schedule {
+    min-width: 0;
+    max-width: 100%;
+    background-color: $background-800;
+
+    .title-h2 {
+        font-family: $font-accent;
+        font-size: $font-md;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: $text-main;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: $space-xs;
+    }
+
+    &__timezone__text {
+        font-family: $font-label;
+        font-size: $font-xxs;
+        text-transform: uppercase;
+        color: $primary-200;
+    }
+
+    &__sessions {
+        display: flex;
+        flex-direction: column;
+        gap: $space-xs;
+        list-style: none;
+        padding: 0;
+        margin: $space-sm 0;
+    }
+
+    &__session {
+        display: flex;
+        align-items: center;
+        gap: $space-sm;
+        background-color: $background-800;
+        border-radius: $border-radius-sm;
+        padding: $space-xs;
+
+        &:last-of-type {
+            background-color: $primary-800;
+            border: solid $space-min $primary-700;
+        }
+
+        &:nth-last-child(2) {
+            background-color: $secondary-800;
+            border: solid $space-min $secondary-500;
+        }
+
+        &__badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: $badge-md;
+            padding: $space-xs;
+            background-color: $background-600;
+            border-radius: $border-radius-xs;
+            font-family: $font-label;
+            font-size: $font-xxs;
+            font-weight: 700;
+            color: $yellow-200;
+        }
+
+        &-info {
+            display: flex;
+            flex-direction: column;
+            gap: $space-xxs;
+        }
+
+        &-name__text {
+            font-family: $font-accent;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: $text-main;
+        }
+
+        &-time__text {
+            font-size: $font-xs;
+            color: $primary-200;
+        }
+    }
+}
