@@ -1,6 +1,10 @@
 import Title from "../../atoms/Title";
 import Text from "../../atoms/Text";
 import SessionRow from "../../molecules/weekend-schedule/SessionRow";
+import RaceWeekGate from "../../layouts/RaceWeekGate";
+import { ButtonIdle } from "./ButtonIdle";
+import { ButtonOpen } from "./ButtonOpen";
+import { ButtonLocked } from "./ButtonLocked";
 
 export interface ScheduleItem {
     code: string,
@@ -17,6 +21,7 @@ interface WeekendScheduleProps {
 }
 
 const WeekendSchedule = (props: WeekendScheduleProps) => {
+
     return (
         <>
             <div className={`${props.mainClass}__header`}>
@@ -28,6 +33,11 @@ const WeekendSchedule = (props: WeekendScheduleProps) => {
                     <SessionRow key={`${session.code}-${session.day}`} mainClass={props.mainClass} {...session} />
                 ))}
             </ul>
+            <RaceWeekGate
+                open={<ButtonOpen mainClass={props.mainClass} />}
+                locked={<ButtonLocked mainClass={props.mainClass} />}
+                idle={<ButtonIdle mainClass={props.mainClass} />}
+            />
         </>
     )
 }

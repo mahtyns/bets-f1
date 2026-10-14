@@ -36,8 +36,8 @@ export default async function PredictionHubPage() {
                 )}
                 <RaceWeekGate
                     open={<PredictionHub drivers={drivers} />}
-                    locked={<div>Pool Closed</div>}
-                    idle={<div>Idle</div>}
+                    locked={<PredictionHub drivers={drivers} />}
+                    idle={<PredictionHub drivers={drivers} />}
                 />
             </main>
         </div>

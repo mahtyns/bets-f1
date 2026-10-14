@@ -2,9 +2,7 @@ import PlayerCell from "../../molecules/PlayerCell";
 import FormStrip from "../../molecules/detailed-standings/FormStrip";
 import type { Standing } from "@/app/types/standings";
 
-
 type Trend = Standing["trend"];
-type Align = "left" | "center" | "right";
 
 interface DetailedTableStandingsProps {
   standings: Standing[];

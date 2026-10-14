@@ -142,6 +142,10 @@
         justify-content: center;
         width: calc(50% - $space-xs);
 
+        &:hover {
+            filter: brightness(1.3);
+        }
+
         &-label__text {
             font-family: $font-label;
             font-size: $font-xxs;

@@ -44,7 +44,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const value = {
     nextRace,
     betsOpensAt: nextRace ? new Date(getBetsOpensAt(nextRace)).toISOString() : null,
-    betsClosesAt: nextRace ? nextRace.start : null, // FP1 start
+    betsClosesAt: nextRace ? nextRace.start : null,
   };
 
 

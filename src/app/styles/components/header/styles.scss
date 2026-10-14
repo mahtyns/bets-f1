@@ -56,6 +56,41 @@
             display: block;
             color: $primary-400;
         }
+
+        &--open {
+            background-color: rgba($color: $primary-800, $alpha: 0.3);
+
+            .next-race__name {
+                color: $text-main;
+            }
+
+            p:first-of-type {
+                color: $primary-200;
+                text-transform: uppercase;
+                font-family: $font-label;
+                font-size: $font-xs;
+            }
+        }
+
+        &--locked {
+            background-color: $secondary-900;
+
+            &::before {
+                display: none;
+            }
+
+            .next-race__name {
+                color: $text-main;
+            }
+
+            p:first-of-type {
+                color: $primary-200;
+                text-transform: uppercase;
+                font-family: $font-label;
+                font-size: $font-xs;
+                text-align: center;
+            }
+        }
     }
 
     &__links {

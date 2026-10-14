@@ -31,11 +31,11 @@ export const constants = {
     },
     buttons: {
         open: {
-            text: "Place bet",
+            text: "Box, box",
             variant: "primary" as const
         },
         closed: {
-            text: "Bets closed",
+            text: "Pools closed",
             variant: "secondary" as const
         }
     }

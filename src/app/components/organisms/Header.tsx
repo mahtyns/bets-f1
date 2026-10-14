@@ -8,10 +8,13 @@ import { getNextRace } from "@/app/data/nextRace";
 import { getBetsOpen } from "@/app/data/betsStatus";
 
 import { mockStandings } from "@/app/data/mockStandings";
+import RaceWeekGate from "../layouts/RaceWeekGate";
+import HeaderNextRaceOpen from "../molecules/header/HeaderNextRaceOpen";
+import HeaderNextRaceLocked from "../molecules/header/HeaderNextRaceLocked";
 
 const Header = async () => {
     const nextRace = await getNextRace();
-    const isOpen = nextRace ? getBetsOpen(nextRace) : false;
+    const isOpen = nextRace ? getBetsOpen(nextRace, Date.now()) : false;
     const button = isOpen ? constants.buttons.open : constants.buttons.closed;
 
     return (
@@ -20,22 +23,35 @@ const Header = async () => {
                 <img src={constants.logo} alt="RosarioBETS F1 Betting Page Logo" />
             </div>
             <Button variant={button.variant} text={button.text} />
-            <HeaderNextRace
-                text={constants.header.nextRace.text}
-                opens={constants.header.nextRace.opens}
-                nextRace={nextRace}
+            <RaceWeekGate
+                open={<HeaderNextRaceOpen text="Pools open" opens="Closing in" />}
+                locked={<HeaderNextRaceLocked text="Pools are locked" />}
+                idle={
+                    <HeaderNextRace
+                        text={constants.header.nextRace.text}
+                        opens={constants.header.nextRace.opens}
+                    />
+                }
             />
+
             <HeaderLinks />
             <div className="header__user-info">
                 <HeaderPoints />
-                <PlayerCell mainClass={"header"}
+                <PlayerCell
+                    mainClass={"header"}
                     name={mockStandings[0].name}
                     team={mockStandings[0].team}
                     avatarId={mockStandings[0].avatarId}
-                    isMe={true} />
+                    isMe={true}
+                />
             </div>
         </div>
     )
 }
 
 export default Header
+
+// <HeaderNextRace
+//     text={constants.header.nextRace.text}
+//     opens={constants.header.nextRace.opens}
+// />

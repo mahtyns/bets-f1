@@ -1,3 +1,4 @@
+import { cacheLife } from "next/cache";
 import { CHAMPIONSHIP_YEAR } from "../content/helperValues";
 import { API_BASE } from "./api";
 
@@ -54,6 +55,8 @@ const getSprintMeetingKeys = async (): Promise<Set<number>> => {
 };
 
 export const getRoundsOverview = async (): Promise<Round[]> => {
+    "use cache";
+    cacheLife("hours");
     try {
         const [res, sprintKeys] = await Promise.all([
             fetch(`${API_BASE}meetings?year=${CHAMPIONSHIP_YEAR}`, {

@@ -362,4 +362,10 @@
             color: $background-50;
         }
     }
+
+    &__countdown {
+        font-size: $font-md;
+        font-family: $font-label;
+        color: $primary-500;
+    }
 }
