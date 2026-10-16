@@ -26,4 +26,13 @@
         color: $primary-200;
         border: solid $space-min $primary-200;
     }
+
+    &--underline {
+        border: none;
+        padding: $space-xs;
+        background-color: transparent;
+        font-size: $font-xxs;
+        text-decoration: underline;
+        text-underline-offset: $space-xxs;
+    }
 }

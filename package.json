@@ -10,12 +10,16 @@
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",
-    "@supabase/supabase-js": "^2.117.3",
+    "@supabase/supabase-js": "^2.118.0",
+    "bcryptjs": "^3.0.3",
+    "jose": "^6.2.12",
     "next": "16.4.0",
+    "openssl": "^2.0.0",
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "sass": "^1.105.1",
-    "scss": "^0.2.4"
+    "scss": "^0.2.4",
+    "server-only": "^0.0.1"
   },
   "devDependencies": {
     "@types/node": "^20",

@@ -95,6 +95,7 @@
 
     &__links {
         display: flex;
+        margin-right: auto;
         gap: $space-md;
 
         .link {
@@ -144,6 +145,21 @@
             .header__rounded-image {
                 width: $img-xxs;
                 height: $img-xxs;
+            }
+
+            &--login {
+                display: flex;
+                gap: $space-sm;
+
+                p {
+                    font-family: $font-accent;
+                    margin-bottom: $space-xs;
+
+                    a {
+                        color: $primary-200;
+                        font-family: $font-label;
+                    }
+                }
             }
         }
 

@@ -1,0 +1,55 @@
+.user-page {
+    section {
+        background-color: $background-700;
+        margin-bottom: $space-md;
+    }
+
+    &-profile {
+        .title-h2 {
+            margin-bottom: $space-sm;
+        }
+
+        div {
+            margin-bottom: $space-md;
+        }
+
+        &__avatar-list {
+            margin: $space-sm 0;
+            display: flex;
+            gap: $space-md;
+            flex-wrap: wrap;
+            list-style: none;
+
+            button {}
+        }
+
+        &__avatar {
+            background-color: transparent;
+            border-radius: $border-radius-lg;
+            border: none;
+
+            &--selected {
+                img {
+                    filter: drop-shadow(0 0 $space-xs $primary-600);
+                }
+            }
+        }
+
+        &__form {
+            .title-h3 {
+                margin-bottom: $space-sm;
+            }
+        }
+
+        &__field {
+            margin-bottom: $space-sm;
+        }
+
+        &__label {
+            font-family: $font-label;
+            font-size: $font-sm;
+            margin-bottom: $space-sm;
+            display: block;
+        }
+    }
+}

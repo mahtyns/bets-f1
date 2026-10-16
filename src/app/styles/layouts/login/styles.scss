@@ -1,0 +1,55 @@
+.input {
+    width: 100%;
+    padding: $space-xs $space-sm;
+    font-family: $font-primary;
+    font-size: $font-base;
+    color: $text-main;
+    background-color: $background-600;
+    border: $space-min solid $background-400;
+    border-radius: $border-radius-sm;
+
+    &:focus {
+        outline: none;
+        border-color: $primary-400;
+    }
+}
+
+.login {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: $space-md;
+
+    &__card {
+        width: 100%;
+        max-width: $img-lg;
+        padding: $space-md;
+        background-color: $background-700;
+        border-radius: $border-radius-md;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: $space-sm;
+    }
+
+    &__field {
+        display: flex;
+        flex-direction: column;
+        gap: $space-xxs;
+    }
+
+    &__label {
+        font-family: $font-label;
+        font-size: $font-xxs;
+        text-transform: uppercase;
+        color: $primary-200;
+    }
+
+    &__error {
+        margin: 0;
+        font-size: $font-xs;
+        color: $primary-400;
+    }
+}

@@ -11,6 +11,10 @@ import { mockStandings } from "@/app/data/mockStandings";
 import RaceWeekGate from "../layouts/RaceWeekGate";
 import HeaderNextRaceOpen from "../molecules/header/HeaderNextRaceOpen";
 import HeaderNextRaceLocked from "../molecules/header/HeaderNextRaceLocked";
+import AuthGate from "../layouts/AuthGate";
+import PlayerCellLogin from "../molecules/PlayerCellLogin";
+import { Logout } from "../atoms/Logout";
+import PlayerCellLogged from "../molecules/PlayerCellLogged";
 
 const Header = async () => {
     const nextRace = await getNextRace();
@@ -35,23 +39,17 @@ const Header = async () => {
             />
 
             <HeaderLinks />
-            <div className="header__user-info">
-                <HeaderPoints />
-                <PlayerCell
-                    mainClass={"header"}
-                    name={mockStandings[0].name}
-                    team={mockStandings[0].team}
-                    avatarId={mockStandings[0].avatarId}
-                    isMe={true}
-                />
-            </div>
+            <AuthGate
+                loggedIn={<div className="header__user-info">
+                    <HeaderPoints />
+                    <PlayerCellLogged mainClass={"header"} />
+                    <Logout />
+                </div>}
+                loggedOut={<PlayerCellLogin mainClass={"header"} />}
+            />
+
         </div>
     )
 }
 
 export default Header
-
-// <HeaderNextRace
-//     text={constants.header.nextRace.text}
-//     opens={constants.header.nextRace.opens}
-// />

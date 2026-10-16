@@ -10,6 +10,8 @@ import {
 import "./globals.css";
 import Header from "./components/organisms/Header";
 import Footer from "./components/organisms/Footer";
+import { AuthProvider } from "./context/AuthContext";
+import { getCurrentUser } from "./lib/getCurrentUser";
 
 const barlowCondensed = Barlow_Condensed({
   subsets: ["latin"],
@@ -40,6 +42,7 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const nextRace = await getNextRace();
+  const user = await getCurrentUser()
 
   const value = {
     nextRace,
@@ -54,11 +57,13 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       className={`${barlowCondensed.variable} ${hankenGrotesk.variable} ${jetBrainsMono.variable}`}
     >
       <body>
-        <NextRaceProvider value={value}>
-          <Header />
-          {children}
-          <Footer />
-        </NextRaceProvider>
+        <AuthProvider initialUser={user}>
+          <NextRaceProvider value={value}>
+            <Header />
+            {children}
+            <Footer />
+          </NextRaceProvider>
+        </AuthProvider>
       </body>
     </html>
   );
