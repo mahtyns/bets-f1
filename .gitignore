@@ -42,3 +42,5 @@ next-env.d.ts
 
 # secret
 secret.key
+
+SCORING_RULES.md

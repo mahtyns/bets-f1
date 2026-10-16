@@ -15,6 +15,7 @@ interface PredictionSlipProps {
     fastestLap: number | null;
     driverOfTheRace: number | null;
     safetyCar: SafetyCarChoice | null;
+    hasSprint: boolean
 }
 
 const slotValue = (slot: PredictionSlot, emptyLabel: string): string =>
@@ -23,7 +24,7 @@ const slotValue = (slot: PredictionSlot, emptyLabel: string): string =>
 const namedDriver = (
     drivers: PredictionDriver[],
     driverNumber: number | null,
-    emptyLabel: string
+    emptyLabel: string,
 ): string =>
     drivers.find((driver) => driver.driverNumber === driverNumber)?.name ?? emptyLabel;
 
@@ -54,15 +55,19 @@ const PredictionSlip = (props: PredictionSlipProps) => {
                 empty: !slot,
             })),
         },
-        {
-            title: slip.sprint,
-            picked: pickedCount(props.sprint),
-            rows: props.sprint.map((slot, index) => ({
-                label: `P${index + 1}`,
-                value: slotValue(slot, emptyLabel),
-                empty: !slot,
-            })),
-        },
+        ...(props.hasSprint
+            ? [
+                {
+                    title: slip.sprint,
+                    picked: pickedCount(props.sprint),
+                    rows: props.sprint.map((slot, index) => ({
+                        label: `P${index + 1}`,
+                        value: slotValue(slot, emptyLabel),
+                        empty: !slot,
+                    })),
+                },
+            ]
+            : []),
         {
             title: predictionHubContent.specials.title,
             picked: [props.fastestLap, props.driverOfTheRace, props.safetyCar].filter(Boolean).length,

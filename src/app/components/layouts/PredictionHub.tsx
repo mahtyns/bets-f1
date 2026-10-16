@@ -11,6 +11,7 @@ import PredictionSlip from "../organisms/prediction-hub/PredictionSlip";
 
 interface PredictionHubProps {
     drivers: PredictionDriver[];
+    hasSprint: boolean;
 }
 
 const PredictionHub = (props: PredictionHubProps) => {
@@ -46,13 +47,15 @@ const PredictionHub = (props: PredictionHubProps) => {
                     slots={race}
                     onSlotsChange={setRace}
                 />
-                <RaceFinishersPrediction
-                    mainClass={mainClass}
-                    variant="sprint"
-                    allDrivers={props.drivers}
-                    slots={sprint}
-                    onSlotsChange={setSprint}
-                />
+                {props.hasSprint && (
+                    <RaceFinishersPrediction
+                        mainClass={mainClass}
+                        variant="sprint"
+                        allDrivers={props.drivers}
+                        slots={sprint}
+                        onSlotsChange={setSprint}
+                    />
+                )}
                 <WeekendSpecials
                     mainClass={mainClass}
                     drivers={props.drivers}
@@ -73,6 +76,7 @@ const PredictionHub = (props: PredictionHubProps) => {
                 fastestLap={fastestLap}
                 driverOfTheRace={driverOfTheRace}
                 safetyCar={safetyCar}
+                hasSprint={props.hasSprint}
             />
         </section>
     );

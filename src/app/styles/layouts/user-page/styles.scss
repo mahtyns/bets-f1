@@ -36,6 +36,8 @@
         }
 
         &__form {
+            margin-bottom: $space-md;
+
             .title-h3 {
                 margin-bottom: $space-sm;
             }
@@ -50,6 +52,20 @@
             font-size: $font-sm;
             margin-bottom: $space-sm;
             display: block;
+        }
+
+        &__success,
+        &__error {
+            font-family: $font-label;
+            margin-bottom: $space-xs;
+        }
+
+        &__success {
+            color: $secondary-100;
+        }
+
+        &__error {
+            color: $primary-700;
         }
     }
 }

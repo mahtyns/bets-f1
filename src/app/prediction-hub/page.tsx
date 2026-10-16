@@ -7,11 +7,15 @@ import { getPredictionDrivers } from "../data/predictionDrivers";
 import { getTrackInformation } from "../data/trackInformation";
 import styles from "./../page.module.css";
 import RaceWeekGate from "../components/layouts/RaceWeekGate";
+import { getCurrentRace } from "../data/currentRace";
 
 export default async function PredictionHubPage() {
-    const [nextRace, drivers] = await Promise.all([
+    const [nextRace] = await Promise.all([
         getNextRace(),
+    ]);
+    const [drivers, currentRace] = await Promise.all([
         getPredictionDrivers(),
+        getCurrentRace(),
     ]);
     const track = nextRace ? await getTrackInformation(nextRace.circuitKey) : null;
     const pageFullTitle = track
@@ -35,9 +39,9 @@ export default async function PredictionHubPage() {
                     </section>
                 )}
                 <RaceWeekGate
-                    open={<PredictionHub drivers={drivers} />}
-                    locked={<PredictionHub drivers={drivers} />}
-                    idle={<PredictionHub drivers={drivers} />}
+                    open={<PredictionHub drivers={drivers} hasSprint={currentRace?.isSprint ?? false} />}
+                    locked={<PredictionHub drivers={drivers} hasSprint={currentRace?.isSprint ?? false} />}
+                    idle={<PredictionHub drivers={drivers} hasSprint={currentRace?.isSprint ?? false} />}
                 />
             </main>
         </div>
