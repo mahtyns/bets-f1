@@ -3,7 +3,7 @@ import { createAdminClient } from "@/app/lib/supabase/admin";
 import { getSessionUserId } from "@/app/lib/session";
 import type { SafetyCarChoice } from "@/app/types/predictions";
 import { PREDICTION_SLOT_COUNT } from "@/app/utils/helpers/predictionSlots";
-import { BET_CATEGORIES, SAFETY_CAR_FROM_NUMBER } from "../content/betCategories";
+import { BET_CATEGORIES, SAFETY_CAR_FROM_NUMBER } from "../content/bet-categories";
 
 export interface UserBet {
     qualifying: (number | null)[];

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { getNextRace } from "@/app/data/nextRace";
-import { getBetsOpensAt } from "@/app/data/betsStatus";
+import { getNextRace } from "@/app/data/next-race";
+import { getBetsOpensAt } from "@/app/data/bets-status";
 import { NextRaceProvider } from "@/app/context/NextRaceContext";
 import {
   Barlow_Condensed,

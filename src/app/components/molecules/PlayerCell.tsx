@@ -1,6 +1,6 @@
 import { Badge } from "../atoms/Badge";
 import ImageRounded from "../atoms/ImageRounded";
-import { avatars, avatarTeams } from '../../content/helperValues'
+import { avatars, avatarTeams } from '../../content/helper-values'
 
 interface PlayerCellProps {
     mainClass: string,

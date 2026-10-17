@@ -1,4 +1,4 @@
-import { helperTexts } from "../../../content/helperTexts"
+import { helperTexts } from "../../../content/helper-texts"
 import { icons } from "../../../content/constants"
 
 interface PrizeProps {

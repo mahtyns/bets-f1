@@ -1,4 +1,4 @@
-import { CHAMPIONSHIP_NAME, CHAMPIONSHIP_YEAR } from "./helperValues";
+import { CHAMPIONSHIP_NAME, CHAMPIONSHIP_YEAR } from "./helper-values";
 
 export const calendarContent = {
     pageH1: CHAMPIONSHIP_YEAR + ' ' + CHAMPIONSHIP_NAME + ' CALENDAR',

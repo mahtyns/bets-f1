@@ -2,7 +2,7 @@
 
 import { FormEvent, useState } from 'react';
 import { useAuth } from '@/app/context/AuthContext';
-import { avatarOptions } from '@/app/content/helperValues';
+import { avatarOptions } from '@/app/content/helper-values';
 import { Subtitle } from '../../atoms/Subtitle';
 import Button from '../../atoms/Button';
 import AvatarList from '../../molecules/user-page/AvatarList';

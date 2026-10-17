@@ -1,6 +1,6 @@
 import { cacheLife } from "next/cache";
-import { CHAMPIONSHIP_YEAR } from "../content/helperValues";
-import { getNextRace } from "./nextRace";
+import { CHAMPIONSHIP_YEAR } from "../content/helper-values";
+import { getNextRace } from "./next-race";
 import { API_BASE } from "./api";
 import type { ApiMeeting } from '@/app/types/meetings'
 

@@ -1,5 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
-import { CHAMPIONSHIP_YEAR, TIMEZONE_MADRID } from "../content/helperValues";
+import { CHAMPIONSHIP_YEAR, TIMEZONE_MADRID } from "../content/helper-values";
 import { API_BASE } from "../data/api";
 
 

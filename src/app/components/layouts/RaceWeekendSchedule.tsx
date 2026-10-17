@@ -1,7 +1,7 @@
-import { getNextRace } from "@/app/data/nextRace";
-import { getRaceWeekend } from "@/app/data/raceWeekend";
-import { getTrackInformation } from "@/app/data/trackInformation";
-import { getSessionCode } from "@/app/content/sessionCodes";
+import { getNextRace } from "@/app/data/next-race";
+import { getRaceWeekend } from "@/app/data/race-weekend";
+import { getTrackInformation } from "@/app/data/track-information";
+import { getSessionCode } from "@/app/content/session-codes";
 import { formatSessionDay, formatSessionTimes, formatTimeZoneLabel } from "@/app/utils/helpers/formatSessionTime";
 import WeekendSchedule from "../organisms/weekend-schedule/WeekendSchedule";
 

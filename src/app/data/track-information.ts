@@ -1,4 +1,4 @@
-import { CHAMPIONSHIP_YEAR } from "../content/helperValues";
+import { CHAMPIONSHIP_YEAR } from "../content/helper-values";
 import { API_BASE } from "./api";
 
 const REVALIDATE_SECONDS = 3600;

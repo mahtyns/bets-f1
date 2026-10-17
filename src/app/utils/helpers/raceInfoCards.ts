@@ -1,5 +1,5 @@
 import { calendarContent } from "@/app/content/calendar"; // adjust to your content file path
-import { CircuitSecondaryInfo } from "@/app/data/circuitSecondaryInfo";
+import { CircuitSecondaryInfo } from "@/app/data/circuit-secondary-info";
 
 export interface RaceInfoCardData {
     label: string,

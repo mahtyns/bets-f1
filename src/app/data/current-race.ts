@@ -1,6 +1,6 @@
 import "server-only";
 import { createAdminClient } from "@/app/lib/supabase/admin";
-import { CHAMPIONSHIP_YEAR } from "../content/helperValues";
+import { CHAMPIONSHIP_YEAR } from "../content/helper-values";
 import { connection } from "next/server";
 
 export interface CurrentRace {

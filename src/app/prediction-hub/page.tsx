@@ -1,14 +1,14 @@
 import { SecondaryPageHeading } from "../components/layouts/SecondaryPageHeading";
 import PredictionHub from "../components/layouts/prediction-hub/PredictionHub";
-import { CHAMPIONSHIP_YEAR } from "../content/helperValues";
+import { CHAMPIONSHIP_YEAR } from "../content/helper-values";
 import { predictionHubContent } from "../content/prediction-hub";
-import { getNextRace } from "../data/nextRace";
-import { getPredictionDrivers } from "../data/predictionDrivers";
-import { getTrackInformation } from "../data/trackInformation";
+import { getNextRace } from "../data/next-race";
+import { getPredictionDrivers } from "../data/prediction-drivers";
+import { getTrackInformation } from "../data/track-information";
 import styles from "./../page.module.css";
 import RaceWeekGate from "../components/layouts/RaceWeekGate";
-import { getCurrentRace } from "../data/currentRace";
-import { getUserBet } from "../data/userBet";
+import { getCurrentRace } from "../data/current-race";
+import { getUserBet } from "../data/user-bet";
 import { PredictionHubLocked } from "../components/layouts/prediction-hub/PredictionHubLocked";
 import { PredictionHubIdle } from "../components/layouts/prediction-hub/PredictionHubIdle";
 

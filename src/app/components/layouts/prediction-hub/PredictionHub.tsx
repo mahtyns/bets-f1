@@ -9,7 +9,7 @@ import RaceFinishersPrediction from "../../organisms/prediction-hub/RaceFinisher
 import WeekendSpecials from "../../organisms/prediction-hub/WeekendSpecials";
 import PredictionSlip from "../../organisms/prediction-hub/PredictionSlip";
 import { saveBetAction } from "@/app/actions/bets";
-import type { UserBet } from "@/app/data/userBet";
+import type { UserBet } from "@/app/data/user-bet";
 
 
 interface PredictionHubProps {

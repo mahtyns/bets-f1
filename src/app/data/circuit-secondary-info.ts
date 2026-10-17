@@ -1,6 +1,6 @@
 import { cacheLife } from "next/cache";
 import { API_SECONDARY } from "./api";
-import { F1API_CIRCUIT_IDS } from "../content/circuitsIds";
+import { F1API_CIRCUIT_IDS } from "../content/circuits-ids";
 
 interface ApiCircuit {
     circuitLength: number | null;

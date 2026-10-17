@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext } from "react";
-import { NextRace } from "@/app/data/nextRace";
+import { NextRace } from "@/app/data/next-race";
 
 interface NextRaceState {
     nextRace: NextRace | null;

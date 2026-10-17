@@ -1,10 +1,10 @@
-import { getNextRace } from "@/app/data/nextRace";
-import { getCircuitSecondaryInfo } from "@/app/data/circuitSecondaryInfo";
+import { getNextRace } from "@/app/data/next-race";
+import { getCircuitSecondaryInfo } from "@/app/data/circuit-secondary-info";
 import { getRaceInfoCards } from "@/app/utils/helpers/raceInfoCards";
 import NextRaceHeader from "../organisms/next-race/NextRaceHeader";
 import { NextRaceInfoCards } from "../organisms/next-race/NextRaceInfoCards";
 import TrackLayoutCard from "../molecules/next-race/TrackLayoutCard";
-import { getTrackInformation } from "@/app/data/trackInformation";
+import { getTrackInformation } from "@/app/data/track-information";
 import { formatRaceDays } from "@/app/utils/helpers/formatRaceDays";
 import { RaceWeekendSchedule } from "./RaceWeekendSchedule";
 

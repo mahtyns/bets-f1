@@ -1,6 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
-import { BET_CATEGORIES } from "../content/betCategories";
-import { CHAMPIONSHIP_YEAR } from "../content/helperValues";
+import { BET_CATEGORIES } from "../content/bet-categories";
+import { CHAMPIONSHIP_YEAR } from "../content/helper-values";
 
 
 const POSITION_CATEGORIES = [

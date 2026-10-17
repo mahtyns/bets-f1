@@ -1,5 +1,5 @@
 import ImageRounded from "../atoms/ImageRounded";
-import { avatars } from '../../content/helperValues'
+import { avatars } from '../../content/helper-values'
 
 interface PlayerCellProps {
     mainClass: string,

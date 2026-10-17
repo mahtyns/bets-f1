@@ -2,7 +2,7 @@
 
 import { createAdminClient } from "@/app/lib/supabase/admin";
 import { getSessionUserId } from "@/app/lib/session";
-import { BET_CATEGORIES, SAFETY_CAR_TO_NUMBER } from "@/app/content/betCategories";
+import { BET_CATEGORIES, SAFETY_CAR_TO_NUMBER } from "@/app/content/bet-categories";
 import { PREDICTION_SLOT_COUNT } from "@/app/utils/helpers/predictionSlots";
 import type { SaveBetInput } from "@/app/types/bets";
 

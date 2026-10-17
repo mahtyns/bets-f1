@@ -3,7 +3,7 @@
 import bcrypt from "bcryptjs";
 import { createAdminClient } from "@/app/lib/supabase/admin";
 import { getSessionUserId } from "@/app/lib/session";
-import { avatars } from "@/app/content/helperValues";
+import { avatars } from "@/app/content/helper-values";
 import type { User, UpdateProfileInput } from "@/app/types/user";
 
 type UpdateProfileResult = { user: User | null; error: string | null };
