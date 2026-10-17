@@ -28,3 +28,33 @@ $breakpoint-xl: 1440px;
         @content;
     }
 }
+
+@mixin header-gradients {
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+
+    &::before,
+    &::after {
+        content: '';
+        width: $img-xl;
+        height: $img-xl;
+        position: absolute;
+        z-index: -1;
+        border-radius: 50%;
+        filter: blur(100);
+    }
+
+    &::before {
+        bottom: $space-lg;
+        left: calc($space-xxl * 2);
+        background-color: rgba($color: $yellow-100, $alpha: 0.1);
+    }
+
+    &::after {
+        top: $space-lg;
+        right: $space-lg;
+        background-color: rgba($color: $primary-700, $alpha: 0.1);
+    }
+
+}

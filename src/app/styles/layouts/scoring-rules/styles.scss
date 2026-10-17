@@ -1,0 +1,17 @@
+.scoring-rules {
+    &-page {
+        section {
+            background-color: $background-700;
+        }
+    }
+
+    &__header {
+        @include header-gradients;
+    }
+
+    &__description {
+        article {
+            margin-bottom: $space-md;
+        }
+    }
+}

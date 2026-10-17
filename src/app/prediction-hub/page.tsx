@@ -5,7 +5,6 @@ import { predictionHubContent } from "../content/prediction-hub";
 import { getNextRace } from "../data/next-race";
 import { getPredictionDrivers } from "../data/prediction-drivers";
 import { getTrackInformation } from "../data/track-information";
-import styles from "./../page.module.css";
 import RaceWeekGate from "../components/layouts/RaceWeekGate";
 import { getCurrentRace } from "../data/current-race";
 import { getUserBet } from "../data/user-bet";
@@ -27,27 +26,25 @@ export default async function PredictionHubPage() {
         : predictionHubContent.mainTitle;
 
     return (
-        <div className={styles.page}>
-            <main className="predictions">
-                {nextRace && track ? (
-                    <SecondaryPageHeading
-                        titleText={pageFullTitle}
-                        roundNumber={nextRace.round}
-                        trackName={track.meetingShort}
-                        trackType={track.type}
-                        flag={track.flag}
-                    />
-                ) : (
-                    <section>
-                        <h1 className="title-h1">{predictionHubContent.mainTitle}</h1>
-                    </section>
-                )}
-                <RaceWeekGate
-                    open={<PredictionHub drivers={drivers} hasSprint={currentRace?.isSprint ?? false} raceId={currentRace?.id ?? null} initialBet={initialBet} />}
-                    locked={<PredictionHubLocked />}
-                    idle={<PredictionHubIdle />}
+        <main className="predictions">
+            {nextRace && track ? (
+                <SecondaryPageHeading
+                    titleText={pageFullTitle}
+                    roundNumber={nextRace.round}
+                    trackName={track.meetingShort}
+                    trackType={track.type}
+                    flag={track.flag}
                 />
-            </main>
-        </div>
+            ) : (
+                <section>
+                    <h1 className="title-h1">{predictionHubContent.mainTitle}</h1>
+                </section>
+            )}
+            <RaceWeekGate
+                open={<PredictionHub drivers={drivers} hasSprint={currentRace?.isSprint ?? false} raceId={currentRace?.id ?? null} initialBet={initialBet} />}
+                locked={<PredictionHubLocked />}
+                idle={<PredictionHubIdle />}
+            />
+        </main>
     );
 }

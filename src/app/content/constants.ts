@@ -18,7 +18,11 @@ export const constants = {
             },
             {
                 name: "Scoring rules",
-                link: "/rules"
+                link: "/scoring-rules"
+            },
+            {
+                name: "User Page",
+                link: "/user-page"
             },
             {
                 name: "Pit crew support",

@@ -17,12 +17,13 @@ body {
 }
 
 main {
-    padding: 0 $space-lg;
+    padding: $space-md $space-lg;
 }
 
 section {
     padding: $space-md;
     border-radius: $border-radius-lg;
+    margin-bottom: $space-md;
 
     @include breakpoint-md {
         min-width: 900px;
