@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { getNextRace } from "@/app/data/next-race";
-import { getBetsOpensAt } from "@/app/data/bets-status";
 import { NextRaceProvider } from "@/app/context/NextRaceContext";
 import {
   Barlow_Condensed,
@@ -11,6 +10,7 @@ import "./globals.css";
 import Header from "./components/organisms/Header";
 import Footer from "./components/organisms/Footer";
 import AuthBoundary from "./components/organisms/AuthBoundary";
+import { getBetsWindow } from "./data/bets-window";
 
 
 const barlowCondensed = Barlow_Condensed({
@@ -42,11 +42,12 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const nextRace = await getNextRace();
+  const betsWindow = nextRace ? await getBetsWindow(nextRace.meetingKey) : null;
 
   const value = {
     nextRace,
-    betsOpensAt: nextRace ? new Date(getBetsOpensAt(nextRace)).toISOString() : null,
-    betsClosesAt: nextRace ? nextRace.start : null,
+    betsOpensAt: betsWindow?.opensAt ?? null,
+    betsClosesAt: betsWindow?.locksAt ?? null,
   };
 
 

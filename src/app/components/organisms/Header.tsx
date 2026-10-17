@@ -14,6 +14,7 @@ import { Logout } from "../atoms/Logout";
 import PlayerCellLogged from "../molecules/PlayerCellLogged";
 import { getStandings } from "@/app/data/standings";
 import { getSessionUserId } from "@/app/lib/session";
+import { getBetsWindow, isBetsOpen } from "@/app/data/bets-window";
 
 const Header = async () => {
     const [nextRace, standings, userId] = await Promise.all([
@@ -21,8 +22,9 @@ const Header = async () => {
         getStandings(),
         getSessionUserId(),
     ]);
+    const betsWindow = nextRace ? await getBetsWindow(nextRace.meetingKey) : null;
+    const isOpen = isBetsOpen(betsWindow, Date.now());
     const me = standings.find((standing) => standing.userId === String(userId));
-    const isOpen = nextRace ? getBetsOpen(nextRace, Date.now()) : false;
     const button = isOpen ? constants.buttons.open : constants.buttons.closed;
 
 
