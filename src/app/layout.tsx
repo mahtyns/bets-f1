@@ -10,8 +10,9 @@ import {
 import "./globals.css";
 import Header from "./components/organisms/Header";
 import Footer from "./components/organisms/Footer";
-import { AuthProvider } from "./context/AuthContext";
 import { getCurrentUser } from "./lib/getCurrentUser";
+import AuthBoundary from "./components/organisms/AuthBoundary";
+
 
 const barlowCondensed = Barlow_Condensed({
   subsets: ["latin"],
@@ -57,13 +58,13 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       className={`${barlowCondensed.variable} ${hankenGrotesk.variable} ${jetBrainsMono.variable}`}
     >
       <body>
-        <AuthProvider initialUser={user}>
+        <AuthBoundary>
           <NextRaceProvider value={value}>
             <Header />
             {children}
             <Footer />
           </NextRaceProvider>
-        </AuthProvider>
+        </AuthBoundary>
       </body>
     </html>
   );
