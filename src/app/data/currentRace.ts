@@ -1,6 +1,7 @@
 import "server-only";
 import { createAdminClient } from "@/app/lib/supabase/admin";
 import { CHAMPIONSHIP_YEAR } from "../content/helperValues";
+import { connection } from "next/server";
 
 export interface CurrentRace {
     id: number;
@@ -8,6 +9,7 @@ export interface CurrentRace {
 }
 
 export const getCurrentRace = async (): Promise<CurrentRace | null> => {
+    await connection();
     const supabase = createAdminClient();
 
     const { data, error } = await supabase
