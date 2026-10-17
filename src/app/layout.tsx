@@ -10,7 +10,6 @@ import {
 import "./globals.css";
 import Header from "./components/organisms/Header";
 import Footer from "./components/organisms/Footer";
-import { getCurrentUser } from "./lib/getCurrentUser";
 import AuthBoundary from "./components/organisms/AuthBoundary";
 
 
@@ -43,7 +42,6 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const nextRace = await getNextRace();
-  const user = await getCurrentUser()
 
   const value = {
     nextRace,
