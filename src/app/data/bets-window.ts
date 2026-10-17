@@ -1,5 +1,6 @@
 import "server-only";
 import { createAdminClient } from "@/app/lib/supabase/admin";
+import { cacheLife } from "next/cache";
 
 export interface BetsWindow {
     opensAt: string;
@@ -8,6 +9,8 @@ export interface BetsWindow {
 
 // meetingKey is the OpenF1 meeting key, stored in races.external_id
 export const getBetsWindow = async (meetingKey: number): Promise<BetsWindow | null> => {
+    "use cache"
+    cacheLife("hours")
     const supabase = createAdminClient();
 
     const { data, error } = await supabase
