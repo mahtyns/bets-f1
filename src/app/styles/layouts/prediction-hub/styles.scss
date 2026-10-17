@@ -389,9 +389,8 @@
     &-winner {
         padding: $space-sm;
         background-color: $background-900;
-        aspect-ratio: 1 / 1;
-        max-width: 200px;
         border-radius: $border-radius-md;
+        height: stretch;
 
         .title-text {
             color: $yellow-200
@@ -400,7 +399,34 @@
         .winner-name {
             font-family: $font-label;
             font-size: $font-lg;
+            display: block;
         }
+
+        p {
+            display: inline;
+            margin-right: $space-sm;
+
+            &:nth-of-type(3) {
+                color: $secondary-200;
+                text-transform: uppercase;
+                font-family: $font-label;
+            }
+        }
+    }
+
+    &__results {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: $space-sm;
+        margin: $space-sm 0;
+    }
+
+    &__results-total {
+        margin: 0;
+        font-family: $font-label;
+        font-size: $font-xs;
+        color: $yellow-200;
+        text-transform: uppercase;
     }
 }
 

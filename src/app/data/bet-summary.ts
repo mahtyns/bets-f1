@@ -1,0 +1,47 @@
+import { BET_CATEGORIES, SAFETY_CAR_FROM_NUMBER } from "../content/bet-categories";
+
+export interface BetSummary {
+    qualifying: (string | null)[];
+    race: (string | null)[];
+    sprint: (string | null)[] | null; // null when the weekend has no sprint
+    fastestLap: string | null;
+    driverOfTheDay: string | null;
+    safetyCar: string | null;
+}
+
+export interface PickRow {
+    category: string;
+    position: number | null;
+    driver_id: number | null;
+    safety_car: number | null;
+}
+
+const PODIUM_SIZE = 3;
+
+export const toBetSummary = (
+    rows: PickRow[],
+    nameById: Map<number, string>,
+    hasSprint: boolean
+): BetSummary => {
+    const driverName = (driverId: number | null | undefined): string | null =>
+        driverId ? nameById.get(driverId) ?? null : null;
+
+    const podium = (category: string) =>
+        Array.from({ length: PODIUM_SIZE }, (_, index) =>
+            driverName(
+                rows.find((row) => row.category === category && row.position === index + 1)?.driver_id
+            )
+        );
+
+    const special = (category: string) => rows.find((row) => row.category === category);
+    const safetyCar = special(BET_CATEGORIES.safetyCar)?.safety_car;
+
+    return {
+        qualifying: podium(BET_CATEGORIES.qualifying),
+        race: podium(BET_CATEGORIES.race),
+        sprint: hasSprint ? podium(BET_CATEGORIES.sprint) : null,
+        fastestLap: driverName(special(BET_CATEGORIES.fastestLap)?.driver_id),
+        driverOfTheDay: driverName(special(BET_CATEGORIES.driverOfTheDay)?.driver_id),
+        safetyCar: safetyCar == null ? null : SAFETY_CAR_FROM_NUMBER[safetyCar] ?? null,
+    };
+};

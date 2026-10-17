@@ -1,7 +1,6 @@
 import "server-only";
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
-import { connection } from "next/server";
 
 
 const COOKIE_NAME = "session";
@@ -30,7 +29,6 @@ export const deleteSession = async () => {
 };
 
 export const getSessionUserId = async (): Promise<number | null> => {
-    await connection()
     const cookieStore = await cookies();
     const token = cookieStore.get(COOKIE_NAME)?.value;
     if (!token) return null;

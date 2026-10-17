@@ -1,13 +1,28 @@
+import type { LastRound } from "@/app/data/last-round";
+import type { LastYearRace } from "@/app/data/last-year-race";
+import Title from "../../atoms/Title";
 import { PredictionIdleCountdown } from "../../organisms/prediction-hub/PredictionIdleCountdown";
 import { PredictionIdleLastYear } from "../../organisms/prediction-hub/PredictionIdleLastYear";
 import { PredictionIdleResults } from "../../organisms/prediction-hub/PredictionIdleResults";
+import AuthGate from "../AuthGate";
+import Login from "../Login";
 
-export const PredictionHubIdle = () => {
+interface PredictionHubIdleProps {
+    lastRound: LastRound | null;
+    lastYear: LastYearRace | null;
+}
+
+export const PredictionHubIdle = (props: PredictionHubIdleProps) => {
     return (
         <>
             <PredictionIdleCountdown />
-            <PredictionIdleResults />
-            <PredictionIdleLastYear />
+            <AuthGate
+                loggedIn={<PredictionIdleResults lastRound={props.lastRound} />}
+                loggedOut={<div>
+                    <Title isH1={false} title="Log in to see your results" />
+                    <Login />
+                </div>} />
+            <PredictionIdleLastYear race={props.lastYear} />
         </>
     )
 }
