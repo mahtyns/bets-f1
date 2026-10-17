@@ -9,7 +9,7 @@ const PrizeLabel = (props: PrizeProps) => {
     return (
         <div className={`${props.mainClass}__prize`}>
             <div className={`${props.mainClass}__prize__icon`}>
-                <img src={icons.trophy} />
+                <img src={icons.trophy} alt="Trophy icon" />
             </div>
             <div className={`${props.mainClass}__prize__text`}>
                 <p>{helperTexts.winner}</p>

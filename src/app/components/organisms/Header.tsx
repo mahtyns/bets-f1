@@ -4,7 +4,6 @@ import HeaderLinks from "../molecules/header/HeaderLinks";
 import HeaderNextRace from "../molecules/header/HeaderNextRace";
 import HeaderPoints from "../molecules/header/HeaderPoints";
 import { getNextRace } from "@/app/data/next-race";
-import { getBetsOpen } from "@/app/data/bets-status";
 import RaceWeekGate from "../layouts/RaceWeekGate";
 import HeaderNextRaceOpen from "../molecules/header/HeaderNextRaceOpen";
 import HeaderNextRaceLocked from "../molecules/header/HeaderNextRaceLocked";

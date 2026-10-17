@@ -7,7 +7,7 @@ const Footer = () => {
     return (
         <div className={mainClass}>
             <div className={`${mainClass}__logo`}>
-                <img src={constants.logo} /><span> | {constants.footer.text}</span>
+                <img src={constants.logo} alt="Rosario Racing Footer Logo" /><span> | {constants.footer.text}</span>
             </div>
             <div className={`${mainClass}__links`}>
                 {
