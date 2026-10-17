@@ -1,7 +1,7 @@
 import Text from "../../atoms/Text";
 import Title from "../../atoms/Title";
 
-export const UserPageHeading = (props) => {
+export const UserPageHeading = () => {
     const mainClass = "user-page-heading"
 
     return (

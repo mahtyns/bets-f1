@@ -16,6 +16,9 @@ interface PredictionSlipProps {
     driverOfTheRace: number | null;
     safetyCar: SafetyCarChoice | null;
     hasSprint: boolean
+    onConfirm: () => void;
+    isSaving: boolean;
+    saveMessage: string | null;
 }
 
 const slotValue = (slot: PredictionSlot, emptyLabel: string): string =>
@@ -120,7 +123,19 @@ const PredictionSlip = (props: PredictionSlipProps) => {
                     </ul>
                 </div>
             ))}
-            <Button variant="primary" text="Confirm choices" />
+            <Button
+                variant="primary"
+                text={props.isSaving ? "Saving..." : "Confirm choices"}
+                handleClick={props.onConfirm}
+                disabled={props.isSaving}
+            />
+            {props.saveMessage && (
+                <Text
+                    text={props.saveMessage}
+                    variant="muted"
+                    mainClass={`${props.mainClass}__slip-message`}
+                />
+            )}
         </aside>
     );
 };

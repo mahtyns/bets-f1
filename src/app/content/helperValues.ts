@@ -48,3 +48,4 @@ export const avatarTeams: Record<number, string> = {
 
 export const CHAMPIONSHIP_YEAR = 2026;
 export const CHAMPIONSHIP_NAME = "FIA FORMULA 1 WORLD CHAMPIONSHIP"
+export const TIMEZONE_MADRID = "Europe/Madrid"

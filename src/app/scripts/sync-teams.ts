@@ -1,7 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
-
-const YEAR = 2026;
-const API_BASE = "https://api.openf1.org/v1/";
+import { CHAMPIONSHIP_YEAR } from "../content/helperValues";
+import { API_BASE } from "../data/api";
 
 interface ApiSession {
     session_key: number;
@@ -21,14 +20,14 @@ const getJson = async <T>(path: string): Promise<T> => {
 };
 
 const getLatestSessionKey = async (): Promise<number> => {
-    const sessions = await getJson<ApiSession[]>(`sessions?year=${YEAR}`);
+    const sessions = await getJson<ApiSession[]>(`sessions?CHAMPIONSHIP_YEAR=${CHAMPIONSHIP_YEAR}`);
     const now = Date.now();
 
     const latest = sessions
         .filter((s) => !s.is_cancelled && new Date(s.date_start).getTime() <= now)
         .sort((a, b) => new Date(b.date_start).getTime() - new Date(a.date_start).getTime())[0];
 
-    if (!latest) throw new Error(`No sessions found for ${YEAR}`);
+    if (!latest) throw new Error(`No sessions found for ${CHAMPIONSHIP_YEAR}`);
     return latest.session_key;
 };
 

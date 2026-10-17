@@ -1,10 +1,14 @@
-import { mockStandings, CURRENT_USER_ID } from "@/app/data/mockStandings";
+import type { Standing } from "@/app/types/standings";
 import GeneralStandingsTopBar from "../organisms/general-standings/GeneralStandingsTopBar";
 import PlayersGeneralStandings from "../organisms/general-standings/PlayersGeneralStandings";
 import WeekWinner from "../organisms/general-standings/WeekWinner";
 
-const GeneralStandings = () => {
+interface GeneralStandingsProps {
+    standings: Standing[];
+    currentUserId: string;
+}
 
+const GeneralStandings = (props: GeneralStandingsProps) => {
     const mainClass = "general-standings"
 
     return (
@@ -12,10 +16,10 @@ const GeneralStandings = () => {
             <GeneralStandingsTopBar mainClass={mainClass} />
             <PlayersGeneralStandings
                 mainClass={mainClass}
-                standings={mockStandings}
-                currentUserId={CURRENT_USER_ID}
+                standings={props.standings}
+                currentUserId={props.currentUserId}
             />
-            <WeekWinner mainClass={mainClass} standings={mockStandings} />
+            <WeekWinner mainClass={mainClass} standings={props.standings} />
         </section>
     )
 }

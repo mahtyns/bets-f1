@@ -2,7 +2,7 @@
 interface TextProps {
     text: string,
     variant: 'white' | 'primary' | 'muted',
-    mainClass: string
+    mainClass?: string
 }
 
 const variantClasses: Record<TextProps['variant'], string> = {

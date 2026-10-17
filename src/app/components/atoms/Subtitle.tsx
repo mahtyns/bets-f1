@@ -1,6 +1,7 @@
 interface SubtitleProps {
     isH3: boolean,
-    title: string
+    title: string,
+    mainClass?: string
 }
 export const Subtitle = (props: SubtitleProps) => {
     return (

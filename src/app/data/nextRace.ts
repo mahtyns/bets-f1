@@ -1,18 +1,7 @@
 import { cacheLife } from "next/cache";
 import { CHAMPIONSHIP_YEAR } from "../content/helperValues";
 import { API_BASE } from "./api";
-
-const REVALIDATE_SECONDS = 3600;
-
-interface ApiMeeting {
-    circuit_key: number;
-    circuit_short_name: string;
-    date_start: string;
-    date_end: string,
-    is_cancelled: boolean;
-    meeting_name: string;
-    meeting_key: number
-}
+import type { ApiMeeting } from '@/app/types/meetings'
 
 export interface NextRace {
     circuitKey: number;

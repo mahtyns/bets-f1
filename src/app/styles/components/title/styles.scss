@@ -4,6 +4,7 @@
     font-family: $font-accent;
     font-weight: 800;
     letter-spacing: -0.025em;
+    margin-bottom: $space-sm;
 
     @include breakpoint-md {
         font-size: $font-xl;
@@ -16,6 +17,7 @@
     font-family: $font-accent;
     font-weight: 800;
     letter-spacing: -0.025em;
+    margin-bottom: $space-sm;
 
     @include breakpoint-md {
         font-size: $font-lg;
@@ -32,4 +34,9 @@
     @include breakpoint-md {
         font-size: $font-md;
     }
+}
+
+.title-text {
+    text-transform: uppercase;
+    font-family: $font-label;
 }

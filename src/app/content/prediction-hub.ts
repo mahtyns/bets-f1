@@ -53,4 +53,7 @@ export const predictionHubContent = {
         picked: "picked",
     },
     empty: "Driver line-up is not available yet.",
+    saving: "Saving...",
+    saved: "Your bet is saved",
+    saveFailed: "Could not save your bet",
 };

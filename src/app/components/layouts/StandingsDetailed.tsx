@@ -1,9 +1,13 @@
+import type { Standing } from "@/app/types/standings";
 import Title from "../atoms/Title";
 import DetailedTableStandings from "../organisms/detailed-standings/DetailedTableStandings";
-import { mockStandings, CURRENT_USER_ID } from "@/app/data/mockStandings";
 
-export const StandingsDetailed = () => {
+interface StandingsDetailedProps {
+    standings: Standing[];
+    currentUserId: string;
+}
 
+export const StandingsDetailed = (props: StandingsDetailedProps) => {
     const mainClass = "standings-table"
 
     return (
@@ -11,7 +15,11 @@ export const StandingsDetailed = () => {
             <header>
                 <Title isH1={false} title={"Paddock Crew Championship Standings"} />
             </header>
-            <DetailedTableStandings standings={mockStandings} currentUserId={CURRENT_USER_ID} mainClass={mainClass} />
+            <DetailedTableStandings
+                standings={props.standings}
+                currentUserId={props.currentUserId}
+                mainClass={mainClass}
+            />
         </section>
     )
 }

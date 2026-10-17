@@ -1,5 +1,5 @@
 import { SecondaryPageHeading } from "../components/layouts/SecondaryPageHeading";
-import PredictionHub from "../components/layouts/PredictionHub";
+import PredictionHub from "../components/layouts/prediction-hub/PredictionHub";
 import { CHAMPIONSHIP_YEAR } from "../content/helperValues";
 import { predictionHubContent } from "../content/prediction-hub";
 import { getNextRace } from "../data/nextRace";
@@ -8,6 +8,9 @@ import { getTrackInformation } from "../data/trackInformation";
 import styles from "./../page.module.css";
 import RaceWeekGate from "../components/layouts/RaceWeekGate";
 import { getCurrentRace } from "../data/currentRace";
+import { getUserBet } from "../data/userBet";
+import { PredictionHubLocked } from "../components/layouts/prediction-hub/PredictionHubLocked";
+import { PredictionHubIdle } from "../components/layouts/prediction-hub/PredictionHubIdle";
 
 export default async function PredictionHubPage() {
     const [nextRace] = await Promise.all([
@@ -17,6 +20,7 @@ export default async function PredictionHubPage() {
         getPredictionDrivers(),
         getCurrentRace(),
     ]);
+    const initialBet = currentRace ? await getUserBet(currentRace.id) : null;
     const track = nextRace ? await getTrackInformation(nextRace.circuitKey) : null;
     const pageFullTitle = track
         ? `${CHAMPIONSHIP_YEAR} ${track.name} ${predictionHubContent.mainTitle}`
@@ -24,7 +28,7 @@ export default async function PredictionHubPage() {
 
     return (
         <div className={styles.page}>
-            <main>
+            <main className="predictions">
                 {nextRace && track ? (
                     <SecondaryPageHeading
                         titleText={pageFullTitle}
@@ -39,9 +43,9 @@ export default async function PredictionHubPage() {
                     </section>
                 )}
                 <RaceWeekGate
-                    open={<PredictionHub drivers={drivers} hasSprint={currentRace?.isSprint ?? false} />}
-                    locked={<PredictionHub drivers={drivers} hasSprint={currentRace?.isSprint ?? false} />}
-                    idle={<PredictionHub drivers={drivers} hasSprint={currentRace?.isSprint ?? false} />}
+                    open={<PredictionHub drivers={drivers} hasSprint={currentRace?.isSprint ?? false} raceId={currentRace?.id ?? null} initialBet={initialBet} />}
+                    locked={<PredictionHubLocked />}
+                    idle={<PredictionHubIdle />}
                 />
             </main>
         </div>

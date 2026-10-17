@@ -1,8 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
+import { CHAMPIONSHIP_YEAR, TIMEZONE_MADRID } from "../content/helperValues";
+import { API_BASE } from "../data/api";
 
-const YEAR = 2026;
-const API_BASE = "https://api.openf1.org/v1/";
-const TIME_ZONE = "Europe/Madrid";
 
 interface ApiMeeting {
     meeting_key: number;
@@ -25,7 +24,7 @@ const getJson = async <T>(path: string): Promise<T> => {
 };
 
 const madridFormatter = new Intl.DateTimeFormat("en-GB", {
-    timeZone: TIME_ZONE,
+    timeZone: TIMEZONE_MADRID,
     year: "numeric",
     month: "2-digit",
     day: "2-digit",
@@ -80,9 +79,9 @@ const run = async () => {
     );
 
     const [meetings, raceSessions, sprintSessions] = await Promise.all([
-        getJson<ApiMeeting[]>(`meetings?year=${YEAR}`),
-        getJson<ApiSession[]>(`sessions?year=${YEAR}&session_name=Race`),
-        getJson<ApiSession[]>(`sessions?year=${YEAR}&session_name=Sprint`),
+        getJson<ApiMeeting[]>(`meetings?year=${CHAMPIONSHIP_YEAR}`),
+        getJson<ApiSession[]>(`sessions?year=${CHAMPIONSHIP_YEAR}&session_name=Race`),
+        getJson<ApiSession[]>(`sessions?year=${CHAMPIONSHIP_YEAR}&session_name=Sprint`),
     ]);
 
     const raceStarts = new Map(raceSessions.map((s) => [s.meeting_key, s.date_start]));
@@ -102,7 +101,7 @@ const run = async () => {
 
         rows.push({
             external_id: meeting.meeting_key,
-            season: YEAR,
+            season: CHAMPIONSHIP_YEAR,
             round: index + 1,
             name: meeting.meeting_name,
             circuit: meeting.circuit_short_name,

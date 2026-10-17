@@ -3,11 +3,8 @@ import Button from "../atoms/Button";
 import HeaderLinks from "../molecules/header/HeaderLinks";
 import HeaderNextRace from "../molecules/header/HeaderNextRace";
 import HeaderPoints from "../molecules/header/HeaderPoints";
-import PlayerCell from "../molecules/PlayerCell";
 import { getNextRace } from "@/app/data/nextRace";
 import { getBetsOpen } from "@/app/data/betsStatus";
-
-import { mockStandings } from "@/app/data/mockStandings";
 import RaceWeekGate from "../layouts/RaceWeekGate";
 import HeaderNextRaceOpen from "../molecules/header/HeaderNextRaceOpen";
 import HeaderNextRaceLocked from "../molecules/header/HeaderNextRaceLocked";
@@ -15,11 +12,20 @@ import AuthGate from "../layouts/AuthGate";
 import PlayerCellLogin from "../molecules/PlayerCellLogin";
 import { Logout } from "../atoms/Logout";
 import PlayerCellLogged from "../molecules/PlayerCellLogged";
+import { getStandings } from "@/app/data/standings";
+import { getSessionUserId } from "@/app/lib/session";
 
 const Header = async () => {
-    const nextRace = await getNextRace();
+    const [nextRace, standings, userId] = await Promise.all([
+        getNextRace(),
+        getStandings(),
+        getSessionUserId(),
+    ]);
+    const me = standings.find((standing) => standing.userId === String(userId));
     const isOpen = nextRace ? getBetsOpen(nextRace, Date.now()) : false;
     const button = isOpen ? constants.buttons.open : constants.buttons.closed;
+
+
 
     return (
         <div className="header">
@@ -41,7 +47,7 @@ const Header = async () => {
             <HeaderLinks />
             <AuthGate
                 loggedIn={<div className="header__user-info">
-                    <HeaderPoints />
+                    <HeaderPoints points={me?.totalPoints ?? null} rank={me?.rank ?? null} />
                     <PlayerCellLogged mainClass={"header"} />
                     <Logout />
                 </div>}
