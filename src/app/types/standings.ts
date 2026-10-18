@@ -1,6 +1,15 @@
 export type Result = "W" | "P" | "L";
 export type Trend = "up" | "down" | "same";
 
+export interface PointsBreakdown {
+    qualifying: number;
+    race: number;
+    sprint: number;
+    fastestLap: number;
+    driverOfTheDay: number;
+    safetyCar: number;
+}
+
 export interface Standing {
     userId: string;
     rank: number;
@@ -15,4 +24,5 @@ export interface Standing {
     races: number;
     winRate: number;
     form: Result[];
+    lastGpBreakdown?: PointsBreakdown | null;
 }

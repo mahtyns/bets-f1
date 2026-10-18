@@ -159,9 +159,16 @@ const run = async () => {
     if (deleteError) throw deleteError;
 
     const { error: insertError } = await supabase.from("scores").insert(
-        scored.map((item) => ({ user_id: item.user_id, race_id: race.id, points: item.points }))
+        scored.map((item) => ({
+            user_id: item.user_id,
+            race_id: race.id,
+            points: item.points,
+            breakdown: item.breakdown,
+        }))
     );
     if (insertError) throw insertError;
+
+
 
     console.log(`Saved scores for ${scored.length} bets in ${race.name}`);
 };

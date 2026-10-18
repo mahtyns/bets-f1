@@ -1,7 +1,8 @@
 import "server-only";
 import { createAdminClient } from "@/app/lib/supabase/admin";
-import type { Result, Standing } from "@/app/types/standings";
+import type { Result, Standing, PointsBreakdown } from "@/app/types/standings";
 import { BET_CATEGORIES } from "../content/bet-categories";
+
 
 const FORM_LENGTH = 4;
 
@@ -10,7 +11,7 @@ export const getStandings = async (): Promise<Standing[]> => {
 
     const [usersRes, scoresRes, racesRes, betsRes, picksRes, polesRes] = await Promise.all([
         supabase.from("users").select("id, display_name, team, avatar_id"),
-        supabase.from("scores").select("user_id, race_id, points"),
+        supabase.from("scores").select("user_id, race_id, points, breakdown"),
         supabase.from("races").select("id, race_start"),
         supabase.from("bets").select("id, user_id, race_id"),
         supabase
@@ -23,7 +24,9 @@ export const getStandings = async (): Promise<Standing[]> => {
             .select("race_id, driver_id")
             .eq("category", BET_CATEGORIES.qualifying)
             .eq("position", 1),
+
     ]);
+
 
     const failed = [usersRes, scoresRes, racesRes, betsRes, picksRes, polesRes].find(
         (res) => res.error
@@ -73,11 +76,13 @@ export const getStandings = async (): Promise<Standing[]> => {
 
     const rows = users.map((user) => {
         const own = scores.filter((score) => score.user_id === user.id);
+        const lastScore = own.find((score) => score.race_id === lastRaceId);
 
         return {
             user,
             totalPoints: own.reduce((sum, score) => sum + score.points, 0),
-            lastGpPoints: own.find((score) => score.race_id === lastRaceId)?.points ?? 0,
+            lastGpPoints: lastScore?.points ?? 0,
+            lastGpBreakdown: (lastScore?.breakdown ?? null) as PointsBreakdown | null,
         };
     });
 
@@ -116,6 +121,7 @@ export const getStandings = async (): Promise<Standing[]> => {
             races: totalRaces,
             winRate: totalRaces > 0 ? (wins / totalRaces) * 100 : 0,
             form: results.slice(-FORM_LENGTH),
+            lastGpBreakdown: row.lastGpBreakdown,
         };
     });
 };
