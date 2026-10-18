@@ -10,6 +10,7 @@ import Login from "../Login";
 interface PredictionHubIdleProps {
     lastRound: LastRound | null;
     lastYear: LastYearRace | null;
+    trackName: string | undefined;
 }
 
 export const PredictionHubIdle = (props: PredictionHubIdleProps) => {
@@ -22,7 +23,7 @@ export const PredictionHubIdle = (props: PredictionHubIdleProps) => {
                     <Title isH1={false} title="Log in to see your results" />
                     <Login />
                 </div>} />
-            <PredictionIdleLastYear race={props.lastYear} />
+            <PredictionIdleLastYear race={props.lastYear} trackName={props.trackName} />
         </>
     )
 }

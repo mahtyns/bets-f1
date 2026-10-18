@@ -1,10 +1,9 @@
-import type { PlayerBet } from "@/app/data/race-bets";
+import type { BetSummary } from "@/app/data/bet-summary";
 import Title from "../../atoms/Title";
-import PlayerCell from "../../molecules/PlayerCell";
 import BetSummaryList from "../../molecules/prediction-hub/BetSummaryList";
 
 interface PredictionLockedResultsProps {
-    bets: PlayerBet[];
+    bet: BetSummary | null;
 }
 
 export const PredictionLockedResults = (props: PredictionLockedResultsProps) => {
@@ -12,23 +11,13 @@ export const PredictionLockedResults = (props: PredictionLockedResultsProps) => 
 
     return (
         <section id="prediction-hub-bet">
-            <Title isH1={false} title="Everyone's bets" />
-            {props.bets.length === 0 ? (
-                <p>No bets were placed for this race.</p>
+            <Title isH1={false} title="Your predictions" />
+            {props.bet ? (
+                <article className={`${mainClass}__module`}>
+                    <BetSummaryList mainClass={mainClass} summary={props.bet} />
+                </article>
             ) : (
-                <div className={`${mainClass}__results`}>
-                    {props.bets.map((bet) => (
-                        <article key={bet.userId} className={`${mainClass}__module`}>
-                            <PlayerCell
-                                mainClass={mainClass}
-                                name={bet.name}
-                                team={bet.team}
-                                avatarId={bet.avatarId}
-                            />
-                            <BetSummaryList mainClass={mainClass} summary={bet.summary} />
-                        </article>
-                    ))}
-                </div>
+                <p>You did not place a bet for this race.</p>
             )}
         </section>
     );

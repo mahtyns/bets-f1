@@ -9,11 +9,11 @@ import RaceWeekGate from "../components/layouts/RaceWeekGate";
 import { getCurrentRace } from "../data/current-race";
 import { getUserBet } from "../data/user-bet";
 import { PredictionHubLocked } from "../components/layouts/prediction-hub/PredictionHubLocked";
-import { PredictionHubIdle } from "../components/layouts/prediction-hub/PredictionHubIdle";
 import { getSessionUserId } from "../lib/session";
 import { getLastYearRace } from "../data/last-year-race";
 import { getLastRound } from "../data/last-round";
 import { getRaceBets } from "../data/race-bets";
+import { PredictionHubIdle } from "../components/layouts/prediction-hub/PredictionHubIdle";
 
 export default async function PredictionHubPage() {
     const [nextRace] = await Promise.all([
@@ -35,6 +35,8 @@ export default async function PredictionHubPage() {
         getLastRound(userId),
         nextRace ? getRaceBets(nextRace.meetingKey) : [],
     ]);
+    const myBet = bets.find((bet) => bet.userId === String(userId))?.summary ?? null;
+
 
     return (
         <main className="predictions">
@@ -53,8 +55,8 @@ export default async function PredictionHubPage() {
             )}
             <RaceWeekGate
                 open={<PredictionHub drivers={drivers} hasSprint={currentRace?.isSprint ?? false} raceId={currentRace?.id ?? null} initialBet={initialBet} />}
-                locked={<PredictionHubLocked bets={bets} />}
-                idle={<PredictionHubIdle lastRound={lastRound} lastYear={lastYear} />}
+                locked={<PredictionHubLocked bets={bets} myBet={myBet} />}
+                idle={<PredictionHubIdle lastRound={lastRound} lastYear={lastYear} trackName={track?.meetingShort} />}
             />
         </main>
     );
