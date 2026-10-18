@@ -17,16 +17,22 @@ body {
 }
 
 main {
-    padding: $space-md $space-lg;
+    padding: $space-xs;
+
+    @include breakpoint-md {
+        padding: $space-md;
+    }
 }
 
 section {
-    padding: $space-md;
     border-radius: $border-radius-lg;
-    margin-bottom: $space-md;
+    $margin-bottom: $space-sm;
+    padding: $space-sm;
 
     @include breakpoint-md {
+        padding: $space-md;
         min-width: 900px;
+        margin-bottom: $space-md;
     }
 
     @include breakpoint-lg {

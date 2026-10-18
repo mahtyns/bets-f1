@@ -14,6 +14,7 @@ import PlayerCellLogged from "../molecules/PlayerCellLogged";
 import { getStandings } from "@/app/data/standings";
 import { getSessionUserId } from "@/app/lib/session";
 import { getBetsWindow, isBetsOpen } from "@/app/data/bets-window";
+import { HeaderMenu } from "../molecules/header/HeaderMenu";
 
 const Header = async () => {
     const [nextRace, standings, userId] = await Promise.all([
@@ -25,8 +26,6 @@ const Header = async () => {
     const isOpen = isBetsOpen(betsWindow, Date.now());
     const me = standings.find((standing) => standing.userId === String(userId));
     const button = isOpen ? constants.buttons.open : constants.buttons.closed;
-
-
 
     return (
         <div className="header">
@@ -54,7 +53,7 @@ const Header = async () => {
                 </div>}
                 loggedOut={<PlayerCellLogin mainClass={"header"} />}
             />
-
+            <HeaderMenu />
         </div>
     )
 }

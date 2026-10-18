@@ -34,6 +34,7 @@
 
     &__topbar {
         display: flex;
+        flex-direction: column;
 
         @include breakpoint-md {
             flex-direction: row;
@@ -59,6 +60,7 @@
         display: flex;
         justify-content: space-between;
         gap: $space-xs;
+        flex-direction: row;
         align-items: center;
 
         &__icon {
@@ -144,6 +146,8 @@
             border: $space-min solid $primary-500;
         }
 
+        @include breakpoint-md {}
+
         .badge {
             margin-left: auto;
             text-transform: uppercase;
@@ -206,8 +210,14 @@
             border-radius: $border-radius-md;
             padding: $space-md;
             display: flex;
+            flex-direction: column;
+            gap: $space-sm;
             align-items: center;
-            justify-content: space-between;
+
+            @include breakpoint-md {
+                justify-content: space-between;
+                flex-direction: row;
+            }
 
             .general-standings__rounded-image {
                 width: $img-xs;
@@ -228,6 +238,11 @@
             background-color: $background-700;
             padding: $space-sm;
             border-radius: $border-radius-sm;
+            width: 100%;
+
+            @include breakpoint-md {
+                width: fit-content;
+            }
 
             span:first-of-type {
                 font-family: $font-label;

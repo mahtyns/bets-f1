@@ -1,7 +1,10 @@
 .upcoming-heading {
-    margin-top: $space-lg;
     background-color: $background-700;
     @include header-gradients;
+
+    @include breakpoint-md {
+        margin-top: $space-lg;
+    }
 
     .title-h1 {
         line-height: 100%;

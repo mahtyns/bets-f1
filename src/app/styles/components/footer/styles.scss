@@ -1,10 +1,16 @@
 .footer {
     background-color: $background-900;
-    padding: $space-md;
     display: flex;
+    padding: $space-xs;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
     margin-top: $space-md;
+
+    @include breakpoint-md {
+        flex-direction: row;
+        padding: $space-md;
+    }
 
     &__logo {
         display: flex;
@@ -22,7 +28,14 @@
 
     &__links {
         display: flex;
-        gap: $space-md;
+        flex-direction: column;
+        gap: $space-xs;
+        text-align: center;
+
+        @include breakpoint-md {
+            gap: $space-md;
+            flex-direction: row;
+        }
 
         .link {
             text-decoration: none;
@@ -37,5 +50,13 @@
     &__copyright {
         color: $background-50;
         font-size: $font-xs;
+        text-align: center;
+        margin-top: $space-xs;
+        max-width: 100%;
+        text-wrap: wrap;
+
+        @include breakpoint-md {
+            text-align: left;
+        }
     }
 }

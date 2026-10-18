@@ -1,0 +1,84 @@
+.header {
+    &__mobile {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: $background-700;
+        width: 100%;
+        height: 100vh;
+        z-index: 5;
+        padding: $space-xl;
+        display: flex;
+        flex-direction: column;
+        gap: $space-md;
+
+        @include breakpoint-md {
+            display: none;
+        }
+
+        &__player-cell {
+            &__info {
+                background-color: $background-800;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: $space-sm;
+                border-radius: $border-radius-md;
+
+                img {
+                    width: $img-sm;
+                    height: $img-sm;
+                }
+            }
+
+            &__name {
+                p {
+                    text-align: center;
+                }
+
+                p:first-of-type {
+                    font-size: $font-md;
+                    font-family: $font-accent;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                }
+
+                p:last-of-type {
+                    font-family: $font-label;
+                    text-transform: uppercase;
+                    color: $primary-300;
+                }
+            }
+        }
+
+        &__links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: $space-md;
+            align-items: center;
+            padding: 0;
+        }
+
+        &__link a {
+            font-size: $font-md;
+            font-family: $font-label;
+            text-transform: uppercase;
+            color: $primary-200;
+        }
+
+        .close-button {
+            position: absolute;
+            top: $space-md;
+            right: $space-md;
+            color: $yellow-200;
+            font-size: $font-md;
+        }
+    }
+
+}
+
+body:has(.header__mobile) {
+    overflow-y: hidden;
+}

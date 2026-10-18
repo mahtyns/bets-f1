@@ -1,26 +1,51 @@
 .header {
     background-color: $background-900;
     width: 100%;
-    padding: $space-md;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: $space-xs;
 
     @include breakpoint-md {
+        padding: $space-md;
         gap: $space-lg;
     }
 
     &__logo img {
-        max-height: $img-xs;
+        max-height: $img-xxs;
+
+        @include breakpoint-md {
+            max-height: $img-xs;
+        }
+    }
+
+    &__menu {
+        button {
+            background-color: transparent;
+            border: none;
+        }
+
+        img {
+            width: calc($img-xxs - 20px);
+            height: calc($img-xxs - 20px);
+        }
+
+        @include breakpoint-md {
+            display: none;
+        }
     }
 
     .next-race {
-        display: flex;
-        padding: $space-sm $space-md;
-        background-color: rgba($color: $yellow-700, $alpha: 0.3);
-        border-radius: $border-radius-sm;
-        gap: $space-sm;
-        align-items: center;
+        display: none;
+
+        @include breakpoint-md {
+            padding: $space-sm $space-md;
+            display: flex;
+            background-color: rgba($color: $yellow-700, $alpha: 0.3);
+            border-radius: $border-radius-sm;
+            gap: $space-sm;
+            align-items: center;
+        }
 
         &::before {
             content: "";
@@ -94,47 +119,55 @@
     }
 
     &__links {
-        display: flex;
-        margin-right: auto;
-        gap: $space-md;
+        display: none;
 
-        .link {
-            color: $primary-200;
-            text-transform: uppercase;
-            font-family: $font-accent;
-            transition: ease-in-out all 1s;
-            font-weight: 700;
-            font-size: $font-sm;
+        @include breakpoint-md {
+            display: flex;
+            margin-right: auto;
+            gap: $space-md;
 
-            &:hover {
-                color: $primary-400;
+            .link {
+                color: $primary-200;
+                text-transform: uppercase;
+                font-family: $font-accent;
+                transition: ease-in-out all 1s;
+                font-weight: 700;
+                font-size: $font-sm;
+
+                &:hover {
+                    color: $primary-400;
+                }
             }
         }
     }
 
     &__user-info {
-        margin-left: auto;
-        display: flex;
-        align-items: center;
-        gap: $space-sm;
-        background-color: rgba($color: $yellow-700, $alpha: 0.3);
-        border-radius: $border-radius-sm;
-        padding: $space-sm $space-md;
+        display: none;
 
-        &__points {
-            p {
-                text-align: right;
+        @include breakpoint-md {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: $space-sm;
+            background-color: rgba($color: $yellow-700, $alpha: 0.3);
+            border-radius: $border-radius-sm;
+            padding: $space-sm $space-md;
 
-                &:first-of-type {
-                    font-family: $font-label;
-                    text-transform: uppercase;
-                    color: $yellow-200;
-                }
+            &__points {
+                p {
+                    text-align: right;
 
-                &:last-of-type {
-                    font-size: $font-xs;
-                    text-transform: uppercase;
-                    color: $yellow-300;
+                    &:first-of-type {
+                        font-family: $font-label;
+                        text-transform: uppercase;
+                        color: $yellow-200;
+                    }
+
+                    &:last-of-type {
+                        font-size: $font-xs;
+                        text-transform: uppercase;
+                        color: $yellow-300;
+                    }
                 }
             }
         }
@@ -174,7 +207,9 @@
     }
 
     .button {
-        margin-left: auto;
+        @include breakpoint-md {
+            padding: $space-md;
+        }
     }
 }
 

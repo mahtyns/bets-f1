@@ -11,6 +11,11 @@ $team-colors: (
 
 .standings-table {
     background-color: $background-700;
+    display: none;
+
+    @include breakpoint-md {
+        display: block;
+    }
 
     .title-h2 {
         margin-bottom: $space-sm;
