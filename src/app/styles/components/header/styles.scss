@@ -205,12 +205,6 @@
     .badge {
         display: none;
     }
-
-    .button {
-        @include breakpoint-md {
-            padding: $space-md;
-        }
-    }
 }
 
 @keyframes next-race-pulse {

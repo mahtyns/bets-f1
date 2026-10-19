@@ -2,11 +2,13 @@ import "server-only";
 import { createAdminClient } from "@/app/lib/supabase/admin";
 import type { Result, Standing, PointsBreakdown } from "@/app/types/standings";
 import { BET_CATEGORIES } from "../content/bet-categories";
-
+import { cacheLife } from "next/cache";
 
 const FORM_LENGTH = 4;
 
 export const getStandings = async (): Promise<Standing[]> => {
+    "use cache";
+    cacheLife("minutes");
     const supabase = createAdminClient();
 
     const [usersRes, scoresRes, racesRes, betsRes, picksRes, polesRes] = await Promise.all([

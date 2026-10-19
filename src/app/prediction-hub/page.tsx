@@ -14,29 +14,39 @@ import { getLastYearRace } from "../data/last-year-race";
 import { getLastRound } from "../data/last-round";
 import { getRaceBets } from "../data/race-bets";
 import { PredictionHubIdle } from "../components/layouts/prediction-hub/PredictionHubIdle";
+import { getBetsWindow } from "../data/bets-window";
 
 export default async function PredictionHubPage() {
-    const [nextRace] = await Promise.all([
-        getNextRace(),
+    const nextRace = await getNextRace();
+
+    const [betsWindow, userId, track] = await Promise.all([
+        nextRace ? getBetsWindow(nextRace.meetingKey) : null,
+        getSessionUserId(),
+        nextRace ? getTrackInformation(nextRace.circuitKey) : null,
     ]);
-    const [drivers, currentRace] = await Promise.all([
-        getPredictionDrivers(),
-        getCurrentRace(),
+
+    const now = Date.now();
+    const phase =
+        !betsWindow || now < new Date(betsWindow.opensAt).getTime()
+            ? "idle"
+            : now < new Date(betsWindow.locksAt).getTime()
+                ? "open"
+                : "locked";
+
+    const [drivers, currentRace, lastYear, lastRound, bets] = await Promise.all([
+        phase === "open" ? getPredictionDrivers() : [],
+        phase === "open" ? getCurrentRace() : null,
+        phase === "idle" && nextRace ? getLastYearRace(nextRace.circuitKey) : null,
+        phase === "idle" ? getLastRound(userId) : null,
+        phase === "locked" && nextRace ? getRaceBets(nextRace.meetingKey) : [],
     ]);
+
     const initialBet = currentRace ? await getUserBet(currentRace.id) : null;
-    const track = nextRace ? await getTrackInformation(nextRace.circuitKey) : null;
+    const myBet = bets.find((bet) => bet.userId === String(userId))?.summary ?? null;
+
     const pageFullTitle = track
         ? `${CHAMPIONSHIP_YEAR} ${track.name} ${predictionHubContent.mainTitle}`
         : predictionHubContent.mainTitle;
-
-    const userId = await getSessionUserId();
-    const [lastYear, lastRound, bets] = await Promise.all([
-        nextRace ? getLastYearRace(nextRace.circuitKey) : null,
-        getLastRound(userId),
-        nextRace ? getRaceBets(nextRace.meetingKey) : [],
-    ]);
-    const myBet = bets.find((bet) => bet.userId === String(userId))?.summary ?? null;
-
 
     return (
         <main className="predictions">

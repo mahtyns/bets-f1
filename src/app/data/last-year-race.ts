@@ -50,10 +50,10 @@ const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 // OpenF1 limits requests per second, so retry a few times on 429
 const getJson = async <T>(path: string, attempt = 1): Promise<T> => {
-    const res = await fetch(`${API_BASE}${path}`);
+    const res = await fetch(`${API_BASE}${path}`, { signal: AbortSignal.timeout(5000) });
 
-    if (res.status === 429 && attempt <= 5) {
-        await sleep(1500 * attempt);
+    if (res.status === 429 && attempt <= 2) {
+        await sleep(1000 * attempt);
         return getJson<T>(path, attempt + 1);
     }
 

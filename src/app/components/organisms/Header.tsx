@@ -17,11 +17,12 @@ import { getBetsWindow, isBetsOpen } from "@/app/data/bets-window";
 import { HeaderMenu } from "../molecules/header/HeaderMenu";
 
 const Header = async () => {
-    const [nextRace, standings, userId] = await Promise.all([
+    const [nextRace, userId] = await Promise.all([
         getNextRace(),
         getStandings(),
         getSessionUserId(),
     ]);
+    const standings = userId ? await getStandings() : [];
     const betsWindow = nextRace ? await getBetsWindow(nextRace.meetingKey) : null;
     const isOpen = isBetsOpen(betsWindow, Date.now());
     const me = standings.find((standing) => standing.userId === String(userId));

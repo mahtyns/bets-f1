@@ -2,6 +2,7 @@ import "server-only";
 import { createAdminClient } from "@/app/lib/supabase/admin";
 import { cacheLife } from "next/cache";
 
+
 export interface BetsWindow {
     opensAt: string;
     locksAt: string;
