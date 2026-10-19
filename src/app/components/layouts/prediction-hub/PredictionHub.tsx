@@ -67,8 +67,9 @@ const PredictionHub = (props: PredictionHubProps) => {
                 safetyCar,
             });
             setSaveMessage(result.error ?? predictionHubContent.saved);
-        } catch {
-            setSaveMessage(predictionHubContent.saveFailed);
+        } catch (error) {
+            console.error(error);
+            setSaveMessage("Could not reach the server, please try again");
         } finally {
             setIsSaving(false);
         }

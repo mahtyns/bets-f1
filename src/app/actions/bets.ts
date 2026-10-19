@@ -8,6 +8,11 @@ import type { SaveBetInput } from "@/app/types/bets";
 
 type SaveBetResult = { error: string | null };
 
+const fail = (step: string, error: unknown): SaveBetResult => {
+    console.error(`saveBetAction failed at "${step}":`, error);
+    return { error: `Could not save your bet (${step})` };
+};
+
 const hasDuplicates = (numbers: (number | null)[]): boolean => {
     const picked = numbers.filter((number) => number !== null);
     return new Set(picked).size !== picked.length;
@@ -62,7 +67,7 @@ export const saveBetAction = async (input: SaveBetInput): Promise<SaveBetResult>
         .select("id")
         .single();
 
-    if (betError || !bet) return { error: "Could not save your bet" };
+    if (betError || !bet) return fail("save bet", betError);
 
     const positionRows = (category: string, numbers: (number | null)[]) =>
         numbers.flatMap((number, index) =>
@@ -114,12 +119,14 @@ export const saveBetAction = async (input: SaveBetInput): Promise<SaveBetResult>
         .delete()
         .eq("bet_id", bet.id);
 
-    if (deleteError) return { error: "Could not save your bet" };
+    if (deleteError) return fail("clear old picks", deleteError);
 
     if (rows.length > 0) {
         const { error: insertError } = await supabase.from("bet_picks").insert(rows);
-        if (insertError) return { error: "Could not save your bet" };
+        if (insertError) return fail("insert picks", insertError);
     }
+
+
 
     return { error: null };
 };
