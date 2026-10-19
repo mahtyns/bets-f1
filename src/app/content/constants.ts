@@ -38,10 +38,14 @@ export const constants = {
             text: "Box, box",
             variant: "primary" as const
         },
-        closed: {
+        locked: {
+            text: "Pools locked",
+            variant: "secondary" as const
+        },
+        idle: {
             text: "Pools closed",
             variant: "secondary" as const
-        }
+        },
     }
 }
 

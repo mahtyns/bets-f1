@@ -15,25 +15,23 @@ import { getStandings } from "@/app/data/standings";
 import { getSessionUserId } from "@/app/lib/session";
 import { getBetsWindow, isBetsOpen } from "@/app/data/bets-window";
 import { HeaderMenu } from "../molecules/header/HeaderMenu";
+import { HeaderButtons } from "../molecules/header/HeaderButtons";
 
 const Header = async () => {
-    const [nextRace, userId] = await Promise.all([
+    const [userId] = await Promise.all([
         getNextRace(),
         getStandings(),
         getSessionUserId(),
     ]);
     const standings = userId ? await getStandings() : [];
-    const betsWindow = nextRace ? await getBetsWindow(nextRace.meetingKey) : null;
-    const isOpen = isBetsOpen(betsWindow, Date.now());
     const me = standings.find((standing) => standing.userId === String(userId));
-    const button = isOpen ? constants.buttons.open : constants.buttons.closed;
 
     return (
         <div className="header">
             <div className="header__logo">
                 <img src={constants.logo} alt="RosarioBETS F1 Betting Page Logo" />
             </div>
-            <Button variant={button.variant} text={button.text} />
+            <HeaderButtons />
             <RaceWeekGate
                 open={<HeaderNextRaceOpen text="Pools open" opens="Closing in" />}
                 locked={<HeaderNextRaceLocked text="Pools are locked" />}

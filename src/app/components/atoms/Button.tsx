@@ -1,7 +1,7 @@
 interface ButtonProps {
     text: string,
     variant: 'primary' | 'secondary' | 'inverted' | 'outlined'
-    handleClick?: () => void | null;
+    handleClick?: () => void | null | string;
     type?: 'submit',
     disabled?: boolean
 }

@@ -17,7 +17,7 @@ export const ButtonOpen = (props: ButtonOpenProps) => {
         <div className={`${props.mainClass}__bottom ${props.mainClass}__bottom--open`}>
             <Text variant="primary" text="Pools are open" mainClass={props.mainClass} />
             <span><Countdown targetDate={betsClosesAt} /></span>
-            <Button variant="primary" text="Place your bets" />
+            <Button variant="primary" text="Place your bets" handleClick={() => window.location.href = "/prediction-hub"} />
         </div>
     )
 }
