@@ -15,6 +15,8 @@ import { getLastRound } from "../data/last-round";
 import { getRaceBets } from "../data/race-bets";
 import { PredictionHubIdle } from "../components/layouts/prediction-hub/PredictionHubIdle";
 import { getBetsWindow } from "../data/bets-window";
+import AuthGate from "../components/layouts/AuthGate";
+import Login from "../components/layouts/Login";
 
 export default async function PredictionHubPage() {
     const nextRace = await getNextRace();
@@ -63,11 +65,13 @@ export default async function PredictionHubPage() {
                     <h1 className="title-h1">{predictionHubContent.mainTitle}</h1>
                 </section>
             )}
-            <RaceWeekGate
-                open={<PredictionHub drivers={drivers} hasSprint={currentRace?.isSprint ?? false} raceId={currentRace?.id ?? null} initialBet={initialBet} />}
-                locked={<PredictionHubLocked bets={bets} myBet={myBet} />}
-                idle={<PredictionHubIdle lastRound={lastRound} lastYear={lastYear} trackName={track?.meetingShort} />}
-            />
+            <AuthGate
+                loggedIn={<RaceWeekGate
+                    open={<PredictionHub drivers={drivers} hasSprint={currentRace?.isSprint ?? false} raceId={currentRace?.id ?? null} initialBet={initialBet} />}
+                    locked={<PredictionHubLocked bets={bets} myBet={myBet} />}
+                    idle={<PredictionHubIdle lastRound={lastRound} lastYear={lastYear} trackName={track?.meetingShort} />}
+                />}
+                loggedOut={<Login />} />
         </main>
     );
 }
