@@ -2,7 +2,7 @@
 
 import { createAdminClient } from "@/app/lib/supabase/admin";
 import { getSessionUserId } from "@/app/lib/session";
-import { BET_CATEGORIES, SAFETY_CAR_TO_NUMBER } from "@/app/content/bet-categories";
+import { BET_CATEGORIES, DNF_TO_NUMBER, RED_FLAG_TO_NUMBER, SAFETY_CAR_TO_NUMBER } from "@/app/content/bet-categories";
 import { PREDICTION_SLOT_COUNT } from "@/app/utils/helpers/predictionSlots";
 import type { SaveBetInput } from "@/app/types/bets";
 
@@ -106,6 +106,23 @@ export const saveBetAction = async (input: SaveBetInput): Promise<SaveBetResult>
             safety_car: SAFETY_CAR_TO_NUMBER[input.safetyCar],
         });
     }
+
+    if (input.dnf !== null) {
+        specialRows.push({
+            bet_id: bet.id,
+            category: BET_CATEGORIES.dnf,
+            dnf: DNF_TO_NUMBER[input.dnf],
+        });
+    }
+
+    if (input.redFlag !== null) {
+        specialRows.push({
+            bet_id: bet.id,
+            category: BET_CATEGORIES.redFlag,
+            red_flag: RED_FLAG_TO_NUMBER[input.redFlag],
+        });
+    }
+
 
     const rows = [
         ...positionRows(BET_CATEGORIES.qualifying, qualifying),

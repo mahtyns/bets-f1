@@ -72,9 +72,9 @@ const run = async () => {
     };
 
     POSITION_CATEGORIES.forEach((category) =>
-        ["exact_position", "same_team", "in_table"].forEach((type) => pointsFor(category, type))
+        ["exact_position", "near_position", "in_table"].forEach((type) => pointsFor(category, type))
     );
-    [BET_CATEGORIES.fastestLap, BET_CATEGORIES.driverOfTheDay, BET_CATEGORIES.safetyCar].forEach(
+    [BET_CATEGORIES.fastestLap, BET_CATEGORIES.driverOfTheDay, BET_CATEGORIES.safetyCar, BET_CATEGORIES.redFlag, BET_CATEGORIES.dnf].forEach(
         (category) => pointsFor(category, "correct")
     );
 
@@ -107,7 +107,7 @@ const run = async () => {
                     pick.driver_id !== null &&
                     real.team_id === teamByDriver.get(pick.driver_id)
                 ) {
-                    return total + pointsFor(category, "same_team");
+                    return total + pointsFor(category, "near_position");
                 }
                 if (inTable.has(pick.driver_id)) {
                     return total + pointsFor(category, "in_table");

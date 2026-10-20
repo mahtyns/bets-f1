@@ -1,4 +1,4 @@
-import type { SafetyCarChoice } from "@/app/types/predictions";
+import type { SafetyCarChoice, DNFChoice, RedFlagChoice } from "@/app/types/predictions";
 
 export interface SaveBetInput {
     raceId: number;
@@ -8,4 +8,6 @@ export interface SaveBetInput {
     fastestLap: number | null;
     driverOfTheRace: number | null;
     safetyCar: SafetyCarChoice | null;
+    dnf: DNFChoice | null,
+    redFlag: RedFlagChoice | null
 }

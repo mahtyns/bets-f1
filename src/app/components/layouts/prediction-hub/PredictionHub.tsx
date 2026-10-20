@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import type { PredictionDriver, SafetyCarChoice, PredictionSlot } from "@/app/types/predictions";
+import type { PredictionDriver, SafetyCarChoice, DNFChoice, RedFlagChoice, PredictionSlot } from "@/app/types/predictions";
 import { predictionHubContent } from "@/app/content/prediction-hub";
 import { emptyPredictionSlots } from "@/app/utils/helpers/predictionSlots";
 import QualifyingQ3Prediction from "../../organisms/prediction-hub/QualifyingQ3Prediction";
@@ -39,6 +39,8 @@ const PredictionHub = (props: PredictionHubProps) => {
     const [fastestLap, setFastestLap] = useState<number | null>(props.initialBet?.fastestLap ?? null);
     const [driverOfTheRace, setDriverOfTheRace] = useState<number | null>(props.initialBet?.driverOfTheRace ?? null);
     const [safetyCar, setSafetyCar] = useState<SafetyCarChoice | null>(props.initialBet?.safetyCar ?? null);
+    const [dnf, setDNF] = useState<DNFChoice | null>(props.initialBet?.dnf ?? null);
+    const [redFlag, setRedFlag] = useState<RedFlagChoice | null>(props.initialBet?.redFlag ?? null);
     const [isSaving, setIsSaving] = useState(false);
     const [saveMessage, setSaveMessage] = useState<string | null>(null);
 
@@ -65,6 +67,8 @@ const PredictionHub = (props: PredictionHubProps) => {
                 fastestLap,
                 driverOfTheRace,
                 safetyCar,
+                dnf,
+                redFlag
             });
             setSaveMessage(result.error ?? predictionHubContent.saved);
         } catch (error) {
@@ -106,9 +110,13 @@ const PredictionHub = (props: PredictionHubProps) => {
                     fastestLap={fastestLap}
                     driverOfTheRace={driverOfTheRace}
                     safetyCar={safetyCar}
+                    dnf={dnf}
+                    redFlag={redFlag}
                     onFastestLap={setFastestLap}
                     onDriverOfTheRace={setDriverOfTheRace}
                     onSafetyCar={setSafetyCar}
+                    onDNF={setDNF}
+                    onRedFlag={setRedFlag}
                 />
             </div>
             <PredictionSlip
@@ -120,6 +128,8 @@ const PredictionHub = (props: PredictionHubProps) => {
                 fastestLap={fastestLap}
                 driverOfTheRace={driverOfTheRace}
                 safetyCar={safetyCar}
+                dnf={dnf}
+                redFlag={redFlag}
                 hasSprint={props.hasSprint}
                 onConfirm={handleConfirm}
                 isSaving={isSaving}

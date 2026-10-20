@@ -1,9 +1,9 @@
 import "server-only";
 import { createAdminClient } from "@/app/lib/supabase/admin";
 import { getSessionUserId } from "@/app/lib/session";
-import type { SafetyCarChoice } from "@/app/types/predictions";
+import type { DNFChoice, RedFlagChoice, SafetyCarChoice } from "@/app/types/predictions";
 import { PREDICTION_SLOT_COUNT } from "@/app/utils/helpers/predictionSlots";
-import { BET_CATEGORIES, SAFETY_CAR_FROM_NUMBER } from "../content/bet-categories";
+import { BET_CATEGORIES, DNF_FROM_NUMBER, RED_FLAG_FROM_NUMBER, SAFETY_CAR_FROM_NUMBER } from "../content/bet-categories";
 
 export interface UserBet {
     qualifying: (number | null)[];
@@ -12,6 +12,8 @@ export interface UserBet {
     fastestLap: number | null;
     driverOfTheRace: number | null;
     safetyCar: SafetyCarChoice | null;
+    dnf: DNFChoice | null,
+    redFlag: RedFlagChoice | null
 }
 
 export const getUserBet = async (raceId: number): Promise<UserBet | null> => {
@@ -32,7 +34,7 @@ export const getUserBet = async (raceId: number): Promise<UserBet | null> => {
     const [picksResult, driversResult] = await Promise.all([
         supabase
             .from("bet_picks")
-            .select("category, position, driver_id, safety_car")
+            .select("category, position, driver_id, safety_car, dnf, red_flag")
             .eq("bet_id", bet.id),
         supabase.from("drivers").select("id, number"),
     ]);
@@ -64,6 +66,8 @@ export const getUserBet = async (raceId: number): Promise<UserBet | null> => {
 
     const special = (category: string) => picks.find((pick) => pick.category === category);
     const safetyCar = special(BET_CATEGORIES.safetyCar)?.safety_car;
+    const dnf = special(BET_CATEGORIES.dnf)?.dnf;
+    const redFlag = special(BET_CATEGORIES.redFlag)?.red_flag;
 
     return {
         qualifying: slotsFor(BET_CATEGORIES.qualifying),
@@ -72,5 +76,7 @@ export const getUserBet = async (raceId: number): Promise<UserBet | null> => {
         fastestLap: driverNumber(special(BET_CATEGORIES.fastestLap)?.driver_id),
         driverOfTheRace: driverNumber(special(BET_CATEGORIES.driverOfTheDay)?.driver_id),
         safetyCar: safetyCar == null ? null : SAFETY_CAR_FROM_NUMBER[safetyCar] ?? null,
+        dnf: dnf == null ? null : DNF_FROM_NUMBER[dnf] ?? null,
+        redFlag: redFlag == null ? null : RED_FLAG_FROM_NUMBER[redFlag] ?? null
     };
 };

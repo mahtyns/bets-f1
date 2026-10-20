@@ -39,6 +39,26 @@ export const predictionHubContent = {
                 { value: "3+" as const, label: "3+" },
             ],
         },
+        dnf: {
+            title: "DNF Number",
+            description: "Total number of DNF drivers",
+            options: [
+                { value: "0" as const, label: "0" },
+                { value: "1-2" as const, label: "1–2" },
+                { value: "3-5" as const, label: "3-5" },
+                { value: "6+" as const, label: "6+" },
+            ],
+        },
+        redFlag: {
+            title: "Red Flag",
+            description: "Total number of red flags during the race",
+            options: [
+                { value: "0" as const, label: "0" },
+                { value: "1" as const, label: "1" },
+                { value: "2" as const, label: "2" },
+                { value: "3+" as const, label: "3+" },
+            ],
+        },
         selected: "Selected",
     },
     slip: {
@@ -49,6 +69,8 @@ export const predictionHubContent = {
         fastestLap: "Fastest lap",
         driverOfTheRace: "Driver of the race",
         safetyCar: "Safety car",
+        dnf: "DNF",
+        redFlag: "Red Flag",
         empty: "Not selected",
         picked: "picked",
     },

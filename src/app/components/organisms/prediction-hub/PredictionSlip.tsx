@@ -1,4 +1,4 @@
-import type { PredictionDriver, PredictionSlot, SafetyCarChoice } from "@/app/types/predictions";
+import type { DNFChoice, PredictionDriver, PredictionSlot, RedFlagChoice, SafetyCarChoice } from "@/app/types/predictions";
 import { predictionHubContent } from "@/app/content/prediction-hub";
 import { PREDICTION_SLOT_COUNT, pickedCount } from "@/app/utils/helpers/predictionSlots";
 import Title from "../../atoms/Title";
@@ -15,6 +15,8 @@ interface PredictionSlipProps {
     fastestLap: number | null;
     driverOfTheRace: number | null;
     safetyCar: SafetyCarChoice | null;
+    dnf: DNFChoice | null;
+    redFlag: RedFlagChoice | null;
     hasSprint: boolean
     onConfirm: () => void;
     isSaving: boolean;
@@ -37,6 +39,14 @@ const PredictionSlip = (props: PredictionSlipProps) => {
     const safetyLabel =
         predictionHubContent.specials.safetyCar.options.find(
             (option) => option.value === props.safetyCar
+        )?.label ?? emptyLabel;
+    const dnfLabel =
+        predictionHubContent.specials.dnf.options.find(
+            (option) => option.value === props.dnf
+        )?.label ?? emptyLabel;
+    const redFlagLabel =
+        predictionHubContent.specials.redFlag.options.find(
+            (option) => option.value === props.redFlag
         )?.label ?? emptyLabel;
 
     const groups = [
@@ -73,8 +83,8 @@ const PredictionSlip = (props: PredictionSlipProps) => {
             : []),
         {
             title: predictionHubContent.specials.title,
-            picked: [props.fastestLap, props.driverOfTheRace, props.safetyCar].filter(Boolean).length,
-            total: 3,
+            picked: [props.fastestLap, props.driverOfTheRace, props.safetyCar, props.dnf, props.redFlag].filter(Boolean).length,
+            total: 5,
             rows: [
                 {
                     label: slip.fastestLap,
@@ -90,6 +100,16 @@ const PredictionSlip = (props: PredictionSlipProps) => {
                     label: slip.safetyCar,
                     value: safetyLabel,
                     empty: props.safetyCar === null,
+                },
+                {
+                    label: slip.dnf,
+                    value: dnfLabel,
+                    empty: props.dnf === null,
+                },
+                {
+                    label: slip.redFlag,
+                    value: redFlagLabel,
+                    empty: props.redFlag === null,
                 },
             ],
         },

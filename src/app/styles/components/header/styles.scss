@@ -196,6 +196,12 @@
             }
         }
 
+        &__button {
+            background: transparent;
+            border: none;
+            width: fit-content;
+        }
+
         &__name {
             display: none;
         }

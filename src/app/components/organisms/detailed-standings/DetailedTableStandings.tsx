@@ -14,7 +14,7 @@ const columns: { label: string }[] = [
   { label: "Driver" },
   { label: "Total pts" },
   { label: "Last GP" },
-  { label: "Poles" },
+  { label: "Wins" },
   { label: "Podiums" },
   { label: "Win rate" },
   { label: "Form (last 4)" },

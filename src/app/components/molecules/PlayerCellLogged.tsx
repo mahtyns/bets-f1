@@ -13,13 +13,16 @@ const PlayerCellLogged = (props: PlayerCellUserProps) => {
     if (!user) return null;
 
     return (
-        <PlayerCell
-            mainClass={props.mainClass}
-            name={user.display_name}
-            team={user.team}
-            avatarId={user.avatar_id}
-            isMe={true}
-        />
+        <button className="header__player-cell__button" onClick={() => window.location.href = "/user-page"}>
+            <PlayerCell
+                mainClass={props.mainClass}
+                name={user.display_name}
+                team={user.team}
+                avatarId={user.avatar_id}
+                isMe={true}
+            />
+        </button>
+
     )
 }
 

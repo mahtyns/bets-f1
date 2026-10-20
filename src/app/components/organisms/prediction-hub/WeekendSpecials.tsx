@@ -1,10 +1,12 @@
-import type { PredictionDriver, SafetyCarChoice } from "@/app/types/predictions";
+import type { DNFChoice, PredictionDriver, RedFlagChoice, SafetyCarChoice } from "@/app/types/predictions";
 import { predictionHubContent } from "@/app/content/prediction-hub";
 import Text from "../../atoms/Text";
 import Title from "../../atoms/Title";
 import DriverSelectOption from "../../molecules/prediction-hub/DriverSelectOption";
 import SafetyCarOptions from "../../molecules/prediction-hub/SafetyCarOptions";
 import WeekendSpecialCard from "../../molecules/prediction-hub/WeekendSpecialCard";
+import DNFOptions from "../../molecules/prediction-hub/DNFOptions";
+import RedFlagOptions from "../../molecules/prediction-hub/RedFlagOptions";
 
 interface WeekendSpecialsProps {
     mainClass: string;
@@ -12,9 +14,13 @@ interface WeekendSpecialsProps {
     fastestLap: number | null;
     driverOfTheRace: number | null;
     safetyCar: SafetyCarChoice | null;
+    dnf: DNFChoice | null;
+    redFlag: RedFlagChoice | null
     onFastestLap: (driverNumber: number) => void;
     onDriverOfTheRace: (driverNumber: number) => void;
     onSafetyCar: (value: SafetyCarChoice) => void;
+    onDNF: (value: DNFChoice) => void;
+    onRedFlag: (value: RedFlagChoice) => void;
 }
 
 const selectedDriverName = (
@@ -93,6 +99,22 @@ const WeekendSpecials = (props: WeekendSpecialsProps) => {
                         mainClass={props.mainClass}
                         value={props.safetyCar}
                         onSelect={props.onSafetyCar}
+                    />
+                </WeekendSpecialCard>
+                <WeekendSpecialCard mainClass={props.mainClass} title={specials.dnf.title}
+                    description={specials.dnf.description}>
+                    <DNFOptions
+                        mainClass={props.mainClass}
+                        value={props.dnf}
+                        onSelect={props.onDNF}
+                    />
+                </WeekendSpecialCard>
+                <WeekendSpecialCard mainClass={props.mainClass} title={specials.redFlag.title}
+                    description={specials.redFlag.description}>
+                    <RedFlagOptions
+                        mainClass={props.mainClass}
+                        value={props.redFlag}
+                        onSelect={props.onRedFlag}
                     />
                 </WeekendSpecialCard>
             </div>

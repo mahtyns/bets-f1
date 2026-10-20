@@ -34,7 +34,7 @@ export const getRaceBets = async (meetingKey: number): Promise<PlayerBet[]> => {
             .in("id", bets.map((bet) => bet.user_id)),
         supabase
             .from("bet_picks")
-            .select("bet_id, category, position, driver_id, safety_car")
+            .select("bet_id, category, position, driver_id, safety_car, dnf, red_flag")
             .in("bet_id", bets.map((bet) => bet.id)),
         supabase.from("drivers").select("id, name"),
     ]);
