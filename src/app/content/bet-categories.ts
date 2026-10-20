@@ -8,7 +8,7 @@ export const BET_CATEGORIES = {
     driverOfTheDay: "driver_of_the_day",
     safetyCar: "safety_car",
     dnf: "dnf",
-    redFlag: "red_flag"
+    redFlag: "red_flags"
 } as const;
 
 export const SAFETY_CAR_TO_NUMBER: Record<SafetyCarChoice, number> = {
@@ -37,14 +37,14 @@ export const DNF_FROM_NUMBER: Record<number, DNFChoice> = {
     3: "6+"
 };
 
-export const RED_FLAG_TO_NUMBER: Record<RedFlagChoice, number> = {
+export const red_flags_TO_NUMBER: Record<RedFlagChoice, number> = {
     "0": 0,
     "1": 1,
     "2": 2,
     "3+": 3
 };
 
-export const RED_FLAG_FROM_NUMBER: Record<number, RedFlagChoice> = {
+export const red_flags_FROM_NUMBER: Record<number, RedFlagChoice> = {
     0: "0",
     1: "1",
     2: "2",

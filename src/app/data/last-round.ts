@@ -27,7 +27,7 @@ export const getLastRound = async (userId: number | string | null): Promise<Last
     const [resultsRes, driversRes, betRes, scoreRes] = await Promise.all([
         supabase
             .from("race_results")
-            .select("category, position, driver_id, safety_car")
+            .select("category, position, driver_id, safety_car, dnf, red_flags")
             .eq("race_id", race.id),
         supabase.from("drivers").select("id, name"),
         userId
@@ -45,7 +45,7 @@ export const getLastRound = async (userId: number | string | null): Promise<Last
     if (betRes?.data) {
         const { data: picks } = await supabase
             .from("bet_picks")
-            .select("category, position, driver_id, safety_car")
+            .select("category, position, driver_id, safety_car, dnf, red_flags")
             .eq("bet_id", betRes.data.id);
 
         bet = toBetSummary(picks ?? [], nameById, race.is_sprint);

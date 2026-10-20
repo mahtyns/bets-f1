@@ -20,9 +20,3 @@ export const scoringRules = {
         }
     ]
 }
-
-// same driver in that exact position → 5
-// otherwise, the predicted driver’s teammate is the actual driver in that position → 3
-// otherwise, the predicted driver finished somewhere else in the real top 10 → 1
-// otherwise 0
-// Only the best match counts per position, never added together.

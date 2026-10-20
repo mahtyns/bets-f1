@@ -13,6 +13,7 @@ interface ApiSession {
 interface ApiResult {
     driver_number: number;
     position: number | null;
+    dnf: boolean;
 }
 
 interface ApiLap {
@@ -31,6 +32,8 @@ interface ResultRow {
     driver_id: number | null;
     team_id: number | null;
     safety_car: number | null;
+    dnf?: number | null;
+    red_flags?: number | null;
 }
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -51,6 +54,43 @@ const getJson = async <T>(path: string, attempt = 1): Promise<T> => {
 };
 
 const toSafetyCarValue = (count: number): number => (count === 0 ? 0 : count <= 2 ? 1 : 2);
+const toDnfValue = (count: number): number => (count === 0 ? 0 : count <= 2 ? 1 : count <= 5 ? 2 : 3);
+const toRedFlagValue = (count: number): number => Math.min(count, 3);
+
+const fetchDnfRow = async (raceId: number, raceKey: number): Promise<ResultRow> => {
+    const results = await getJson<ApiResult[]>(`session_result?session_key=${raceKey}`);
+    const count = results.filter((result) => result.dnf).length;
+    console.log(`DNF counted: ${count}`);
+
+    return {
+        race_id: raceId,
+        category: BET_CATEGORIES.dnf,
+        position: null,
+        driver_id: null,
+        team_id: null,
+        safety_car: null,
+        dnf: toDnfValue(count),
+    };
+};
+
+const fetchRedFlagRow = async (raceId: number, raceKey: number): Promise<ResultRow> => {
+    const flags = await getJson<ApiRaceControl[]>(
+        `race_control?session_key=${raceKey}&category=Flag&flag=RED`
+    );
+    console.log("Red flag messages:");
+    flags.forEach((item) => console.log(`  ${item.message}`));
+    console.log(`Red flags counted: ${flags.length}`);
+
+    return {
+        race_id: raceId,
+        category: BET_CATEGORIES.redFlag,
+        position: null,
+        driver_id: null,
+        team_id: null,
+        safety_car: null,
+        red_flags: toRedFlagValue(flags.length),
+    };
+};
 
 const run = async () => {
     const round = Number(process.argv[2]);
@@ -171,12 +211,19 @@ const run = async () => {
     });
     console.log(`Safety car deployments counted: ${deployments}`);
 
+    rows.push(
+        await fetchDnfRow(race.id, raceKey),
+        await fetchRedFlagRow(race.id, raceKey)
+    );
+
     const managed = [
         BET_CATEGORIES.qualifying,
         BET_CATEGORIES.race,
         BET_CATEGORIES.sprint,
         BET_CATEGORIES.fastestLap,
         BET_CATEGORIES.safetyCar,
+        BET_CATEGORIES.dnf,
+        BET_CATEGORIES.redFlag,
     ];
 
     const { error: deleteError } = await supabase

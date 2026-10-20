@@ -15,6 +15,8 @@ interface Pick {
     position: number | null;
     driver_id: number | null;
     safety_car: number | null;
+    dnf: number | null,
+    red_flags: number | null
 }
 
 const run = async () => {
@@ -38,7 +40,7 @@ const run = async () => {
         supabase.from("scoring_rules").select("category, match_type, points"),
         supabase
             .from("race_results")
-            .select("category, position, driver_id, team_id, safety_car")
+            .select("category, position, driver_id, team_id, safety_car, dnf, red_flags")
             .eq("race_id", race.id),
         supabase.from("bets").select("id, user_id").eq("race_id", race.id),
         supabase.from("drivers").select("id, team_id"),
@@ -80,7 +82,7 @@ const run = async () => {
 
     const picksRes = await supabase
         .from("bet_picks")
-        .select("bet_id, category, position, driver_id, safety_car")
+        .select("bet_id, category, position, driver_id, safety_car, dnf, red_flags")
         .in("bet_id", bets.map((bet) => bet.id));
     if (picksRes.error) throw picksRes.error;
     const allPicks: Pick[] = picksRes.data ?? [];
@@ -103,9 +105,10 @@ const run = async () => {
                     return total + pointsFor(category, "exact_position");
                 }
                 if (
-                    real &&
+                    pick.position !== null &&
                     pick.driver_id !== null &&
-                    real.team_id === teamByDriver.get(pick.driver_id)
+                    (byPosition.get(pick.position - 1)?.driver_id === pick.driver_id ||
+                        byPosition.get(pick.position + 1)?.driver_id === pick.driver_id)
                 ) {
                     return total + pointsFor(category, "near_position");
                 }
@@ -131,6 +134,20 @@ const run = async () => {
             ? pointsFor(BET_CATEGORIES.safetyCar, "correct")
             : 0;
     };
+    const scoreDNF = (picks: Pick[]): number => {
+        const real = results.find((result) => result.category === BET_CATEGORIES.dnf);
+        const pick = picks.find((item) => item.category === BET_CATEGORIES.dnf);
+        return real && pick && real.dnf === pick.dnf
+            ? pointsFor(BET_CATEGORIES.dnf, "correct")
+            : 0;
+    };
+    const scoreRedFlag = (picks: Pick[]): number => {
+        const real = results.find((result) => result.category === BET_CATEGORIES.redFlag);
+        const pick = picks.find((item) => item.category === BET_CATEGORIES.redFlag);
+        return real && pick && real.red_flags === pick.red_flags
+            ? pointsFor(BET_CATEGORIES.redFlag, "correct")
+            : 0;
+    };
 
     const scored = bets.map((bet) => {
         const picks = allPicks.filter((pick) => pick.bet_id === bet.id);
@@ -142,6 +159,8 @@ const run = async () => {
             fastestLap: scoreDriverSpecial(BET_CATEGORIES.fastestLap, picks),
             driverOfTheDay: scoreDriverSpecial(BET_CATEGORIES.driverOfTheDay, picks),
             safetyCar: scoreSafetyCar(picks),
+            dnf: scoreDNF(picks),
+            redFlag: scoreRedFlag(picks)
         };
         const points = Object.values(breakdown).reduce((sum, value) => sum + value, 0);
 
@@ -167,8 +186,6 @@ const run = async () => {
         }))
     );
     if (insertError) throw insertError;
-
-
 
     console.log(`Saved scores for ${scored.length} bets in ${race.name}`);
 };

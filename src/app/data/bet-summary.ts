@@ -1,4 +1,4 @@
-import { BET_CATEGORIES, DNF_FROM_NUMBER, RED_FLAG_FROM_NUMBER, SAFETY_CAR_FROM_NUMBER } from "../content/bet-categories";
+import { BET_CATEGORIES, DNF_FROM_NUMBER, red_flags_FROM_NUMBER, SAFETY_CAR_FROM_NUMBER } from "../content/bet-categories";
 
 export interface BetSummary {
     qualifying: (string | null)[];
@@ -17,7 +17,7 @@ export interface PickRow {
     driver_id: number | null;
     safety_car: number | null;
     dnf: number | null,
-    redFlag: number | null
+    red_flags: number | null
 }
 
 const PODIUM_SIZE = 3;
@@ -50,6 +50,6 @@ export const toBetSummary = (
         driverOfTheDay: driverName(special(BET_CATEGORIES.driverOfTheDay)?.driver_id),
         safetyCar: safetyCar == null ? null : SAFETY_CAR_FROM_NUMBER[safetyCar] ?? null,
         dnf: dnf == null ? null : DNF_FROM_NUMBER[dnf] ?? null,
-        redFlag: redFlag == null ? null : RED_FLAG_FROM_NUMBER[redFlag] ?? null,
+        redFlag: redFlag == null ? null : red_flags_FROM_NUMBER[redFlag] ?? null,
     };
 };
