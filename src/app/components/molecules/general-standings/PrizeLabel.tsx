@@ -13,7 +13,7 @@ const PrizeLabel = (props: PrizeProps) => {
             </div>
             <div className={`${props.mainClass}__prize__text`}>
                 <p>{helperTexts.winner}</p>
-                <p>WINNER GETS VIP RACE DINNER 🍕</p>
+                <p>WINNER GETS VIP RACE DINNER 🌮</p>
             </div>
         </div>
     )

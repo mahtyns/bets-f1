@@ -67,8 +67,16 @@ $team-colors: (
     }
 
     tbody {
+        tr:hover {
+            background-color: $background-600;
+        }
+
         tr:nth-child(2n) {
             background-color: $background-600;
+
+            &:hover {
+                background-color: $background-500;
+            }
         }
 
         tr:last-of-type {

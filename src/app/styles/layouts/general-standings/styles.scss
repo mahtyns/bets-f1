@@ -142,6 +142,10 @@
         flex-direction: column;
         gap: $space-sm;
 
+        &:hover {
+            background-color: $background-600;
+        }
+
         &--me {
             border: $space-min solid $primary-500;
         }
@@ -213,6 +217,10 @@
             flex-direction: column;
             gap: $space-sm;
             align-items: center;
+
+            &:hover {
+                background-color: $background-600;
+            }
 
             @include breakpoint-md {
                 justify-content: space-between;
