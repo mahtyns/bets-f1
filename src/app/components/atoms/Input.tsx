@@ -1,6 +1,8 @@
+import { InputTypes } from "@/app/types/components";
+
 interface InputProps {
     id: string;
-    type: 'text' | 'password';
+    type: InputTypes
     value: string;
     onChange: (value: string) => void;
     autoComplete?: string;

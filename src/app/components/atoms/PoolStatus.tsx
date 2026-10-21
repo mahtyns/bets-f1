@@ -1,5 +1,7 @@
+import { OpenClosedType } from "@/app/types/components";
+
 interface PoolStatusProps {
-    variant: 'open' | 'closed'
+    variant: OpenClosedType
 }
 
 const variantClasses: Record<PoolStatusProps['variant'], string> = {

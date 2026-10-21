@@ -46,6 +46,10 @@ export const constants = {
             text: "Pools closed",
             variant: "secondary" as const
         },
+        mobileMenu: {
+            text: "Prediction hub",
+            variant: 'primary' as const
+        }
     }
 }
 

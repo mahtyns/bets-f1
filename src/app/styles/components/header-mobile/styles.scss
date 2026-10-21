@@ -10,6 +10,7 @@
         padding: $space-xl;
         display: flex;
         flex-direction: column;
+        align-items: center;
         gap: $space-md;
 
         @include breakpoint-md {
@@ -25,6 +26,10 @@
                 align-items: center;
                 padding: $space-sm;
                 border-radius: $border-radius-md;
+
+                &--login p {
+                    display: none;
+                }
 
                 img {
                     width: $img-sm;
@@ -74,6 +79,38 @@
             right: $space-md;
             color: $yellow-200;
             font-size: $font-md;
+        }
+
+        .button {
+            &--underline {
+                margin-top: auto;
+                font-size: $font-sm;
+            }
+
+            &--primary {
+                background-color: $primary-600;
+                text-transform: uppercase;
+                font-size: $font-md;
+            }
+        }
+
+        .header__user-info__points {
+            text-align: center;
+            font-size: $font-sm;
+
+            p {
+                font-family: $font-label;
+                color: $yellow-200;
+                text-transform: uppercase;
+                margin-bottom: $space-xxs;
+            }
+        }
+
+        &__login-link {
+            margin-top: auto;
+            font-size: $font-sm;
+            text-transform: uppercase;
+            font-family: $font-label;
         }
     }
 

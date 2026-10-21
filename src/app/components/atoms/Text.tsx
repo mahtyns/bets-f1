@@ -1,7 +1,8 @@
+import { TextVariantType } from "@/app/types/components";
 
 interface TextProps {
     text: string,
-    variant: 'white' | 'primary' | 'muted',
+    variant: TextVariantType
     mainClass?: string
 }
 

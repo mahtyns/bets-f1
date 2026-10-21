@@ -13,7 +13,6 @@ import { Logout } from "../atoms/Logout";
 import PlayerCellLogged from "../molecules/PlayerCellLogged";
 import { getStandings } from "@/app/data/standings";
 import { getSessionUserId } from "@/app/lib/session";
-import { getBetsWindow, isBetsOpen } from "@/app/data/bets-window";
 import { HeaderMenu } from "../molecules/header/HeaderMenu";
 import { HeaderButtons } from "../molecules/header/HeaderButtons";
 
@@ -52,7 +51,7 @@ const Header = async () => {
                 </div>}
                 loggedOut={<PlayerCellLogin mainClass={"header"} />}
             />
-            <HeaderMenu />
+            <HeaderMenu buttonText={constants.buttons.mobileMenu.text} buttonVariant={constants.buttons.mobileMenu.variant} totalPoints={me?.totalPoints ?? null} rank={me?.rank ?? null} />
         </div>
     )
 }

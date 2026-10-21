@@ -1,6 +1,8 @@
+import { ButtonType } from "@/app/types/components";
+
 interface ButtonProps {
     text: string,
-    variant: 'primary' | 'secondary' | 'inverted' | 'outlined'
+    variant: ButtonType
     handleClick?: () => void | null | string;
     type?: 'submit',
     disabled?: boolean

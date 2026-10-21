@@ -1,7 +1,9 @@
+import { LabelType } from "@/app/types/components";
+
 interface LabelProps {
     text: string,
     mainClass: string,
-    variant: 'primary' | 'secondary' | 'tertiary'
+    variant: LabelType
 }
 
 const variantClasses: Record<LabelProps['variant'], string> = {

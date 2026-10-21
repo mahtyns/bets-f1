@@ -1,6 +1,8 @@
+import { FormBadgeContentType } from "@/app/types/components";
+
 interface FormBadgeProps {
     mainClass: string,
-    content: 'W' | 'P' | 'L'
+    content: FormBadgeContentType
 }
 
 const variantClasses: Record<FormBadgeProps['content'], string> = {
