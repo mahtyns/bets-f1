@@ -11,11 +11,7 @@ $team-colors: (
 
 .standings-table {
     background-color: $background-700;
-    display: none;
-
-    @include breakpoint-md {
-        display: block;
-    }
+    display: block;
 
     .title-h2 {
         margin-bottom: $space-sm;
@@ -25,6 +21,15 @@ $team-colors: (
         width: 100%;
         border-collapse: collapse;
         border-spacing: 0;
+
+        th:nth-child(n + 4),
+        td:nth-child(n + 4) {
+            display: none;
+
+            @include breakpoint-md {
+                display: table-cell;
+            }
+        }
     }
 
     &__head {
@@ -35,15 +40,28 @@ $team-colors: (
             font-weight: 700;
             font-family: $font-label;
             text-transform: uppercase;
-            padding: $space-xs;
-            font-size: $font-xs;
+            padding: $space-xxs $space-xs;
+            font-size: $font-xxs;
 
             &:first-of-type {
                 border-radius: $border-radius-md 0 0 0;
             }
 
-            &:last-of-type {
+            &:nth-of-type(3) {
                 border-radius: 0 $border-radius-md 0 0;
+            }
+
+            @include breakpoint-md {
+                padding: $space-xs;
+                font-size: $font-xs;
+
+                &:nth-of-type(3) {
+                    border-radius: 0;
+                }
+
+                &:last-of-type {
+                    border-radius: 0 $border-radius-md 0 0;
+                }
             }
         }
     }
@@ -59,8 +77,18 @@ $team-colors: (
                     border-radius: 0 0 0 $border-radius-md;
                 }
 
-                &:last-of-type {
+                &:nth-of-type(3) {
                     border-radius: 0 0 $border-radius-md 0;
+                }
+
+                @include breakpoint-md {
+                    &:nth-of-type(3) {
+                        border-radius: 0;
+                    }
+
+                    &:last-of-type {
+                        border-radius: 0 0 $border-radius-md 0;
+                    }
                 }
             }
         }
@@ -69,33 +97,51 @@ $team-colors: (
     &__player-cell {
         &__info {
             display: flex;
-            gap: $space-sm;
+            gap: $space-xs;
             align-items: center;
 
             .standings-table__rounded-image {
-                width: $img-xs;
-                height: $img-xs;
+                width: $img-xxs;
+                height: $img-xxs;
+            }
+
+            @include breakpoint-md {
+                gap: $space-sm;
+
+                .standings-table__rounded-image {
+                    width: $img-xs;
+                    height: $img-xs;
+                }
             }
         }
-
 
         &__name {
             p:first-of-type {
                 font-family: $font-accent;
                 font-weight: 700;
-                font-size: $font-sm;
+                font-size: $font-xs;
                 color: $yellow-100;
                 text-transform: uppercase;
             }
 
             p:last-of-type {
                 font-family: $font-label;
-                font-size: $font-xs;
+                font-size: $font-xxs;
             }
 
             @each $team, $color in $team-colors {
                 &--#{$team} p:last-of-type {
                     color: $color;
+                }
+            }
+
+            @include breakpoint-md {
+                p:first-of-type {
+                    font-size: $font-sm;
+                }
+
+                p:last-of-type {
+                    font-size: $font-xs;
                 }
             }
         }
@@ -122,23 +168,31 @@ $team-colors: (
     }
 
     &__td {
-        padding: $space-xs;
+        padding: $space-xxs $space-xs;
         text-align: center;
         font-family: $font-label;
 
         &:nth-of-type(2) {
             text-align: left;
         }
+
+        @include breakpoint-md {
+            padding: $space-xs;
+        }
     }
 
     .badge {
         margin-left: auto;
-        padding: $space-xxs;
+        padding: 0 $space-xxs;
         border: solid $space-min $background-200;
         text-transform: uppercase;
         font-size: $font-xxs;
         color: $background-50;
         border-radius: $border-radius-xs;
+
+        @include breakpoint-md {
+            padding: $space-xxs;
+        }
     }
 
     &__points {
