@@ -15,6 +15,7 @@ import { getStandings } from "@/app/data/standings";
 import { getSessionUserId } from "@/app/lib/session";
 import { HeaderMenu } from "../molecules/header/HeaderMenu";
 import { HeaderButtons } from "../molecules/header/HeaderButtons";
+import HeaderLogo from "../atoms/HeaderLogo";
 
 const Header = async () => {
     const [userId] = await Promise.all([
@@ -28,7 +29,7 @@ const Header = async () => {
     return (
         <div className="header">
             <div className="header__logo">
-                <img src={constants.logo} alt="RosarioBETS F1 Betting Page Logo" />
+                <HeaderLogo />
             </div>
             <HeaderButtons />
             <RaceWeekGate
