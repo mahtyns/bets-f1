@@ -1,12 +1,19 @@
 .prediction-info {
     text-transform: uppercase;
     display: flex;
+    flex-wrap: wrap;
     gap: $space-xs;
     background-color: $background-900;
     width: fit-content;
     padding: $space-xs;
     border-radius: $border-radius-sm;
     box-shadow: 0 0 $space-xs rgba($color: $primary-600, $alpha: 0.2);
+    font-size: $font-xxs;
+
+    @include breakpoint-md {
+        font-size: $font-base;
+        flex-wrap: nowrap;
+    }
 
     p {
         display: inline;

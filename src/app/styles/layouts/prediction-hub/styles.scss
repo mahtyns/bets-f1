@@ -18,12 +18,16 @@
     }
 
     &__module {
-        padding: $space-sm;
+        padding: 0;
         background-color: $background-700;
         border-radius: $border-radius-md;
         display: flex;
         flex-direction: column;
         gap: $space-sm;
+
+        @include breakpoint-md {
+            padding: $space-sm;
+        }
     }
 
     &__module-header {
@@ -288,6 +292,7 @@
         flex-direction: column;
         gap: $space-sm;
         padding: $space-sm;
+        border: solid $space-min $background-400;
         background-color: $background-700;
         border-radius: $border-radius-md;
 

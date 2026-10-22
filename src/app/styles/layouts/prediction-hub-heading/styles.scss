@@ -5,11 +5,25 @@
 
     &__topbar {
         display: flex;
-        justify-content: space-between;
+        flex-direction: column;
+        gap: $space-xs;
+
+        @include breakpoint-md {
+            justify-content: space-between;
+            flex-direction: row;
+            gap: 0;
+        }
     }
 
     &__status-bar {
         display: flex;
-        gap: $space-md;
+        flex-direction: column;
+        gap: $space-xs;
+
+        @include breakpoint-md {
+            gap: $space-md;
+            flex-direction: row;
+        }
     }
+
 }

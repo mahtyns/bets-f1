@@ -100,7 +100,7 @@
 
         .button {
             width: 100%;
-            cursor: default;
+            cursor: pointer;
         }
 
         .text--primary {
@@ -113,12 +113,16 @@
             color: $primary-400;
             text-transform: uppercase;
             font-family: $font-label;
-            font-size: $font-lg;
+            font-size: $font-md;
             background-color: $background-700;
             padding: $space-sm;
             border-radius: $border-radius-sm;
             width: 100%;
             text-align: center;
+
+            @include breakpoint-md {
+                font-size: $font-lg;
+            }
         }
     }
 }

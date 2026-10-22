@@ -141,6 +141,7 @@
         height: fit-content;
         justify-content: center;
         width: calc(50% - $space-xs);
+        height: stretch;
 
         &:hover {
             filter: brightness(1.3);
