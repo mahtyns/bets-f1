@@ -7,11 +7,12 @@
         width: 100%;
         height: 100vh;
         z-index: 5;
-        padding: $space-xl;
+        padding: $space-lg;
+        padding-bottom: $space-xxl;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: $space-md;
+        gap: $space-sm;
 
         @include breakpoint-md {
             display: none;
@@ -24,7 +25,7 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                padding: $space-sm;
+                padding: $space-md;
                 border-radius: $border-radius-md;
 
                 &--login p {
@@ -61,13 +62,13 @@
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: $space-md;
+            gap: $space-sm;
             align-items: center;
             padding: 0;
         }
 
         &__link a {
-            font-size: $font-md;
+            font-size: $font-sm;
             font-family: $font-label;
             text-transform: uppercase;
             color: $primary-200;
@@ -90,13 +91,13 @@
             &--primary {
                 background-color: $primary-600;
                 text-transform: uppercase;
-                font-size: $font-md;
+                font-size: $font-sm;
             }
         }
 
         .header__user-info__points {
             text-align: center;
-            font-size: $font-sm;
+            font-size: $font-xs;
 
             p {
                 font-family: $font-label;
@@ -108,7 +109,7 @@
 
         &__login-link {
             margin-top: auto;
-            font-size: $font-sm;
+            font-size: $font-base;
             text-transform: uppercase;
             font-family: $font-label;
         }
