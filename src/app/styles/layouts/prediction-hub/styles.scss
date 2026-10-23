@@ -487,9 +487,25 @@
         .title-text {
             margin: 0;
             font-family: $font-label;
-            font-size: $font-xxs;
+            font-size: $font-xs;
             text-transform: uppercase;
-            color: $text-main;
+            color: $tertiary-100
+        }
+
+        &:first-of-type {
+            border: solid $space-min $primary-400;
+
+            .title-text {
+                color: $primary-400;
+                font-weight: 700;
+                font-size: $font-base;
+            }
+
+            .prediction-hub__stat-name {
+                @include breakpoint-md {
+                    font-size: $font-lg;
+                }
+            }
         }
 
         @include breakpoint-md {
@@ -533,6 +549,7 @@
         font-size: $font-md;
         font-weight: 700;
         text-transform: uppercase;
+        color: $yellow-200;
     }
 
     &__stat-detail {

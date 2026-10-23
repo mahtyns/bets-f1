@@ -86,6 +86,7 @@
             &--underline {
                 margin-top: auto;
                 font-size: $font-sm;
+                margin-bottom: $space-lg;
             }
 
             &--primary {
@@ -112,6 +113,7 @@
             font-size: $font-base;
             text-transform: uppercase;
             font-family: $font-label;
+            margin-bottom: $space-lg;
         }
     }
 
