@@ -20,6 +20,7 @@ export const NextRace = async () => {
         : [null, null];
     const cards = getRaceInfoCards(circuitInfo);
 
+
     return (
         <section id="next-race-info" className={mainClass}>
             {nextRace && track ? (

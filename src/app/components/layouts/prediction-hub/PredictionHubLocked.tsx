@@ -10,14 +10,14 @@ import Login from "../Login";
 interface PredictionHubLockedProps {
     bets: PlayerBet[];
     myBet: BetSummary | null;
+    userId: number | null;
 }
-
 export const PredictionHubLocked = (props: PredictionHubLockedProps) => {
     return (
         <>
             <PredictionLockedOpener />
             <AuthGate
-                loggedIn={<PredictionLockedResults bet={props.myBet} />}
+                loggedIn={<PredictionLockedResults bet={props.myBet} bets={props.bets} userId={props.userId} />}
                 loggedOut={<div>
                     <Title isH1={false} title="Log in to see your bets" />
                     <Login />

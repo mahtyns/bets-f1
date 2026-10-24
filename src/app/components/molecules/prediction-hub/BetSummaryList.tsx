@@ -25,9 +25,11 @@ const BetSummaryList = (props: BetSummaryListProps) => {
         {
             title: specials.title,
             rows: [
-                { label: slip.fastestLap, value: summary.fastestLap ?? slip.empty, empty: !summary.fastestLap },
-                { label: slip.driverOfTheRace, value: summary.driverOfTheDay ?? slip.empty, empty: !summary.driverOfTheDay },
-                { label: slip.safetyCar, value: summary.safetyCar ?? slip.empty, empty: !summary.safetyCar },
+                { label: slip.fastestLap, value: summary.fastestLap ?? slip.emptySpecials, empty: !summary.fastestLap },
+                { label: slip.driverOfTheRace, value: summary.driverOfTheDay ?? slip.emptySpecials, empty: !summary.driverOfTheDay },
+                { label: slip.safetyCar, value: summary.safetyCar ?? slip.emptySpecials, empty: !summary.safetyCar },
+                { label: slip.dnf, value: summary.dnf ?? slip.emptySpecials, empty: !summary.dnf },
+                { label: slip.redFlag, value: summary.redFlag ?? slip.emptySpecials, empty: !summary.redFlag },
             ],
         },
     ];

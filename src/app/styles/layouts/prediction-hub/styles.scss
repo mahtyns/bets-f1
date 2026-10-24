@@ -1,3 +1,5 @@
+@import './locked/styles.scss';
+
 .prediction-hub {
     width: 100%;
     margin: $space-md 0;
@@ -24,11 +26,8 @@
         display: flex;
         flex-direction: column;
         gap: $space-sm;
-
-        @include breakpoint-md {
-            padding: $space-sm;
-        }
     }
+
 
     &__module-header {
         display: flex;
@@ -353,6 +352,18 @@
         gap: $space-xs;
         font-family: $font-label;
         font-size: $font-xxs;
+        padding: $space-xs;
+        background-color: $background-800;
+        border-radius: $border-radius-sm;
+        border: solid $space-min rgba($color: $background-100, $alpha: 0.2);
+
+        &:nth-of-type(2n) {
+            background-color: $background-900;
+        }
+
+        &:hover {
+            filter: brightness(1.2);
+        }
 
         span:first-child {
             color: $primary-200;
@@ -363,10 +374,6 @@
         span:last-child {
             text-align: right;
             color: $text-main;
-        }
-
-        &--empty span:last-child {
-            color: $background-50;
         }
     }
 
@@ -441,121 +448,6 @@
         font-size: $font-xs;
         color: $yellow-200;
         text-transform: uppercase;
-    }
-
-    &__stats {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: $space-sm;
-        margin: $space-sm 0;
-
-        @include breakpoint-md {
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-areas:
-                "winner p1 fastest safety"
-                "winner p1 fastest safety"
-                "winner p2 fastest safety"
-                "winner p2 dotd safety"
-                "winner p3 dotd safety"
-                "winner p3 dotd safety";
-        }
-
-        &--no-safety {
-            @include breakpoint-md {
-                grid-template-columns: repeat(3, 1fr);
-                grid-template-areas:
-                    "winner p1 fastest"
-                    "winner p1 fastest"
-                    "winner p2 fastest"
-                    "winner p2 dotd"
-                    "winner p3 dotd"
-                    "winner p3 dotd";
-            }
-        }
-    }
-
-    &__stat-card {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        gap: $space-xs;
-        padding: $space-sm;
-        background-color: $background-800;
-        border-radius: $border-radius-md;
-        color: $text-main;
-
-        .title-text {
-            margin: 0;
-            font-family: $font-label;
-            font-size: $font-xs;
-            text-transform: uppercase;
-            color: $tertiary-100
-        }
-
-        &:first-of-type {
-            border: solid $space-min $primary-400;
-
-            .title-text {
-                color: $primary-400;
-                font-weight: 700;
-                font-size: $font-base;
-            }
-
-            .prediction-hub__stat-name {
-                @include breakpoint-md {
-                    font-size: $font-lg;
-                }
-            }
-        }
-
-        @include breakpoint-md {
-            &--winner {
-                grid-area: winner;
-            }
-
-            &--p1 {
-                grid-area: p1;
-            }
-
-            &--p2 {
-                grid-area: p2;
-            }
-
-            &--p3 {
-                grid-area: p3;
-            }
-
-            &--fastest {
-                grid-area: fastest;
-            }
-
-            &--dotd {
-                grid-area: dotd;
-            }
-
-            &--safety {
-                grid-area: safety;
-            }
-        }
-
-        &--winner .prediction-hub__stat-name {
-            font-size: $font-lg;
-        }
-    }
-
-    &__stat-name {
-        margin: 0;
-        font-family: $font-accent;
-        font-size: $font-md;
-        font-weight: 700;
-        text-transform: uppercase;
-        color: $yellow-200;
-    }
-
-    &__stat-detail {
-        margin: 0;
-        font-family: $font-label;
-        font-size: $font-xs;
     }
 }
 

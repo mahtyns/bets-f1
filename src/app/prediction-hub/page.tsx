@@ -68,7 +68,7 @@ export default async function PredictionHubPage() {
             <AuthGate
                 loggedIn={<RaceWeekGate
                     open={<PredictionHub drivers={drivers} hasSprint={currentRace?.isSprint ?? false} raceId={currentRace?.id ?? null} initialBet={initialBet} />}
-                    locked={<PredictionHubLocked bets={bets} myBet={myBet} />}
+                    locked={<PredictionHubLocked bets={bets} myBet={myBet} userId={userId} />}
                     idle={<PredictionHubIdle lastRound={lastRound} lastYear={lastYear} trackName={track?.meetingShort} />}
                 />}
                 loggedOut={<Login />} />

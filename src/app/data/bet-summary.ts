@@ -3,7 +3,7 @@ import { BET_CATEGORIES, DNF_FROM_NUMBER, red_flags_FROM_NUMBER, SAFETY_CAR_FROM
 export interface BetSummary {
     qualifying: (string | null)[];
     race: (string | null)[];
-    sprint: (string | null)[] | null; // null when the weekend has no sprint
+    sprint: (string | null)[] | null;
     fastestLap: string | null;
     driverOfTheDay: string | null;
     safetyCar: string | null;
@@ -20,7 +20,7 @@ export interface PickRow {
     red_flags: number | null
 }
 
-const PODIUM_SIZE = 3;
+const LIST_SIZE = 10;
 
 export const toBetSummary = (
     rows: PickRow[],
@@ -31,7 +31,7 @@ export const toBetSummary = (
         driverId ? nameById.get(driverId) ?? null : null;
 
     const podium = (category: string) =>
-        Array.from({ length: PODIUM_SIZE }, (_, index) =>
+        Array.from({ length: LIST_SIZE }, (_, index) =>
             driverName(
                 rows.find((row) => row.category === category && row.position === index + 1)?.driver_id
             )

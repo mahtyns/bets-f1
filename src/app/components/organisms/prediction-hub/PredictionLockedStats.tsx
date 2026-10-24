@@ -40,7 +40,7 @@ export const PredictionLockedStats = (props: PredictionLockedStatsProps) => {
                     mainClass={mainClass}
                     area="winner"
                     title="Predicted winner"
-                    text={voteName(stats.winner)}
+                    text={`🥇 ${voteName(stats.winner)}`}
                     detail={votePercent(stats.winner)}
                 />
                 {stats.podium.map((vote, index) => (

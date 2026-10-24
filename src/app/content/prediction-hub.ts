@@ -72,6 +72,7 @@ export const predictionHubContent = {
         dnf: "DNF",
         redFlag: "Red Flag",
         empty: "Not selected",
+        emptySpecials: "0",
         picked: "picked",
     },
     empty: "Driver line-up is not available yet.",
