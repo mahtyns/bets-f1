@@ -1,4 +1,5 @@
 
+import { cacheLife } from "next/cache";
 import { CHAMPIONSHIP_YEAR } from "../content/helper-values";
 import { createAdminClient } from "../lib/supabase/admin";
 
@@ -32,6 +33,8 @@ interface RaceRow {
 const RACE_DURATION_MS = 4 * 60 * 60 * 1000;
 
 export async function getNextRace(): Promise<NextRace | null> {
+    "use cache"
+    cacheLife("hours")
     const supabase = createAdminClient()
     const { data, error } = await supabase
         .from("races")
