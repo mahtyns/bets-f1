@@ -23,6 +23,7 @@ interface RaceRow {
     round: number | null;
     name: string | null;
     circuit: string | null;
+    circuit_key: number | null;
     race_start: string | null;
     bets_opens_at: string | null;
     bets_lock_at: string | null;
@@ -44,6 +45,7 @@ export async function getNextRace(): Promise<NextRace | null> {
             round,
             name,
             circuit,
+            circuit_key,
             race_start,
             bets_opens_at,
             bets_lock_at,
@@ -73,7 +75,7 @@ export async function getNextRace(): Promise<NextRace | null> {
 
     return {
         id: next.id,
-        circuitKey: next.external_id ?? 0,
+        circuitKey: next.circuit_key ?? 0,
         circuit: next.circuit ?? next.name ?? "Unknown circuit",
         start: next.race_start!,
         end: next.bets_lock_at ?? next.race_start!,
