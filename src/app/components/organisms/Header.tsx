@@ -18,13 +18,13 @@ import { HeaderButtons } from "../molecules/header/HeaderButtons";
 import HeaderLogo from "../atoms/HeaderLogo";
 
 const Header = async () => {
-    const [userId] = await Promise.all([
-        getNextRace(),
-        getStandings(),
+    const [userId, standings] = await Promise.all([
         getSessionUserId(),
+        getStandings(),
     ]);
-    const standings = userId ? await getStandings() : [];
-    const me = standings.find((standing) => standing.userId === String(userId));
+    const me = userId
+        ? standings.find((standing) => standing.userId === String(userId))
+        : undefined;
 
     return (
         <div className="header">
