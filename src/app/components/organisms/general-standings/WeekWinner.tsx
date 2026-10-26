@@ -34,11 +34,13 @@ const WeekWinner = (props: WeekWinnerProps) => {
             },
             {
                 title: "Points from specials",
-                total: points.fastestLap + points.driverOfTheDay + points.safetyCar,
+                total: points.fastestLap + points.driverOfTheDay + points.safetyCar + points.redFlag + points.dnf,
                 rows: [
                     { label: "Fastest lap", value: points.fastestLap },
                     { label: "Driver of the day", value: points.driverOfTheDay },
                     { label: "Safety car", value: points.safetyCar },
+                    { label: "DNF", value: points.dnf },
+                    { label: "Red Flags", value: points.redFlag },
                 ],
             },
         ]
@@ -48,16 +50,18 @@ const WeekWinner = (props: WeekWinnerProps) => {
         <div className={className}>
             <Title isH1={false} title="Winner of the Week" />
             <div className={`${className}__card`} >
-                <PlayerCell
-                    mainClass={props.mainClass}
-                    name={winner.name}
-                    team={winner.team}
-                    avatarId={winner.avatarId}
-                />
-                <p className={`${className}__total`}>
-                    <span>Total points</span>
-                    <span>{winner.lastGpPoints}</span>
-                </p>
+                <div className={`${className}__user`}>
+                    <PlayerCell
+                        mainClass={props.mainClass}
+                        name={winner.name}
+                        team={winner.team}
+                        avatarId={winner.avatarId}
+                    />
+                    <p className={`${className}__total`}>
+                        <span>Total points</span>
+                        <span>{winner.lastGpPoints}</span>
+                    </p>
+                </div>
                 {groups.map((group) => (
                     <div key={group.title} className={`${className}__group`}>
                         <p className={`${className}__group-head`}>

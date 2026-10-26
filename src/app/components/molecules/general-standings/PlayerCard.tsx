@@ -46,7 +46,7 @@ const PlayerCard = (props: PlayerCardProps) => {
                     </div>
                 )}
                 <div className={`${props.mainClass}__player-card__accuracy`}>
-                    <p>Accuracy</p>
+                    <p>Wins %</p>
                     <p>{standing.winRate.toFixed(1)}%</p>
                 </div>
             </div>

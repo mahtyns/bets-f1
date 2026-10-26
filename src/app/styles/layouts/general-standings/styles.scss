@@ -209,6 +209,12 @@
             margin-bottom: $space-sm;
         }
 
+        &__user {
+            display: flex;
+            flex-direction: column;
+            gap: $space-md;
+        }
+
         &__card {
             background-color: $background-800;
             border-radius: $border-radius-md;
@@ -216,7 +222,7 @@
             display: flex;
             flex-direction: column;
             gap: $space-sm;
-            align-items: center;
+            align-items: flex-start;
 
             &:hover {
                 background-color: $background-600;

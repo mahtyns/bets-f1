@@ -8,6 +8,8 @@ export interface PointsBreakdown {
     fastestLap: number;
     driverOfTheDay: number;
     safetyCar: number;
+    redFlag: number,
+    dnf: number
 }
 
 export interface Standing {
