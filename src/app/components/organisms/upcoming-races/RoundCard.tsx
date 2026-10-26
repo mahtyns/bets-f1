@@ -20,7 +20,8 @@ interface RoundCardProps {
 const statusLabels: Record<RoundStatus, { text: string, variant: 'primary' | 'secondary' | 'tertiary' }> = {
     completed: { text: 'Completed', variant: 'primary' },
     next: { text: 'Next race', variant: 'secondary' },
-    upcoming: { text: 'Upcoming', variant: 'tertiary' }
+    upcoming: { text: 'Upcoming', variant: 'tertiary' },
+    ongoing: { text: 'Ongoing', variant: 'secondary' },
 };
 
 const RoundCard = (props: RoundCardProps) => {

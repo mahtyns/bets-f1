@@ -1,24 +1,10 @@
 import { cacheLife } from "next/cache";
 import { CHAMPIONSHIP_YEAR } from "../content/helper-values";
-import { API_BASE } from "./api";
+import { createAdminClient } from "../lib/supabase/admin";
 
-const REVALIDATE_SECONDS = 3600;
+const RACE_DURATION_MS = 4 * 60 * 60 * 1000;
 
-interface ApiMeeting {
-    meeting_key: number;
-    meeting_name: string;
-    circuit_key: number;
-    circuit_short_name: string;
-    circuit_image: string;
-    circuit_type: string;
-    country_name: string;
-    country_flag: string;
-    date_start: string;
-    date_end: string;
-    is_cancelled: boolean;
-}
-
-export type RoundStatus = 'completed' | 'next' | 'upcoming';
+export type RoundStatus = 'completed' | 'next' | 'upcoming' | 'ongoing';
 
 export interface Round {
     meetingKey: number;
@@ -34,83 +20,77 @@ export interface Round {
     start: string;
     end: string;
     isSprint: boolean;
+    totalRounds: number;
 }
 
-const getSprintMeetingKeys = async (): Promise<Set<number>> => {
-    try {
-        const res = await fetch(
-            `${API_BASE}sessions?year=${CHAMPIONSHIP_YEAR}&session_name=Sprint`,
-            { next: { revalidate: REVALIDATE_SECONDS } }
-        );
-
-        if (!res.ok) return new Set();
-
-        const sessions: { meeting_key: number }[] = await res.json();
-
-        return new Set(sessions.map((session) => session.meeting_key));
-    } catch (error) {
-        console.error(error);
-        return new Set();
-    }
-};
+interface RaceRow {
+    round: number | null;
+    name: string | null;
+    circuit: string | null;
+    country: string | null;
+    race_start: string;
+    external_id: number | null;
+    is_sprint: boolean | null;
+    type: string,
+    image: string,
+    flag: string,
+    circuit_key: number
+}
 
 export const getRoundsOverview = async (): Promise<Round[]> => {
     "use cache";
     cacheLife("hours");
-    try {
-        const [res, sprintKeys] = await Promise.all([
-            fetch(`${API_BASE}meetings?year=${CHAMPIONSHIP_YEAR}`, {
-                next: { revalidate: REVALIDATE_SECONDS },
-            }),
-            getSprintMeetingKeys(),
-        ]);
-        if (!res.ok) return [];
 
-        const meetings: ApiMeeting[] = await res.json();
-        const now = Date.now();
+    const supabase = createAdminClient();
 
-        const races = meetings
-            .filter((m) => !m.is_cancelled && !/testing/i.test(m.meeting_name))
-            .sort(
-                (a, b) =>
-                    new Date(a.date_start).getTime() - new Date(b.date_start).getTime()
-            );
+    const { data, error } = await supabase
+        .from("races")
+        .select("round, name, circuit, country, race_start, external_id, is_sprint, type, image, circuit_key, flag")
+        .eq("season", CHAMPIONSHIP_YEAR)
+        .not("race_start", "is", null)
+        .order("round", { ascending: true });
 
-        const currentIndex = races.findIndex(
-            (m) => new Date(m.date_end).getTime() >= now
-        );
-
-        if (currentIndex === -1) return [];
-
-
-
-        const toRound = (meeting: ApiMeeting, status: RoundStatus): Round => ({
-            meetingKey: meeting.meeting_key,
-            circuitKey: meeting.circuit_key,
-            round: races.indexOf(meeting) + 1,
-            status,
-            name: meeting.meeting_name,
-            circuit: meeting.circuit_short_name,
-            country: meeting.country_name,
-            flag: meeting.country_flag,
-            image: meeting.circuit_image,
-            type: meeting.circuit_type,
-            start: meeting.date_start,
-            end: meeting.date_end,
-            isSprint: sprintKeys.has(meeting.meeting_key),
-        });
-
-        const rounds: Round[] = [];
-        const previous = races[currentIndex - 1];
-        const following = races[currentIndex + 1];
-
-        if (previous) rounds.push(toRound(previous, 'completed'));
-        rounds.push(toRound(races[currentIndex], 'next'));
-        if (following) rounds.push(toRound(following, 'upcoming'));
-
-        return rounds;
-    } catch (error) {
+    if (error) {
         console.error(error);
         return [];
     }
+
+    const races = (data ?? []) as RaceRow[];
+    const now = Date.now();
+
+    const currentIndex = races.findIndex(
+        (race) => new Date(race.race_start).getTime() + RACE_DURATION_MS >= now
+    );
+
+    if (currentIndex === -1) return [];
+
+    const toRound = (race: RaceRow, index: number, status: RoundStatus): Round => ({
+        meetingKey: race.external_id ?? 0,
+        circuitKey: race.circuit_key ?? 0,
+        round: race.round ?? index + 1,
+        totalRounds: races.length,
+        status,
+        name: race.name ?? "",
+        circuit: race.circuit ?? race.name ?? "",
+        country: race.country ?? "",
+        flag: race.flag ?? "",
+        image: race.image ?? "",
+        type: race.type ?? "",
+        start: race.race_start,
+        end: new Date(new Date(race.race_start).getTime() + RACE_DURATION_MS).toISOString(),
+        isSprint: race.is_sprint ?? false,
+    });
+
+    const rounds: Round[] = [];
+    const current = races[currentIndex];
+    const isOngoing = new Date(current.race_start).getTime() <= now;
+    const previous = races[currentIndex - 1];
+    const following = races[currentIndex + 1];
+
+
+    if (previous) rounds.push(toRound(previous, currentIndex - 1, 'completed'));
+    rounds.push(toRound(current, currentIndex, isOngoing ? 'ongoing' : 'next'));
+    if (following) rounds.push(toRound(following, currentIndex + 1, 'upcoming'));
+
+    return rounds;
 };

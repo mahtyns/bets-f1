@@ -13,13 +13,21 @@ export const updateProfileAction = async (input: UpdateProfileInput): Promise<Up
     if (!userId) return { user: null, error: "You need to be logged in" };
 
     const supabase = createAdminClient();
-    const changes: { avatar_id?: number; password_hash?: string } = {};
+    const changes: { avatar_id?: number; password_hash?: string, display_name?: string, team?: string } = {};
 
     if (input.avatarId !== undefined) {
         if (input.avatarId === 1 || !avatars[input.avatarId]) {
             return { user: null, error: "Invalid avatar" };
         }
         changes.avatar_id = input.avatarId;
+    }
+
+    if (input.displayName !== undefined) {
+        changes.display_name = input.displayName
+    }
+
+    if (input.teamName !== undefined) {
+        changes.team = input.teamName
     }
 
     if (input.newPassword) {

@@ -11,6 +11,7 @@ import Header from "./components/organisms/Header";
 import Footer from "./components/organisms/Footer";
 import AuthBoundary from "./components/organisms/AuthBoundary";
 import { getBetsWindow } from "./data/bets-window";
+import { Suspense } from "react";
 
 
 const barlowCondensed = Barlow_Condensed({
@@ -57,13 +58,15 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       className={`${barlowCondensed.variable} ${hankenGrotesk.variable} ${jetBrainsMono.variable}`}
     >
       <body>
-        <AuthBoundary>
-          <NextRaceProvider value={value}>
-            <Header />
-            {children}
-            <Footer />
-          </NextRaceProvider>
-        </AuthBoundary>
+        <Suspense fallback={null} >
+          <AuthBoundary>
+            <NextRaceProvider value={value}>
+              <Header />
+              {children}
+              <Footer />
+            </NextRaceProvider>
+          </AuthBoundary>
+        </Suspense>
       </body>
     </html>
   );

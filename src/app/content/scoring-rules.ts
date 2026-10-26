@@ -8,11 +8,11 @@ export const scoringRules = {
         },
         {
             paragraphTitle: "Qualifying, Races, Sprints",
-            paragraphText: "After assining the driver and their position, the points are scored in three ways: same driver in that exact position → 5, otherwise, the predicted driver's teammate is the actual driver in that position → 3, otherwise, the predicted driver finished somewhere else in the real top 10 → 1, otherwise 0 points. Only the best match counts per position, never added together.",
+            paragraphText: "After assigning the driver and their position, the points are scored in three ways: same driver in that exact position → 5, otherwise, the predicted driver finished one position before or after the predicted one → 3, otherwise, the predicted driver finished somewhere else in the real top 10 → 1, otherwise 0 points. Only the best match counts per position, never added together.",
         },
         {
             paragraphTitle: "Weekend Specials",
-            paragraphText: "Weekend special scores include: the driver of the day, fastest lap's driver and safety car appearance (VSC is not included). Driver of the day: Choose the desired driver from the possible options, if it matches the actual one, you get 3 points. Fastest lap: Choose the desired driver from the possible options, if it matches the actual one, you get 3 points. Safety car appearance: Choose from the options - 0 (safety car will not appear during the race), 1-2 (safety car will be out 1 or 2 times), 3+ (safety car will be out 3 or more times). If the number matches the actual one, you get 2 points."
+            paragraphText: "Weekend special scores include: the driver of the day, fastest lap's driver, safety car appearance (VSC is not included), red flags and DNF number. Driver of the day: Choose the desired driver from the possible options, if it matches the actual one, you get 3 points. Fastest lap: Choose the desired driver from the possible options, if it matches the actual one, you get 3 points. Safety car appearance: Choose from the options - 0 (safety car will not appear during the race), 1-2 (safety car will be out 1 or 2 times), 3+ (safety car will be out 3 or more times). If the number matches the actual one, you get 2 points. Red flags: Choose from the options - 0, 1, 2 or 3+ red flags during the race. If the number matches the actual one, you get 2 points. DNF number: Choose from the options - 0, 1-2, 3-5 or 6+ drivers who did not finish the race. If the range matches the actual one, you get 2 points."
         },
         {
             paragraphTitle: "Scoring",

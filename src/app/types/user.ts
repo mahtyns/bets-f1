@@ -11,4 +11,6 @@ export type UpdateProfileInput = {
     avatarId?: number;
     currentPassword?: string;
     newPassword?: string;
+    displayName?: string,
+    teamName?: string
 };

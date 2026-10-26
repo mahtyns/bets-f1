@@ -1,16 +1,15 @@
 
-import { CalendarPageHeading } from "../components/layouts/CalendarPageHeading";
-import { NextRace } from "../components/layouts/NextRaceCard";
-import { UpcomingRounds } from "../components/layouts/UpcomingRounds";
+import { Suspense } from "react";
 import styles from "./../page.module.css";
+import { UpcomingContent } from "../components/page-contents/UpcomingContent";
 
-export default function Home() {
+export default function UpcomingPage() {
     return (
         <div className={styles.page}>
             <main>
-                <CalendarPageHeading />
-                <NextRace />
-                <UpcomingRounds />
+                <Suspense>
+                    <UpcomingContent />
+                </Suspense>
             </main>
         </div>
     );

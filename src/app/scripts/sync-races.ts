@@ -10,6 +10,11 @@ interface ApiMeeting {
     country_name: string;
     date_start: string;
     is_cancelled: boolean;
+    circuit_image: string,
+    country_flag: string;
+    circuit_key: number,
+    circuit_type: string
+
 }
 
 interface ApiSession {
@@ -99,6 +104,8 @@ const run = async () => {
             continue;
         }
 
+        if (index === 0) console.log(meeting);
+
         rows.push({
             external_id: meeting.meeting_key,
             season: CHAMPIONSHIP_YEAR,
@@ -106,6 +113,10 @@ const run = async () => {
             name: meeting.meeting_name,
             circuit: meeting.circuit_short_name,
             country: meeting.country_name,
+            type: meeting.circuit_type,
+            flag: meeting.country_flag,
+            image: meeting.circuit_image,
+            circuit_key: meeting.circuit_key,
             race_start: new Date(raceStart).toISOString(),
             bets_lock_at: new Date(meeting.date_start).toISOString(),
             bets_opens_at: getMondayMadrid(new Date(raceStart)),
