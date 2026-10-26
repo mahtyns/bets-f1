@@ -80,4 +80,28 @@
         font-size: $font-xs;
         color: $tertiary-100;
     }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: $space-sm;
+    }
+
+    &__select {
+        max-width: 50%;
+        background-color: transparent;
+        border-radius: $border-radius-xs;
+        font-family: $font-label;
+        text-transform: uppercase;
+        color: $tertiary-200;
+        text-align: right;
+        padding-right: $space-xs;
+
+        option {
+            background-color: $background-700;
+            font-family: $font-label;
+            text-transform: uppercase;
+        }
+    }
 }

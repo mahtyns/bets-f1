@@ -4,6 +4,7 @@ import { getCurrentUser } from "@/app/lib/getCurrentUser";
 import GeneralStandings from "../layouts/GeneralStandings";
 import { StandingsDetailed } from "../layouts/StandingsDetailed";
 import { DriverTeamStandings } from "../layouts/DriverTeamStandings";
+import { StandingsUserResults } from "../layouts/user-results/StandingsUserResults";
 
 export const HomeContent = async () => {
     const rounds = await getRoundsOverview();
@@ -13,6 +14,7 @@ export const HomeContent = async () => {
         <>
             <GeneralStandings standings={standings} currentUserId={currentUserId} rounds={rounds} />
             <StandingsDetailed standings={standings} currentUserId={currentUserId} />
+            <StandingsUserResults standings={standings} currentUserId={currentUserId} />
             <DriverTeamStandings />
         </>
     )

@@ -17,6 +17,7 @@ import { PredictionHubLocked } from "../layouts/prediction-hub/PredictionHubLock
 import { PredictionHubIdle } from "../layouts/prediction-hub/PredictionHubIdle";
 import Login from "../layouts/Login";
 import { SecondaryPageHeading } from "../layouts/SecondaryPageHeading";
+import Title from "../atoms/Title";
 
 export const PredictionHubContent = async () => {
     const nextRace = await getNextRace();
@@ -61,13 +62,9 @@ export const PredictionHubContent = async () => {
                     flag={track.flag}
                 />
             ) : (
-                <SecondaryPageHeading
-                    titleText={pageFullTitle}
-                    roundNumber={0}
-                    trackName={'Track Name'}
-                    trackType={'Track Type'}
-                    flag={'flag'}
-                />
+                <section className="prediction-hub-heading">
+                    <Title isH1={true} title="Prediction hub" />
+                </section>
             )}
             <AuthGate
                 loggedIn={<RaceWeekGate
