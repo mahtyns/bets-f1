@@ -8,7 +8,7 @@ export interface PredictionDriver {
 
 export type PredictionSlot = PredictionDriver | null;
 
-export type SafetyCarChoice = "0" | "1-2" | "3+";
+export type SafetyCarChoice = "0" | "1" | "2" | "3+";
 
 export type DNFChoice = "0" | "1-2" | "3-5" | "6+"
 

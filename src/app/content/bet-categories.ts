@@ -13,14 +13,16 @@ export const BET_CATEGORIES = {
 
 export const SAFETY_CAR_TO_NUMBER: Record<SafetyCarChoice, number> = {
     "0": 0,
-    "1-2": 1,
-    "3+": 2,
+    "1": 1,
+    "2": 2,
+    "3+": 3,
 };
 
 export const SAFETY_CAR_FROM_NUMBER: Record<number, SafetyCarChoice> = {
     0: "0",
-    1: "1-2",
-    2: "3+",
+    1: "1",
+    2: "2",
+    3: "3+",
 };
 
 export const DNF_TO_NUMBER: Record<DNFChoice, number> = {

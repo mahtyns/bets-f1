@@ -35,7 +35,8 @@ export const predictionHubContent = {
             description: "Total full Safety Car deployments during the race",
             options: [
                 { value: "0" as const, label: "0" },
-                { value: "1-2" as const, label: "1–2" },
+                { value: "1" as const, label: "1" },
+                { value: "2" as const, label: "2" },
                 { value: "3+" as const, label: "3+" },
             ],
         },
