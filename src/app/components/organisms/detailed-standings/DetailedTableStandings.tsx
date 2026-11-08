@@ -85,7 +85,7 @@ const DetailedTableStandings = ({
                 +{s.lastGpPoints}
               </td>
               <td className={`${mainClass}__td`}>
-                {s.poles} / {s.races}
+                {s.wins} / {s.races}
               </td>
               <td className={`${mainClass}__td`}>
                 {s.podiums} / {s.races}

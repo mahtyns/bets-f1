@@ -21,7 +21,7 @@ export interface Standing {
     avatarId: number;
     totalPoints: number;
     lastGpPoints: number;
-    poles: number;
+    wins: number;
     podiums: number;
     races: number;
     winRate: number;

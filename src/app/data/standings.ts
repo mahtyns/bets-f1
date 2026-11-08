@@ -118,7 +118,7 @@ export const getStandings = async (): Promise<Standing[]> => {
             avatarId: row.user.avatar_id,
             totalPoints: row.totalPoints,
             lastGpPoints: row.lastGpPoints,
-            poles: polesByUser.get(row.user.id) ?? 0,
+            wins,
             podiums,
             races: totalRaces,
             winRate: totalRaces > 0 ? (wins / totalRaces) * 100 : 0,
